@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { SnotifyModule,SnotifyService } from 'ng-snotify';
+import { SnotifyService } from 'ng-snotify';
+
 import {JarwisService } from 'src/app/Services/jarwis.service';
 //import { SnotifyService } from 'ng-snotify';
 
