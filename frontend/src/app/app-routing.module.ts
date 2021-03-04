@@ -7,6 +7,7 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { SignupComponent } from './components/signup/signup.component';
 import { AfterLoginService } from './Services/after-login.service';
 import { BeforeLoginService } from './Services/before-login.service';
+import { SidenavComponent } from './sidenav/sidenav.component';
 
 const routes: Routes = [
   {
@@ -33,7 +34,8 @@ const routes: Routes = [
     path: 'password-responsr-reset',
     component: ResponseResetComponent,
     canActivate: [BeforeLoginService]
-  }
+  },
+
 ];
 
 @NgModule({

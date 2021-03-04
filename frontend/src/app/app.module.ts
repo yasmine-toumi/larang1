@@ -16,7 +16,10 @@ import { TokenService } from './Services/token.service';
 import { AuthService } from './Services/auth.service';
 import { AfterLoginService } from './Services/after-login.service';
 import { BeforeLoginService } from './Services/before-login.service';
-import { SnotifyModule, SnotifyService, ToastDefaults } from 'ng-snotify';2
+import { SnotifyModule, SnotifyService, ToastDefaults } from 'ng-snotify';
+import {SidebarModule} from 'ng-sidebar';
+import { SidenavComponent } from './sidenav/sidenav.component';
+import { FooterComponent } from './footer/footer.component';
 
 
 @NgModule({
@@ -27,14 +30,17 @@ import { SnotifyModule, SnotifyService, ToastDefaults } from 'ng-snotify';2
     SignupComponent,
     ProfileComponent,
     RequestResetComponent,
-    ResponseResetComponent
+    ResponseResetComponent,
+    SidenavComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    SnotifyModule
+    SnotifyModule,
+    SidebarModule.forRoot()
   ],
   providers: [JarwisService, TokenService, AuthService, AfterLoginService, BeforeLoginService,
     { provide: 'SnotifyToastConfig', useValue: ToastDefaults },
