@@ -25,10 +25,18 @@ Route::group([
 
     Route::post('login', 'AuthController@login');
     Route::post('signup', 'AuthController@signup');
-    Route::post('logout', 'AuthController@logout');
     Route::post('refresh', 'AuthController@refresh');
     Route::post('me', 'AuthController@me');
     Route::post('sendPasswordResetLink', 'ResetPasswordController@sendEmail');
-
     Route::post('resetPassword', 'ChangePasswordController@process');
+
+
+    Route::post('logout', 'AuthController@logout');
+
+    Route::get('utilisateur', 'UserController@getUser');
+    Route::get('utilisateur/{id}', 'UserController@getUserById');
+    Route::post('adduser', 'UserController@addUser');
+   Route::put('updateUser/{id}', 'UserController@updateUser');
+    Route::delete('deleteUser/{id}', 'UserController@deleteUser');
+
 });

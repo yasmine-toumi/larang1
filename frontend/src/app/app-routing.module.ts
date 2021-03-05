@@ -8,6 +8,7 @@ import { SignupComponent } from './components/signup/signup.component';
 import { AfterLoginService } from './Services/after-login.service';
 import { BeforeLoginService } from './Services/before-login.service';
 import { SidenavComponent } from './sidenav/sidenav.component';
+import { UsersModule } from './users/users.module';
 
 const routes: Routes = [
   {
@@ -35,6 +36,7 @@ const routes: Routes = [
     component: ResponseResetComponent,
     canActivate: [BeforeLoginService]
   },
+  { path: 'users', loadChildren: () => import('./users/users.module').then(m => UsersModule) },
 
 ];
 
