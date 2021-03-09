@@ -1,50 +1,64 @@
-<div class="row layout-top-spacing">
-<div class="col-xl-12 col-lg-12 col-sm-12  layout-spacing">
-  <div class="widget-content widget-content-area br-6">
-    <div class="table-responsive mb-4 mt-4">
-      <table id="zero-config" class="table table-hover" style="width:100%">
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Position</th>
-            <th>Office</th>
-            <th>Age</th>
-            <th>Start date</th>
-            <th>Salary</th>
-            <th class="no-content"></th>
-          </tr>
-        </thead>
-        <tbody>
-        <tr>
-            <td>Michael Silva</td>
-            <td>Marketing Designer</td>
-            <td>London</td>
-            <td>66</td>
-            <td>2012/11/27</td>
-            <td>$198,500</td>
-            <td><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                class="feather feather-x-circle table-cancel">
-                <circle cx="12" cy="12" r="10"></circle>
-                <line x1="15" y1="9" x2="9" y2="15"></line>
-                <line x1="9" y1="9" x2="15" y2="15"></line>
-              </svg></td>
-          </tr>
+<div class="row">
+  <div id="flStackForm" class="col-lg-12 layout-spacing layout-top-spacing">
+    <div class="statbox widget box box-shadow">
+      <div class="row layout-top-spacing">
+        <div class="col-xl-12 col-lg-12 col-sm-12  layout-spacing">
+          <div class="widget-content widget-content-area br-6">
+            <div class="table-responsive mb-4 mt-4">
 
-        </tbody>
-        <tfoot>
-          <tr>
-            <th>Name</th>
-            <th>Position</th>
-            <th>Office</th>
-            <th>Age</th>
-            <th>Start date</th>
-            <th>Salary</th>
-            <th></th>
-          </tr>
-        </tfoot>
-      </table>
+              <table id="zero-config" class="table table-hover" style="width:100%">
+                <thead>
+                  <tr>
+                    <th>id</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Birthday</th>
+                    <th>Telephone</th>
+                    <th>Role</th>
+                    <th>Status</th>
+                    <th class="no-content"></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let user of users.data">
+                    <th scope="row">{{user.id}}</th>
+                    <td>{{user.name}}</td>
+                    <td>{{user.email}}</td>
+                    <td>{{user.birthday}}</td>
+                    <td>{{user.tel}}</td>
+                    <td>actif</td>
+                    <td></td>
+                  <td><button (click)="deleteData(user.id)">delete</button> </td><!--<td> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        class="feather feather-x-circle table-cancel" (click)="deleteData(user.id)">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <line x1="15" y1="9" x2="9" y2="15"></line>
+                        <line x1="9" y1="9" x2="15" y2="15"></line>
+                      </svg></td> -->
+                  </tr>
+
+                </tbody>
+                <tfoot>
+                  <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Birthday</th>
+                    <th>Telephone</th>
+                    <th>Role</th>
+                    <th>Status</th>
+                    <th></th>
+                  </tr>
+                </tfoot>
+              </table>
+<!-- <div class="container">
+  <ul class="nav nav-pills">
+    <li *ngFor="let p of pages; let i=index">{{i}}</li>
+  </ul>
+</div>  -->
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
-</div>
 </div>

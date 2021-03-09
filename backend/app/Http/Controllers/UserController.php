@@ -10,6 +10,12 @@ class UserController extends Controller
     public function getUser()
     {
         return response()->json(User::all(), 200);
+
+    }
+    public function getUserPageable($size)
+    {
+        //return response()->json(User::all(), 200);
+        return response()->json(User::paginate($size), 200);
     }
     public function getUserById($id)
     {
@@ -48,6 +54,6 @@ class UserController extends Controller
             return response()->json(['message' => 'utillisateur non disponible'], 404);
         }
         $user->delete($request->all());
-        return response()->json(null, 204);
+        return response()->json(['message' => 'utillisateur supprime'], 204);
     }
 }

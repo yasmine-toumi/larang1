@@ -34,9 +34,9 @@ Route::group([
     Route::post('logout', 'AuthController@logout');
 
     Route::get('utilisateur', 'UserController@getUser');
+    Route::get('page/utilisateurs/{size}', 'UserController@getUserPageable');
     Route::get('utilisateur/{id}', 'UserController@getUserById');
     Route::post('adduser', 'UserController@addUser');
-   Route::put('updateUser/{id}', 'UserController@updateUser');
+    Route::put('updateUser/{id}', 'UserController@updateUser');
     Route::delete('deleteUser/{id}', 'UserController@deleteUser');
-
 });

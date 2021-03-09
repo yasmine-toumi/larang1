@@ -20,6 +20,7 @@ import { SnotifyModule, SnotifyService, ToastDefaults } from 'ng-snotify';
 import {SidebarModule} from 'ng-sidebar';
 import { SidenavComponent } from './sidenav/sidenav.component';
 import { FooterComponent } from './footer/footer.component';
+import { CommonModule } from '@angular/common';
 
 
 
@@ -43,10 +44,10 @@ import { FooterComponent } from './footer/footer.component';
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    SnotifyModule,
+    SnotifyModule, FormsModule,
     SidebarModule.forRoot()
   ],
-  providers: [JarwisService, TokenService, AuthService, AfterLoginService, BeforeLoginService,
+  providers: [JarwisService, TokenService, AuthService, AfterLoginService, BeforeLoginService, CommonModule,
     { provide: 'SnotifyToastConfig', useValue: ToastDefaults },
     SnotifyService],
   bootstrap: [AppComponent]

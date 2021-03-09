@@ -1,0 +1,90 @@
+<div class="row">
+  <div id="flStackForm" class="col-lg-12 layout-spacing layout-top-spacing" *ngIf="mode==1">
+    <div class="statbox widget box box-shadow">
+      <form (ngSubmit)="insertData()">
+        <div class="form-group mb-4">
+          <label for="inputAddress">Name</label>
+          <input type="text" name="name" class="form-control" id="inputName" placeholder="exp ali tounsi"
+            [(ngModel)]="user.name">
+        </div>
+        <div class="form-row mb-4">
+          <div class="form-group col-md-6">
+            <label for="inputEmail4">Email</label>
+            <input type="email" class="form-control" name="email" id="inputEmail4" placeholder="Email"
+              [(ngModel)]="user.email">
+          </div>
+          <div class="form-group col-md-6">
+            <label for="inputPassword4">Password</label>
+            <input type="password" class="form-control" name="password" id="inputPassword4" placeholder="Password"
+              [(ngModel)]="user.password">
+          </div>
+        </div>
+        <div class="form-row mb-4">
+          <div class="form-group col-md-6">
+            <label for="inputCity">Birthday</label>
+            <input type="date" class="form-control" id="myDate" name="birthday" value="2017-06-01"
+              [(ngModel)]="user.birthday">
+
+          </div>
+          <div class="form-group col-md-4">
+            <label for="inputState">Role</label>
+            <select id="inputState" class="form-control">
+              <option selected>Choose...</option>
+              <option>...</option>
+            </select>
+          </div>
+          <div class="form-group col-md-2">
+            <label for="inputZip">Telephone</label>
+            <input type="text" class="form-control" name="tel" id="inputZip" [(ngModel)]="user.tel">
+          </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary mt-3">Ajouter</button>
+      </form>
+      <script>
+        function myFunction() {
+          var x = document.getElementById("myDate").value;
+          document.getElementById("demo").innerHTML = x;
+        }
+      </script>
+
+    </div>
+
+  </div>
+  <div id="flStackForm" class="col-lg-12 layout-spacing layout-top-spacing" *ngIf="mode==2">
+    <div class="statbox widget box box-shadow">
+      <form (ngSubmit)="insertData()">
+        <div class="form-group mb-4">
+          <label for="inputAddress">Name:</label>
+          <label>{{user.name}}</label>
+
+        </div>
+        <div class="form-row mb-4">
+          <div class="form-group col-md-6">
+            <label for="inputEmail4">Email: </label>
+            <label>{{user.email}}</label>
+          </div>
+          <div class="form-group col-md-6">
+            <label for="inputPassword4">Password: </label>
+            <label>{{user.password}}</label>
+          </div>
+        </div>
+        <div class="form-row mb-4">
+          <div class="form-group col-md-6">
+            <label for="inputCity">Birthday: </label>
+            <label>{{user.birthday}}</label>
+
+          </div>
+
+          <div class="form-group col-md-2">
+            <label for="inputZip">Telephone: </label>
+            <label>{{user.tel}}</label>
+          </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary mt-3" (click)="OnListUsers()">List utilisateur</button>
+      </form>
+    </div>
+
+  </div>
+</div>

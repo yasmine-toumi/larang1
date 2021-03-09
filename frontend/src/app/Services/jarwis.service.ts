@@ -22,4 +22,19 @@ export class JarwisService {
   changePassword(data) {
     return this.http.post(`${this.baseUrl}/resetPassword`, data)
   }
+getUser(){
+  return this.http.get(`${this.baseUrl}/utilisateur`)
+}
+  insertData(data){
+    return this.http.post(`${this.baseUrl}/adduser`,data)
+  }
+
+
+  getUserPaganable() {
+    return this.http.get(`${this.baseUrl}/page/utilisateurs/5`)
+  }
+
+  deleteData(id){
+    return this.http.delete(`${this.baseUrl}/deleteUser/`+id)
+  }
 }
