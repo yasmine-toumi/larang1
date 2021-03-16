@@ -4,9 +4,22 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 
-
+$array = array("admin", "user");
 class UserController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth.role:admin,user', ['only' => ['blockUser']]);
+    }
+    public function blockUser()
+    {
+        return 'This is an admin route.';
+    }
+    public function profile()
+    {
+        return 'This route is for all users.';
+    }
+
     public function getUser()
     {
         return response()->json(User::all(), 200);
@@ -55,5 +68,18 @@ class UserController extends Controller
         }
         $user->delete($request->all());
         return response()->json(['message' => 'utillisateur supprime'], 204);
+    }
+    public function search($name){
+        return User::where("name","like","%".$name."%")->get();
+
+    }
+
+    public function searchuser(Request $request)
+    {
+        $name = $request->get('user');
+        //$name = $request->get('size');
+
+        //return User::where("name", "like", "%" . $name . "%")->get()->paginate(5);
+        return response()->json(User::where("name", "like", "%" . $name . "%")->paginate(1), 200);
     }
 }

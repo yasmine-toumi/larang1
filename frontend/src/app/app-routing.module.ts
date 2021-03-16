@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { AgencesModule } from './agences/agences.module';
 import { LoginComponent } from './components/login/login.component';
 import { RequestResetComponent } from './components/password/request-reset/request-reset.component';
 import { ResponseResetComponent } from './components/password/response-reset/response-reset.component';
@@ -9,6 +10,7 @@ import { AfterLoginService } from './Services/after-login.service';
 import { BeforeLoginService } from './Services/before-login.service';
 import { SidenavComponent } from './sidenav/sidenav.component';
 import { UsersModule } from './users/users.module';
+
 
 const routes: Routes = [
   {
@@ -37,7 +39,7 @@ const routes: Routes = [
     canActivate: [BeforeLoginService]
   },
   { path: 'users', loadChildren: () => import('./users/users.module').then(m => UsersModule) },
-
+  { path: 'agence', loadChildren: () => import('./agences/agences.module').then(m => AgencesModule) }
 ];
 
 @NgModule({

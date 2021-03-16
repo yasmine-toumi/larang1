@@ -22,7 +22,7 @@ export class JarwisService {
   changePassword(data) {
     return this.http.post(`${this.baseUrl}/resetPassword`, data)
   }
-getUser(){
+  getUser(){
   return this.http.get(`${this.baseUrl}/utilisateur`)
 }
   insertData(data){
@@ -36,5 +36,18 @@ getUser(){
 
   deleteData(id){
     return this.http.delete(`${this.baseUrl}/deleteUser/`+id)
+  }
+  getUserById(id){
+    return this.http.get(`${this.baseUrl}/utilisateur/`+id)
+  }
+  updatetData(id,data) {
+    return this.http.put(`${this.baseUrl}/updateUser/`+id, data)
+  }
+  searchdata(motCle:string){
+    return this.http.get(`${this.baseUrl}/search/`+"+motCle")
+  }
+
+  searchuser(motCle:string,page:number){
+    return this.http.get(`${this.baseUrl}/searchuser?user=`+motCle+'&page='+page)
   }
 }

@@ -3,18 +3,20 @@ import { CommonModule } from '@angular/common';
 import { UserComponent } from './user/user.component';
 import { Routes, RouterModule } from '@angular/router';
 import { AdduserComponent } from './adduser/adduser.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { EdituserComponent } from './edituser/edituser.component';
 
 const routes: Routes = [
   { path: 'user', component: UserComponent },
-    { path: 'adduser', component: AdduserComponent }
+  { path: 'adduser', component: AdduserComponent },
+  { path: 'edituser/:id', component: EdituserComponent }
 ];
 
 @NgModule({
-  declarations: [UserComponent, AdduserComponent],
+  declarations: [UserComponent, AdduserComponent, EdituserComponent],
   imports: [
     CommonModule,
-    FormsModule,
+    FormsModule, ReactiveFormsModule,
     RouterModule.forChild(routes)
   ]
 })

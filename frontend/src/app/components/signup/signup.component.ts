@@ -13,7 +13,10 @@ export class SignupComponent implements OnInit {
     email: null,
     name: null,
     password: null,
-    password_confirmation: null
+    password_confirmation: null,
+    birthday:null,
+    tel:null,
+    role:"user"
   };
   public error:any = [];
   constructor(private Jarwis: JarwisService,

@@ -17,11 +17,14 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+
 Route::group([
 
     'middleware' => 'api'
 
 ], function ($router) {
+
 
     Route::post('login', 'AuthController@login');
     Route::post('signup', 'AuthController@signup');
@@ -33,10 +36,19 @@ Route::group([
 
     Route::post('logout', 'AuthController@logout');
 
-    Route::get('utilisateur', 'UserController@getUser');
+    Route::get('utilisateur', ['middleware' => 'auth.role:admin,user', 'uses' => 'UserController@getUser']);
     Route::get('page/utilisateurs/{size}', 'UserController@getUserPageable');
     Route::get('utilisateur/{id}', 'UserController@getUserById');
     Route::post('adduser', 'UserController@addUser');
     Route::put('updateUser/{id}', 'UserController@updateUser');
-    Route::delete('deleteUser/{id}', 'UserController@deleteUser');
+    Route::delete('deleteUser/{id}', ['middleware' => 'auth.role:admin', 'uses' => 'UserController@deleteUser']);
+    Route::get('search/{name}', 'UserController@search');
+    Route::get('searchuser', 'UserController@searchuser');
+
+
+    Route::get('agence', 'AgencesController@getagence');
+    Route::get('agence/{id}', 'AgencesController@getagenceById');
+    Route::post('addagences', 'AgencesController@addagences');
+    Route::put('updagences/{id}', 'AgencesController@updagences');
+    Route::delete('deleteagences/{id}', 'AgencesController@deleteagences');
 });

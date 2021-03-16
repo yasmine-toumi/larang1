@@ -16,6 +16,7 @@ class AddUsers extends Migration
         Schema::table('users', function (Blueprint $table) {
             $table->date('birthday')->nullable();
             $table->string('tel')->nullable();
+
         });
     }
 
@@ -30,6 +31,7 @@ class AddUsers extends Migration
         Schema::table('users', function (Blueprint $table) {
             $table->date('birthday')->nullable();
             $table->string('tel')->nullable();
+
         });
     }
 }

@@ -24,21 +24,20 @@
               "src/assets"
             ],
             "styles": [
-              "src/assets/plugins/perfect-scrollbar/perfect-scrollbar.css",
-              "node_modules/ng-snotify/styles/material.scss",
-              "src/styles.css"
+              "./src/styles.css",
+              "./src/assets/plugins/perfect-scrollbar/perfect-scrollbar.css",
+              "./node_modules/ng-snotify/styles/material.scss"
             ],
             "scripts": [
-
-              "src/assets/js/libs/jquery-3.1.1.min.js",
-              "src/assets/bootstrap/js/popper.min.js",
-              "src/assets/bootstrap/js/bootstrap.min.js",
-              "src/assets/plugins/perfect-scrollbar/perfect-scrollbar.min.js",
-              "src/assets/js/app.js",
-              "src/assets/js/custom.js",
-              "src/assets/plugins/apex/apexcharts.min.js",
-              "src/assets/js/dashboard/dash_1.js",
-              "src/assets/js/start.js"
+              "./src/assets/js/libs/jquery-3.1.1.min.js",
+              "./src/assets/bootstrap/js/popper.min.js",
+              "./src/assets/bootstrap/js/bootstrap.min.js",
+              "./src/assets/plugins/perfect-scrollbar/perfect-scrollbar.min.js",
+              "./src/assets/js/app.js",
+              "./src/assets/js/custom.js",
+              "./src/assets/plugins/apex/apexcharts.min.js",
+              "./src/assets/js/dashboard/dash_1.js",
+              "./src/assets/js/start.js"
             ]
           },
           "configurations": {

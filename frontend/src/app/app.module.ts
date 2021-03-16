@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import{FormsModule} from '@angular/forms';
+import { FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
@@ -11,6 +11,7 @@ import { RequestResetComponent } from './components/password/request-reset/reque
 import { ResponseResetComponent } from './components/password/response-reset/response-reset.component';
 import { HttpClientModule } from '@angular/common/http';
 import { from } from 'rxjs';
+
 import { JarwisService } from './Services/jarwis.service';
 import { TokenService } from './Services/token.service';
 import { AuthService } from './Services/auth.service';
@@ -45,7 +46,8 @@ import { CommonModule } from '@angular/common';
     FormsModule,
     HttpClientModule,
     SnotifyModule, FormsModule,
-    SidebarModule.forRoot()
+    SidebarModule.forRoot(),
+    ReactiveFormsModule
   ],
   providers: [JarwisService, TokenService, AuthService, AfterLoginService, BeforeLoginService, CommonModule,
     { provide: 'SnotifyToastConfig', useValue: ToastDefaults },
