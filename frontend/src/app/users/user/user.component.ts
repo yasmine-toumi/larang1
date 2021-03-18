@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { JarwisService } from 'src/app/Services/jarwis.service';
+import { TokenService } from 'src/app/Services/token.service';
+import jwt_decode from 'jwt-decode';
+import { HttpHeaders } from '@angular/common/http';
+
 
 @Component({
   selector: 'app-user',
@@ -10,15 +14,36 @@ export class UserComponent implements OnInit {
   users: any;
   pages: Array<number>;
   motCle: string = "";
+  public role:string;
   public totalPages: number;
-  constructor(private Jarwis: JarwisService) { }
+  constructor(private Jarwis: JarwisService, private token: TokenService) { }
+
+  public takedToken = this.token.get();
+
+  httpOptions = {
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer ' + this.takedToken
+    })
+  };
 
   ngOnInit(): void {
     this.getUserData();
+    this.role=this.token.getRole();
 
   }
+  getDecodedAccessToken(token: string): any {
+    try {
+      return jwt_decode(token);
+    }
+    catch (Error) {
+      return null;
+    }
+  }
 
-
+  getdetails() {
+    console.log(this.token.getRole());
+  }
   getUserData() {
     this.Jarwis.searchuser(this.motCle, 1).subscribe(res => {
       this.users = res["data"];
@@ -29,12 +54,7 @@ export class UserComponent implements OnInit {
 
   }
   deleteData(id) {
-    this.Jarwis.deleteData(id).subscribe(res => {
-      this.getUserData();
-    });
-  }
-  dochercher() {
-    this.Jarwis.searchdata(this.motCle).subscribe(data => {
+    this.Jarwis.deleteData(id, this.httpOptions).subscribe(res => {
       this.getUserData();
     });
   }
@@ -55,4 +75,5 @@ export class UserComponent implements OnInit {
       //console.log(this.users);
     });
   }
+
 }

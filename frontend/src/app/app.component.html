@@ -19,12 +19,12 @@
   <div class="overlay"></div>
   <div class="search-overlay"></div>
   <!--  BEGIN SIDEBAR  -->
-  <div class="sidebar-wrapper sidebar-theme">
+  <div *ngIf="loggedIn" class="sidebar-wrapper sidebar-theme">
 
     <nav id="sidebar">
       <div class="shadow-bottom"></div>
       <ul class="list-unstyled menu-categories" id="accordionExample">
-        <li class="menu">
+        <li class="menu" *ngIf="role==='admin'">
           <a href="#users"  data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
             <div class="">
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
@@ -171,6 +171,7 @@
   <div id="content" class="main-content">
     <div class="layout-px-spacing">
       <router-outlet></router-outlet>
+
 
     </div>
     <div class="footer-wrapper">

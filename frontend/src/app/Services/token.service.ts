@@ -10,18 +10,29 @@ export class TokenService {
     signup: 'http://localhost:8000/api/signup'
   };
   constructor() { }
-  handle(token) {
-    this.set(token);
+  handle(token,role,user) {
+    this.set(token,role,user);
+
 
   }
-  set(token) {
+  set(token,role,user) {
     localStorage.setItem('token', token);
+    localStorage.setItem('role', role);
+    localStorage.setItem('user', user);
   }
   get() {
     return localStorage.getItem('token');
   }
+  getRole() {
+    return localStorage.getItem('role');
+  }
+  getUser() {
+    return localStorage.getItem('user');
+  }
   remove() {
     localStorage.removeItem('token');
+    localStorage.removeItem('role');
+    localStorage.removeItem('user');
   }
   isValid() {
     const token = this.get();

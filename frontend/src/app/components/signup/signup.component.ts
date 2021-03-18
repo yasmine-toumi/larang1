@@ -31,7 +31,7 @@ export class SignupComponent implements OnInit {
     );
   }
   handleResponse(data) {
-    this.Token.handle(data.access_token);
+    this.Token.handle(data.access_token, data.role, data.user);
     this.router.navigateByUrl('/profil');
   }
   handleError(error) {

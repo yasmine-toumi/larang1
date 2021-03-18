@@ -80,6 +80,6 @@ class UserController extends Controller
         //$name = $request->get('size');
 
         //return User::where("name", "like", "%" . $name . "%")->get()->paginate(5);
-        return response()->json(User::where("name", "like", "%" . $name . "%")->paginate(1), 200);
+        return response()->json(User::where("name", "like", "%" . $name . "%")->paginate(10), 200);
     }
 }

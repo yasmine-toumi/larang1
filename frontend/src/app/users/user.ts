@@ -5,5 +5,6 @@ export class User {
   password: any;
   birthday: any;
   tel: any;
+  role:any;
 
 }

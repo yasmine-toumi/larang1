@@ -1,5 +1,6 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { TokenService } from './token.service';
 
 @Injectable({
   providedIn: 'root'
@@ -7,7 +8,10 @@ import { Injectable } from '@angular/core';
 export class JarwisService {
   private baseUrl = 'http://localhost:8000/api';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,private token: TokenService) { }
+
+
+
 
   signup(data) {
     return this.http.post(`${this.baseUrl}/signup`, data)
@@ -22,20 +26,16 @@ export class JarwisService {
   changePassword(data) {
     return this.http.post(`${this.baseUrl}/resetPassword`, data)
   }
-  getUser(){
-  return this.http.get(`${this.baseUrl}/utilisateur`)
-}
+
   insertData(data){
     return this.http.post(`${this.baseUrl}/adduser`,data)
   }
 
 
-  getUserPaganable() {
-    return this.http.get(`${this.baseUrl}/page/utilisateurs/5`)
-  }
 
-  deleteData(id){
-    return this.http.delete(`${this.baseUrl}/deleteUser/`+id)
+
+  deleteData(id,token){
+    return this.http.delete(`${this.baseUrl}/deleteUser/` + id, token)
   }
   getUserById(id){
     return this.http.get(`${this.baseUrl}/utilisateur/`+id)
@@ -43,9 +43,7 @@ export class JarwisService {
   updatetData(id,data) {
     return this.http.put(`${this.baseUrl}/updateUser/`+id, data)
   }
-  searchdata(motCle:string){
-    return this.http.get(`${this.baseUrl}/search/`+"+motCle")
-  }
+
 
   searchuser(motCle:string,page:number){
     return this.http.get(`${this.baseUrl}/searchuser?user=`+motCle+'&page='+page)
