@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { JarwisService } from 'src/app/Services/jarwis.service';
 import { TokenService } from 'src/app/Services/token.service';
-import jwt_decode from 'jwt-decode';
+
 import { HttpHeaders } from '@angular/common/http';
 
 
@@ -32,14 +32,7 @@ export class UserComponent implements OnInit {
     this.role=this.token.getRole();
 
   }
-  getDecodedAccessToken(token: string): any {
-    try {
-      return jwt_decode(token);
-    }
-    catch (Error) {
-      return null;
-    }
-  }
+
 
   getdetails() {
     console.log(this.token.getRole());
