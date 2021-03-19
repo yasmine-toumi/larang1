@@ -22,13 +22,11 @@
           </div>
           <div class="form-group col-md-4">
             <label for="inputState">Role</label>
-            <!-- <select id="inputState" class="form-control"name="role" [(ngModel)]="user.role">
-              <option selected>Choose...</option>
-               <option name="role"> adminstrateur</option>
-              <option name="role">Rousource humaine</option>
-              <option name="role">Amicale</option>
-              <option name="role">Utilisateur</option>
-            </select>  -->
+           <select id="role" class="form-control"name="role" [(ngModel)]="user.role">
+              <option *ngFor="let role of roles" [values]="role.id">
+                {{role.name}}
+              </option>
+            </select>
           </div>
 
         </div>

@@ -4,12 +4,12 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 
-$array = array("admin", "user");
+$array = array("administrateur", "utilisateur");
 class UserController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth.role:admin,user', ['only' => ['blockUser']]);
+        $this->middleware('auth.role:administrateur,utilisateur', ['only' => ['blockUser']]);
     }
     public function blockUser()
     {

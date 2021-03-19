@@ -12,6 +12,18 @@ export class EdituserComponent implements OnInit {
 id:any;
 data:any;
 user = new User();
+roles=[
+  {id:1,name:'administrateur'},
+  { id: 2,name: 'utilisateur' },
+  { id: 3, name: 'chef communication' },
+  { id: 4, name: 'communication' },
+  { id: 4, name: 'chef rh' },
+  { id: 5, name: 'rh' },
+  { id: 6, name: 'chef amicale' },
+  { id: 7, name: 'amicale' },
+  { id: 8, name: 'chef d agence' },
+  { id: 9, name: 'agence' }
+];
   constructor(private activatedrouter: ActivatedRoute,private router: Router, private Jarwis: JarwisService) { }
 
   ngOnInit(): void {

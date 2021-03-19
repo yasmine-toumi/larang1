@@ -24,7 +24,7 @@ class AgencesController extends Controller
     {
         $agences = new Agences();
         $agences->code = $request->code;
-        $agences->name= $request->ename;
+        $agences->name= $request->name;
         $agences->tel= $request->tel;
         $agences->adresse = $request->adresse;
         $agences->active = $request->active;

@@ -36,12 +36,12 @@ Route::group([
 
     Route::post('logout', 'AuthController@logout');
 
-    Route::get('utilisateur', ['middleware' => 'auth.role:admin,user', 'uses' => 'UserController@getUser']);
+    Route::get('utilisateur', ['middleware' => 'auth.role:administrateur,utilisateur', 'uses' => 'UserController@getUser']);
     Route::get('page/utilisateurs/{size}', 'UserController@getUserPageable');
     Route::get('utilisateur/{id}', 'UserController@getUserById');
     Route::post('adduser', 'UserController@addUser');
     Route::put('updateUser/{id}', 'UserController@updateUser');
-    Route::delete('deleteUser/{id}', ['middleware' => 'auth.role:admin', 'uses' => 'UserController@deleteUser']);
+    Route::delete('deleteUser/{id}', ['middleware' => 'auth.role:administrateur', 'uses' => 'UserController@deleteUser']);
     Route::get('search/{name}', 'UserController@search');
     Route::get('searchuser', 'UserController@searchuser');
 

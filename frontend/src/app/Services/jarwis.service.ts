@@ -48,4 +48,8 @@ export class JarwisService {
   searchuser(motCle:string,page:number){
     return this.http.get(`${this.baseUrl}/searchuser?user=`+motCle+'&page='+page)
   }
+
+ getagence(){
+   return this.http.get(`${this.baseUrl}/agence`)
+ }
 }
