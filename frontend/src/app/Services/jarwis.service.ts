@@ -52,4 +52,18 @@ export class JarwisService {
  getagence(){
    return this.http.get(`${this.baseUrl}/agence`)
  }
+  addagences(data){
+    return this.http.post(`${this.baseUrl}/addagences`,data)
+
+ }
+  deleteagences(id){
+    return this.http.delete(`${this.baseUrl}/deleteagences/` + id)
+  }
+
+updatetagence(id, data) {
+  return this.http.put(`${this.baseUrl}/updagences/` + id, data)
+}
+  getagenceById(id){
+    return this.http.get(`${this.baseUrl}/agence/` + id)
+  }
 }
