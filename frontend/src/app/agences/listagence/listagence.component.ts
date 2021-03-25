@@ -30,9 +30,12 @@ this.getagence();
 
   }
   deleteData(id){
+    let conf = confirm("etes vous sure?");
+    if (conf) {
     this.Jarwis.deleteagences(id).subscribe(res=>{
       this.getagence();
     });
+  }
   }
 
 }

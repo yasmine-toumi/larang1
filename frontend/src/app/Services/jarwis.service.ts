@@ -66,4 +66,16 @@ updatetagence(id, data) {
   getagenceById(id){
     return this.http.get(`${this.baseUrl}/agence/` + id)
   }
+
+  addfiles(data) {
+    return this.http.post(`${this.baseUrl}/addfiles`, data)
+
+  }
+  getfiles() {
+    return this.http.get(`${this.baseUrl}/files`)
+  }
+  upload(formData){
+    return this.http.post(`${this.baseUrl}/upload`, formData)
+}
+
 }

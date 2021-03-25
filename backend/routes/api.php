@@ -51,4 +51,6 @@ Route::group([
     Route::post('addagences', 'AgencesController@addagences');
     Route::put('updagences/{id}', 'AgencesController@updagences');
     Route::delete('deleteagences/{id}', 'AgencesController@deleteagences');
+    Route::get('files', 'conditionController@getfiles');
+    Route::post('upload', 'conditionController@upload');
 });
