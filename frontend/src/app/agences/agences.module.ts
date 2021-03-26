@@ -7,15 +7,21 @@ import { EditagencesComponent } from './editagences/editagences.component';
 import { ConditionsbankComponent } from './conditionsbank/conditionsbank.component';
 import { ButtonModule } from 'primeng/button';
 import { FileUploadModule } from 'primeng/fileupload';
+import { DocummentComponent } from './documment/documment.component';
+import { ChallengesComponent } from './challenges/challenges.component';
+import { ListeconventionsComponent } from './listeconventions/listeconventions.component';
 
 
 const routes: Routes = [
   {path:'listagence', component:ListagenceComponent },
   {path:'edit/:id',component:EditagencesComponent},
-  {path:'condition',component:ConditionsbankComponent}
+  {path:'condition',component:ConditionsbankComponent},
+  {path:'document',component:DocummentComponent},
+  {path:'challenge',component:ChallengesComponent},
+  {path:'listeconventions',component:ListeconventionsComponent}
 ];
 @NgModule({
-  declarations: [ListagenceComponent, EditagencesComponent, ConditionsbankComponent],
+  declarations: [ListagenceComponent, EditagencesComponent, ConditionsbankComponent, DocummentComponent, ChallengesComponent, ListeconventionsComponent],
   imports: [FormsModule, ReactiveFormsModule,
     CommonModule, RouterModule.forChild(routes), ButtonModule, FileUploadModule
   ]

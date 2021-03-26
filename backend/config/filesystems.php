@@ -42,6 +42,14 @@ return [
     */
 
     'disks' => [
+        'costum' => [
+            'driver' => 'local',
+            'root'   => 'C:\Users\Yasmine\Desktop\pfe 2021\projet\frontend\src\assets\img'
+        ],
+        'document' => [
+            'driver' => 'local',
+            'root'   => 'C:\Users\Yasmine\Desktop\pfe 2021\projet\frontend\src\assets\document'
+        ],
 
         'local' => [
             'driver' => 'local',
@@ -50,7 +58,7 @@ return [
 
         'public' => [
             'driver' => 'local',
-            'root' => storage_path('app/public'),
+            'root' => storage_path('../../'),
             'url' => env('APP_URL').'/storage',
             'visibility' => 'public',
         ],
