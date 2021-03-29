@@ -10,6 +10,7 @@ import { TokenService } from 'src/app/Services/token.service';
 export class DocummentComponent implements OnInit {
   public role: string;
   files: any;
+  document:any;
   uploadedFiles: any[] = [];
   constructor(private Jarwis: JarwisService, private token: TokenService) { }
 
@@ -21,6 +22,11 @@ export class DocummentComponent implements OnInit {
 
     });
   }
+  getfiles() {
+    this.Jarwis.getfiles().subscribe(res => {
+      this.document = res;
+    });
+  }
   onUpload(event) {
     const formData = new FormData();
     formData.append('file', event.files[0]);
@@ -30,5 +36,14 @@ export class DocummentComponent implements OnInit {
       alert('Uploaded Successfully.');
     });
   }
+  deleteData(id) {
+    let conf = confirm("etes vous sure?");
+    if (conf) {
+      this.Jarwis.deletedoc(id).subscribe(res => {
+        this.getfiles();
+      });
+    }
+  }
+
 
 }

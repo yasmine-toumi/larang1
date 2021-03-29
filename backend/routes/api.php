@@ -57,4 +57,5 @@ Route::group([
 
     Route::get('files', 'documentController@getfiles');
     Route::post('upload', 'documentController@upload');
+    Route::delete('deletedoc/{id}', 'documentController@deletedocument');
 });

@@ -78,4 +78,8 @@ updatetagence(id, data) {
     return this.http.post(`${this.baseUrl}/upload`, formData)
 }
 
+
+deletedoc(id){
+  return this.http.delete(`${this.baseUrl}/deletedoc/` + id)
+}
 }

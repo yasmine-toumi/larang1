@@ -26,7 +26,7 @@
               [(ngModel)]="user.birthday">
 
           </div>
-          <div class="form-group col-md-4">
+          <div class="form-group col-md-4" *ngIf="role==='administrateur'">
             <label for="inputState">Role</label>
            <select id="role" class="form-control"name="role" [(ngModel)]="user.role">
               <option *ngFor="let role of roles" [values]="role.id">

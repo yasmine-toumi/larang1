@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { User } from '../user';
 import { JarwisService } from 'src/app/Services/jarwis.service';
+import { TokenService } from 'src/app/Services/token.service';
 
 @Component({
   selector: 'app-edituser',
@@ -24,11 +25,13 @@ roles=[
   { id: 8, name: 'chef d agence' },
   { id: 9, name: 'agence' }
 ];
-  constructor(private activatedrouter: ActivatedRoute,private router: Router, private Jarwis: JarwisService) { }
-
+  public role: string;
+  constructor(private activatedrouter: ActivatedRoute, private router: Router, private Jarwis: JarwisService, private token: TokenService) { }
+  public takedToken = this.token.get();
   ngOnInit(): void {
     this.id = this.activatedrouter.snapshot.params.id;
     this.getData();
+    this.role = this.token.getRole();
   }
 getData(){
   this.Jarwis.getUserById(this.id).subscribe(res =>{

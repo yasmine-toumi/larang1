@@ -7,6 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 class Agences extends Model
 {
     protected $fillable = [
-        'code', 'name',  'tel','adresse', 'active'
+       'id', 'code', 'name',  'tel','adresse', 'active'
     ];
+    public function challenges()
+    {
+        return $this->belongsToMany(Challenges::class);
+    }
 }

@@ -30,5 +30,14 @@ class documentController extends Controller
             return response($file, 201);
         }
     }
+    public function deletedocument(Request $request, $id)
+    {
+        $doc = Document::find($id);
+        if (is_null($doc)) {
+            return response()->json(['message' => 'doc non disponible'], 404);
+        }
+        $doc->delete($request->all());
+        return response()->json(['message' => 'doc supprime'], 204);
+    }
 }
 

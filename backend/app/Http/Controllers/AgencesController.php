@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Agences;
+use App\Challenges;
 use Illuminate\Http\Request;
 
 class AgencesController extends Controller
@@ -20,19 +21,37 @@ class AgencesController extends Controller
         return response()->json(Agences::find($id), 200);
     }
 
+    // public function addagences(Request $request)
+    // {
+    //     $agences = new Agences();
+    //     $agences->code = $request->code;
+    //     $agences->name= $request->name;
+    //     $agences->tel= $request->tel;
+    //     $agences->adresse = $request->adresse;
+    //     $agences->active = $request->active;
+
+    //     if ($agences->save()) {
+    //         return response($agences, 201);
+    //     }
+    // }
+
+
     public function addagences(Request $request)
     {
         $agences = new Agences();
         $agences->code = $request->code;
-        $agences->name= $request->name;
-        $agences->tel= $request->tel;
+        $agences->name = $request->name;
+        $agences->tel = $request->tel;
         $agences->adresse = $request->adresse;
         $agences->active = $request->active;
-
+        $challenges = Challenges::find([1, 2]);
+        $agences->challenges()->attach($challenges);
         if ($agences->save()) {
             return response($agences, 201);
         }
     }
+
+
     public function updagences(Request $request, $id)
     {
         $agences= Agences::find($id);
