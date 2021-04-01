@@ -1,1 +1,85 @@
-<p>challenges works!</p>
+<div class="row layout-top-spacing">
+  <div id="btnGroupHorizontal" class="col-lg-12 layout-spacing">
+    <div class="statbox widget box box-shadow">
+     <form  (ngSubmit)="insertData()">
+      <div class="widget-header">
+        <div class="row">
+          <div class="col-xl-12 col-md-12 col-sm-12 col-12">
+           <td><h3>Nos Challenges</h3></td>
+
+          </div>
+        </div>
+      </div>
+
+      <div class="widget-content widget-content-area ">
+        <div class="form-group">
+          Nom du challenge:
+          <input type="text" class="form-control" name="name" id="formGroupExampleInput"
+            placeholder="Nom du challenges" [(ngModel)]="challenge.name">
+
+        </div>
+        <div class="code-section-container show-code">
+          Description:
+          <div class="form-group">
+            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="description"  [(ngModel)]="challenge.description"></textarea>
+          </div>
+        </div>
+        <div class="form-group row">
+          <p for="example-datetime-local-input" class="col-2 col-form-label">Date de debut</p>
+          <div class="col-10">
+            <input class="form-control" type="date" id="myDate" name="datedebut" value="2011-08-19T13:45:00"  [(ngModel)]="challenge.date_debut"
+              id="example-datetime-local-input">
+          </div>
+        </div>
+        <div class="form-group row">
+          <p for="example-datetime-local-input" class="col-2 col-form-label">Date de fin</p>
+          <div class="col-10">
+            <input class="form-control" type="date" id="myDate" name="datefin" value="2011-08-19T13:45:00"  [(ngModel)]="challenge.date_fin"
+              id="example-datetime-local-input">
+          </div>
+        </div>
+        <button type="submit" class="btn btn-outline-secondary">Nouveau challenge</button>
+
+        <script>
+          function myFunction() {
+            var x = document.getElementById("myDate").value;
+            document.getElementById("demo").innerHTML = x;
+          }
+        </script>
+
+      </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div class="col-lg-12 layout-spacing" *ngFor="let chal of challenges">
+  <div class="statbox widget box box-shadow">
+    <div class="widget-header">
+      <div class="row">
+        <div class="col-xl-12 col-md-12 col-sm-12 col-12">
+
+    <h4 >{{chal.name}}</h4>
+  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit-2 float-right" routerLink="../editchaleng/{{chal.id}}"   >
+            <path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path>
+          </svg>
+
+        </div>
+      </div>
+    </div>
+    <div class="widget-content widget-content-area">
+      <div class="form-group">
+        <h5>{{chal.description}}</h5>
+      </div>
+<div>
+
+<b class="term">Date de debut </b><h6>{{chal.date_debut}}</h6>
+<b > Date d'expiration</b><h6>{{chal.date_fin}}</h6>
+
+</div>
+<button type="button" class="btn btn-success float-right" (click)="affecter(chal.id)">Affecter</button>
+</div>
+  </div>
+</div>
+

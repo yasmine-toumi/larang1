@@ -17,10 +17,13 @@ class CreateChallengesAgencesTable extends Migration
             $table->id();
             $table->integer('rang');
             $table->unsignedBigInteger('challenges_id');
-            $table->integer('agences_id')->unsigned();
             $table->foreign('challenges_id')
             ->references('id')
                 ->on('challenges')->onDelete('cascade');
+            $table->unsignedBigInteger('agences_id')->unsigned();
+            $table->foreign('agences_id')
+            ->references('id')
+            ->on('agences')->onDelete('cascade');
             $table->timestamps();
         });
     }

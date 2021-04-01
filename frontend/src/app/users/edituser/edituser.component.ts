@@ -18,12 +18,12 @@ roles=[
   { id: 2,name: 'utilisateur' },
   { id: 3, name: 'chef communication' },
   { id: 4, name: 'communication' },
-  { id: 4, name: 'chef rh' },
-  { id: 5, name: 'rh' },
-  { id: 6, name: 'chef amicale' },
-  { id: 7, name: 'amicale' },
-  { id: 8, name: 'chef d agence' },
-  { id: 9, name: 'agence' }
+  { id: 5, name: 'chef rh' },
+  { id: 6, name: 'rh' },
+  { id: 7, name: 'chef amicale' },
+  { id: 8, name: 'amicale' },
+  { id: 9, name: 'chef d agence' },
+  { id: 10, name: 'agence' }
 ];
   public role: string;
   constructor(private activatedrouter: ActivatedRoute, private router: Router, private Jarwis: JarwisService, private token: TokenService) { }

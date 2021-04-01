@@ -14,7 +14,7 @@ class CreateAgencesTable extends Migration
     public function up()
     {
         Schema::create('agences', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
             $table->string('code');
             $table->string('name');
             $table->string('tel');

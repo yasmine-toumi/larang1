@@ -10,6 +10,7 @@ import { FileUploadModule } from 'primeng/fileupload';
 import { DocummentComponent } from './documment/documment.component';
 import { ChallengesComponent } from './challenges/challenges.component';
 import { ListeconventionsComponent } from './listeconventions/listeconventions.component';
+import { EditchallengesComponent } from './editchallenges/editchallenges.component';
 
 
 const routes: Routes = [
@@ -18,10 +19,11 @@ const routes: Routes = [
   {path:'condition',component:ConditionsbankComponent},
   {path:'document',component:DocummentComponent},
   {path:'challenge',component:ChallengesComponent},
-  {path:'listeconventions',component:ListeconventionsComponent}
+  {path:'listeconventions',component:ListeconventionsComponent},
+  {path:'editchaleng/:id',component:EditchallengesComponent}
 ];
 @NgModule({
-  declarations: [ListagenceComponent, EditagencesComponent, ConditionsbankComponent, DocummentComponent, ChallengesComponent, ListeconventionsComponent],
+  declarations: [ListagenceComponent, EditagencesComponent, ConditionsbankComponent, DocummentComponent, ChallengesComponent, ListeconventionsComponent, EditchallengesComponent],
   imports: [FormsModule, ReactiveFormsModule,
     CommonModule, RouterModule.forChild(routes), ButtonModule, FileUploadModule
   ]

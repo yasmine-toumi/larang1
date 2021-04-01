@@ -52,10 +52,17 @@ Route::group([
     Route::put('updagences/{id}', 'AgencesController@updagences');
     Route::delete('deleteagences/{id}', 'AgencesController@deleteagences');
 
-    Route::get('files', 'conditionController@getfiles');
-    Route::post('upload', 'conditionController@upload');
+    Route::get('filesf', 'conditionController@getfiles');
+    Route::post('uploadf', 'conditionController@upload');
 
-    Route::get('files', 'documentController@getfiles');
-    Route::post('upload', 'documentController@upload');
+    Route::get('filesd', 'documentController@getfiles');
+    Route::post('uploadd', 'documentController@upload');
     Route::delete('deletedoc/{id}', 'documentController@deletedocument');
+
+    Route::post('addChallenges', 'ChallengeController@addChallenges');
+    Route::get('getchallenge', 'ChallengeController@getchallenge');
+
+    Route::post('addChallengesAgences/{id}', 'ChallengeAgenceController@addChallengesToAllAgences');
+    Route::put('updatechallangeagence/{idagence}/{idchallance}', 'ChallengeAgenceController@changeRankForOneAgence');
+
 });

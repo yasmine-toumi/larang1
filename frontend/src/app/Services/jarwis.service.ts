@@ -1,5 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { Agence } from '../agences/agence';
 import { TokenService } from './token.service';
 
 @Injectable({
@@ -52,6 +54,9 @@ export class JarwisService {
  getagence(){
    return this.http.get(`${this.baseUrl}/agence`)
  }
+  getagence2():Observable<Agence> {
+    return this.http.get<Agence>(`${this.baseUrl}/agence`)
+  }
   addagences(data){
     return this.http.post(`${this.baseUrl}/addagences`,data)
 
@@ -72,14 +77,38 @@ updatetagence(id, data) {
 
   }
   getfiles() {
-    return this.http.get(`${this.baseUrl}/files`)
+    return this.http.get(`${this.baseUrl}/filesf`)
   }
   upload(formData){
-    return this.http.post(`${this.baseUrl}/upload`, formData)
+    return this.http.post(`${this.baseUrl}/uploadf`, formData)
 }
 
 
 deletedoc(id){
   return this.http.delete(`${this.baseUrl}/deletedoc/` + id)
 }
+  getfilesd() {
+    return this.http.get(`${this.baseUrl}/filesd`)
+  }
+  uploadd(formData) {
+    return this.http.post(`${this.baseUrl}/uploadd`, formData)
+  }
+
+
+  getchallenge(){
+    return this.http.get(`${this.baseUrl}/getchallenge`)
+  }
+  addChallenges(data) {
+    return this.http.post(`${this.baseUrl}/addChallenges`, data)
+}
+
+addChallengesAgences(id) {
+
+  return this.http.post(`${this.baseUrl}/addChallengesAgences/` + id,null);
+ }
+
+ updateRanKForOneAgence(rang,idagence,idchallange){
+   return this.http.put(`${this.baseUrl}/updatechallangeagence/` + idagence +"/"+idchallange,rang);
+ }
+
 }

@@ -44,8 +44,8 @@ class AgencesController extends Controller
         $agences->tel = $request->tel;
         $agences->adresse = $request->adresse;
         $agences->active = $request->active;
-        $challenges = Challenges::find([1, 2]);
-        $agences->challenges()->attach($challenges);
+        // $challenges = Challenges::find([1, 2]);
+        // $agences->challenges()->attach($challenges);
         if ($agences->save()) {
             return response($agences, 201);
         }

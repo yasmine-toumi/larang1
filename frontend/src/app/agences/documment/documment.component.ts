@@ -16,14 +16,14 @@ export class DocummentComponent implements OnInit {
 
   ngOnInit(): void {
     this.role = this.token.getRole();
-    this.Jarwis.getfiles().subscribe(data => {
+    this.Jarwis.getfilesd().subscribe(data => {
       console.log(data);
       this.files = data;
 
     });
   }
   getfiles() {
-    this.Jarwis.getfiles().subscribe(res => {
+    this.Jarwis.getfilesd().subscribe(res => {
       this.document = res;
     });
   }
@@ -31,13 +31,13 @@ export class DocummentComponent implements OnInit {
     const formData = new FormData();
     formData.append('file', event.files[0]);
     formData.append('fileName', event.files[0].name);
-    this.Jarwis.upload(formData).subscribe(res => {
+    this.Jarwis.uploadd(formData).subscribe(res => {
       console.log(res);
       alert('Uploaded Successfully.');
     });
   }
   deleteData(id) {
-    let conf = confirm("etes vous sure?");
+    let conf = confirm("Êtes-vous sûr de vouloir supprimer ?");
     if (conf) {
       this.Jarwis.deletedoc(id).subscribe(res => {
         this.getfiles();
