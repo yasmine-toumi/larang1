@@ -16,6 +16,8 @@ class ChallengeController extends Controller
         $challenges->description = $request->description;
         $challenges->date_debut = $request->date_debut;
         $challenges->date_fin = $request->date_fin;
+        $challenges->affected=0;
+
         if ($challenges->save()) {
             return response($challenges, 201);
         }

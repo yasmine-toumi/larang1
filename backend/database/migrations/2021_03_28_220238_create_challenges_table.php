@@ -19,6 +19,7 @@ class CreateChallengesTable extends Migration
             $table->string('description');
             $table->date('date_debut');
             $table->date('date_fin');
+            $table->boolean('affected')->default(0);
             $table->timestamps();
         });
     }

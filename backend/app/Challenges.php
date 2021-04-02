@@ -8,7 +8,7 @@ use Symfony\Component\HttpKernel\DataCollector\AjaxDataCollector;
 class Challenges extends Model
 {
     protected $fillable = [
-        'name', 'description',  'date_debut', 'date_fin'
+        'name', 'description',  'date_debut', 'date_fin','affected'
     ];
     public function agences()
     {
