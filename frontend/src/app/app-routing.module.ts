@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AgencesModule } from './agences/agences.module';
+import { AmicaleModule } from './amicale/amicale.module';
 import { LoginComponent } from './components/login/login.component';
 import { RequestResetComponent } from './components/password/request-reset/request-reset.component';
 import { ResponseResetComponent } from './components/password/response-reset/response-reset.component';
@@ -39,7 +40,9 @@ const routes: Routes = [
     canActivate: [BeforeLoginService]
   },
   { path: 'users', loadChildren: () => import('./users/users.module').then(m => UsersModule) },
-  { path: 'agence', loadChildren: () => import('./agences/agences.module').then(m => AgencesModule) }
+  { path: 'agence', loadChildren: () => import('./agences/agences.module').then(m => AgencesModule) },
+  { path: 'amicale', loadChildren: () => import('./amicale/amicale.module').then(m => AmicaleModule) }
+
 ];
 
 @NgModule({

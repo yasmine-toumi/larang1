@@ -78,7 +78,10 @@
 <b > Date d'expiration</b><h6>{{chal.date_fin}}</h6>
 
 </div>
-<button type="button" class="btn btn-success float-right" (click)="affecter(chal.id)">Affecter</button>
+<button  [disabled]="chal.affected" type="button" class="btn btn-secondary float-right"  (click)="affecter(chal.id)">Affecter</button>
+
+
+
 </div>
   </div>
 </div>

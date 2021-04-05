@@ -111,4 +111,11 @@ addChallengesAgences(id) {
    return this.http.put(`${this.baseUrl}/updatechallangeagence/` + idagence +"/"+idchallange,rang);
  }
 
+
+//  addChallengesaffected(affected){
+//     return this.http.post(`${this.baseUrl}/addChallenges`, affected)
+//   }
+//   getchallengeaffected(affected) {
+//     return this.http.get(`${this.baseUrl}/getchallenge`, affected)
+//   }
 }

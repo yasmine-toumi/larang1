@@ -16,6 +16,7 @@ challenges:any;
 challenge =new Challenge;
 data:any;
 id:any;
+
   constructor(private Jarwis: JarwisService, private token: TokenService) {
 
   }
@@ -37,10 +38,7 @@ affecter(id){
      this.Jarwis.addChallengesAgences(id).subscribe(res => {
       this.data = res;
        this.challenge = this.data;
-     })
-
+     });
+  this.ngOnInit();
 }
-
-
-
 }

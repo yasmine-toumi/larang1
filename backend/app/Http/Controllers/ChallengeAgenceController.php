@@ -16,6 +16,8 @@ class ChallengeAgenceController extends Controller
         $challenges =  Challenges::find($id);
         $agences = Agences::all();
         $challenges->agences()->attach($agences, ['rang' => $Challenges_agence->rang]);
+        $challenges->affected = 1;
+        $challenges->update((array)$challenges->all());
         return response("challange ". $challenges->name." a effectuer a tout les agences",201);
      }
 
