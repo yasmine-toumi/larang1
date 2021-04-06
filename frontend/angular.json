@@ -29,6 +29,7 @@
               }
             ],
             "styles": [
+
               "./src/styles.css",
               "./src/assets/plugins/perfect-scrollbar/perfect-scrollbar.css",
               "./node_modules/ng-snotify/styles/material.scss",
@@ -108,6 +109,8 @@
               "src/assets"
             ],
             "styles": [
+              "node_modules/angular-calendar/css/angular-calendar.css",
+              "node_modules/angular-calendar/css/angular-calendar.css",
               "src/styles.css"
             ],
             "scripts": []

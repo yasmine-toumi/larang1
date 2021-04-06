@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { JarwisService } from 'src/app/Services/jarwis.service';
 import { Agence } from '../agence';
+import Swal from 'sweetalert2';
+import 'sweetalert2/src/sweetalert2.scss';
 
 @Component({
   selector: 'app-editagences',
@@ -27,7 +29,12 @@ agence=new Agence();
   }
  updateAgence() {
    this.Jarwis.updatetagence(this.id, this.agence).subscribe(res=>{
-      alert("Mise a jour efecuter avec succe");
+
+     Swal.fire(
+       'Good job!',
+       'Mise a jour efecuter avec succe',
+       'success'
+     )
     })
 
 

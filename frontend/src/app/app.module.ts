@@ -29,6 +29,7 @@ import { ButtonModule } from 'primeng/button';
 
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -49,6 +50,7 @@ import { ButtonModule } from 'primeng/button';
     SnotifyModule, FormsModule,
     SidebarModule.forRoot(),
     ReactiveFormsModule, ButtonModule
+
   ],
   providers: [JarwisService, TokenService, AuthService, AfterLoginService, BeforeLoginService, CommonModule,
     { provide: 'SnotifyToastConfig', useValue: ToastDefaults },
