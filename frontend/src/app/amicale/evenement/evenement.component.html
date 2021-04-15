@@ -1,1 +1,191 @@
-<p>evenement works!</p>
+
+
+<div class="row text-center">
+  <div class="col-md-4">
+    <div class="btn-group">
+      <div class="btn btn-primary" mwlCalendarPreviousView [view]="view" [(viewDate)]="viewDate"
+        (viewDateChange)="closeOpenMonthViewDay()">
+        Previous
+      </div>
+      <div class="btn btn-outline-secondary" mwlCalendarToday [(viewDate)]="viewDate">
+        Today
+      </div>
+      <div class="btn btn-primary" mwlCalendarNextView [view]="view" [(viewDate)]="viewDate"
+        (viewDateChange)="closeOpenMonthViewDay()">
+        Next
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <h3>{{ viewDate | calendarDate:(view + 'ViewTitle'):'en' }}</h3>
+  </div>
+  <div class="col-md-4">
+    <div class="btn-group">
+      <div class="btn btn-primary" (click)="setView(CalendarView.Month)" [class.active]="view === CalendarView.Month">
+        Month
+      </div>
+      <div class="btn btn-primary" (click)="setView(CalendarView.Week)" [class.active]="view === CalendarView.Week">
+        Week
+      </div>
+      <div class="btn btn-primary" (click)="setView(CalendarView.Day)" [class.active]="view === CalendarView.Day">
+        Day
+      </div>
+    </div>
+  </div>
+</div>
+<br />
+<div  [ngSwitch]="view">
+  <!-- activeDayIsOpen -->
+  <mwl-calendar-month-view  *ngSwitchCase="CalendarView.Month" [viewDate]="viewDate" [events]="events"
+    [refresh]="refresh" [activeDayIsOpen]="activeDayIsOpen" (dayClicked)="dayClicked($event.day)"
+    (eventClicked)="handleEvent('Clicked', $event.event)" (eventTimesChanged)="eventTimesChanged($event)">
+  </mwl-calendar-month-view>
+  <mwl-calendar-week-view *ngSwitchCase="CalendarView.Week" [viewDate]="viewDate" [events]="events" [refresh]="refresh"
+    (eventClicked)="handleEvent('Clicked', $event.event)" (eventTimesChanged)="eventTimesChanged($event)">
+  </mwl-calendar-week-view>
+  <mwl-calendar-day-view *ngSwitchCase="CalendarView.Day" [viewDate]="viewDate" [events]="events" [refresh]="refresh"
+    (eventClicked)="handleEvent('Clicked', $event.event)" (eventTimesChanged)="eventTimesChanged($event)">
+  </mwl-calendar-day-view>
+</div>
+
+<!-- Everything you see below is just for the demo, you don't need to include it in your app -->
+
+<br /><br /><br />
+
+<h3>
+  Edit events
+  <button type="button" class="btn btn-primary float-right" data-toggle="modal" data-target="#exampleModal">
+    Ajouter un evenement
+  </button>
+  <!-- <button class="btn btn-primary float-right" (click)="addEvent()">
+    Add new
+  </button> -->
+  <div class="clearfix"></div>
+</h3>
+
+<div class="table-responsive">
+  <table *ngIf="eventsClicked" class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Titre</th>
+        <th>Description</th>
+        <th>Date de l'evenement</th>
+        <!-- <th>Primary color</th> -->
+        <th>Date de l'overture</th>
+        <th>Date de cloture</th>
+        <th>Image</th>
+        <th>Nombre de place</th>
+        <th>Statut</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr *ngFor="let eventt of eventsClicked">
+        <td>{{eventt.titre}}</td>
+
+        <!-- <td><input type="color" [(ngModel)]="event.color.primary" (change)="refresh.next()" /></td> -->
+        <td>{{eventt.description}}</td>
+        <td>{{eventt.date_devent}}</td>
+        <td>{{eventt.date_overture_inscrit}}</td>
+        <td>{{eventt.date_cloture_inscrit}}</td>
+        <td>{{eventt.image}}</td>
+        <td>{{eventt.nb_place}}</td>
+        <td>{{eventt.statut}}</td>
+        <td>
+          <button class="btn btn-danger" (click)="deleteData(eventt.id)">
+            Delete
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<ng-template #modalContent let-close="close">
+  <div class="modal-header">
+    <h5 class="modal-title">Event action occurred</h5>
+    <button type="button" class="close" (click)="close()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div>
+      Action:
+      <pre>{{ modalData?.action }}</pre>
+    </div>
+    <div>
+      Event:
+      <pre>{{ modalData?.event | json }}</pre>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-secondary" (click)="close()">
+      OK
+    </button>
+  </div>
+</ng-template>
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Evenement</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+        <form action="">
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="inputname4">Titre</label>
+              <input type="text" class="form-control" id="name" name="name" placeholder="Nom de l'agence">
+            </div>
+            <div class="form-group col-md-6">
+              <label for="inputadresse4">Date d'evenement</label>
+              <input type="date" class="form-control" id="name" name="name" placeholder="Nom de l'agence">
+            </div>
+
+          </div>
+          <div class="form-group">
+
+            <label for="inputadresse4">Description</label>
+            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="inputname4">Date d'ouverture </label>
+              <input type="date" class="form-control" id="name" name="name" placeholder="Nom de l'agence">
+            </div>
+            <div class="form-group col-md-6">
+              <label for="inputadresse4">Date de cloture</label>
+              <input type="date" class="form-control" id="inputadresse4" name="adresse" placeholder="Adresse">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="inputPassword4">Télécharger image</label>
+              <div class="custom-file">
+                <input type="file" class="custom-file-input" accept="image/*" id="customFile">
+                <label class="custom-file-label" for="customFile"></label>
+              </div>
+            </div>
+            <div class="form-group col-md-6">
+              <label for="inputPassword4">Nombre de place</label>
+              <input type="number" class="form-control" id="inputPassword4" name="tel" placeholder="00">
+            </div>
+          </div>
+
+        </form>
+
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>

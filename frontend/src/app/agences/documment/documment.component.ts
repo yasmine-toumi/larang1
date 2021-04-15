@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { JarwisService } from 'src/app/Services/jarwis.service';
 import { TokenService } from 'src/app/Services/token.service';
-
+import Swal from 'sweetalert2';
+import 'sweetalert2/src/sweetalert2.scss';
 @Component({
   selector: 'app-documment',
   templateUrl: './documment.component.html',
@@ -33,16 +34,54 @@ export class DocummentComponent implements OnInit {
     formData.append('fileName', event.files[0].name);
     this.Jarwis.uploadd(formData).subscribe(res => {
       console.log(res);
-      alert('Uploaded Successfully.');
+      Swal.fire(
+        'Upload successful',
+        'You clicked the button!',
+        'success'
+      )
     });
   }
   deleteData(id) {
-    let conf = confirm("Êtes-vous sûr de vouloir supprimer ?");
-    if (conf) {
-      this.Jarwis.deletedoc(id).subscribe(res => {
-        this.getfiles();
-      });
-    }
+    const swalWithBootstrapButtons = Swal.mixin({
+      customClass: {
+        confirmButton: 'btn btn-success',
+        cancelButton: 'btn btn-danger'
+      },
+      buttonsStyling: false
+    })
+
+    swalWithBootstrapButtons.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Yes, delete it!',
+      cancelButtonText: 'No, cancel!',
+      reverseButtons: true
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.Jarwis.deletedoc(id).subscribe(res => {
+          this.getfiles();
+        });
+        swalWithBootstrapButtons.fire(
+          'Deleted!',
+          'Your file has been deleted.',
+          'success'
+
+        )
+      } else if (
+        /* Read more about handling dismissals below */
+        result.dismiss === Swal.DismissReason.cancel
+      ) {
+        swalWithBootstrapButtons.fire(
+          'Cancelled',
+          'Your imaginary file is safe :)',
+          'error'
+        )
+      }
+    })
+
+
   }
 
 

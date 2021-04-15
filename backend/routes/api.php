@@ -65,4 +65,9 @@ Route::group([
     Route::post('addChallengesAgences/{id}', 'ChallengeAgenceController@addChallengesToAllAgences');
     Route::put('updatechallangeagence/{idagence}/{idchallance}', 'ChallengeAgenceController@changeRankForOneAgence');
 
+    Route::post('addevent', 'EventController@addevent');
+    Route::post('uploadevent', 'EventController@upload');
+    Route::delete('deleteEvent/{id}', 'EventController@deleteEvent');
+    Route::get('getevent','EventController@getevent');
+
 });

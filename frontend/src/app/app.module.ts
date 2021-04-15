@@ -1,3 +1,4 @@
+import { MbscModule } from '@mobiscroll/angular';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule} from '@angular/forms';
@@ -23,13 +24,9 @@ import { SidenavComponent } from './sidenav/sidenav.component';
 import { FooterComponent } from './footer/footer.component';
 import { CommonModule } from '@angular/common';
 import { ButtonModule } from 'primeng/button';
-
-
-
-
-
-
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CalendarModule, DateAdapter } from 'angular-calendar';
+import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 @NgModule({
   declarations: [
     AppComponent,
@@ -43,13 +40,14 @@ import { ButtonModule } from 'primeng/button';
     FooterComponent
   ],
   imports: [
+    MbscModule,
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
     SnotifyModule, FormsModule,
     SidebarModule.forRoot(),
-    ReactiveFormsModule, ButtonModule
+    ReactiveFormsModule, ButtonModule, BrowserAnimationsModule, CalendarModule.forRoot({ provide: DateAdapter, useFactory: adapterFactory })
 
   ],
   providers: [JarwisService, TokenService, AuthService, AfterLoginService, BeforeLoginService, CommonModule,

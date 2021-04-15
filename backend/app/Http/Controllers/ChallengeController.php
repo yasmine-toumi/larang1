@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Agences;
+
 use App\Challenges;
 use Illuminate\Http\Request;
 

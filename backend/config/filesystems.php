@@ -50,6 +50,10 @@ return [
             'driver' => 'local',
             'root'   => 'C:\Users\Yasmine\Desktop\pfe 2021\projet\frontend\src\assets\document'
         ],
+        'event' => [
+            'driver' => 'local',
+            'root'   => 'C:\Users\Yasmine\Desktop\pfe 2021\projet\frontend\src\assets\img'
+        ],
 
         'local' => [
             'driver' => 'local',

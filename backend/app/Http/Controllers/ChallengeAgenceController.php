@@ -18,20 +18,19 @@ class ChallengeAgenceController extends Controller
         $challenges->agences()->attach($agences, ['rang' => $Challenges_agence->rang]);
         $challenges->affected = 1;
         $challenges->update((array)$challenges->all());
-        return response("challange ". $challenges->name." a effectuer a tout les agences",201);
-     }
+        return response("challange " . $challenges->name . " a effectuer a tout les agences", 201);
+    }
 
 
-    public function changeRankForOneAgence(Request $request,$idagence,$idchallance)
+    public function changeRankForOneAgence(Request $request, $idagence, $idchallance)
     {
-        $Challenges_agence2 = Challenges_agence::where("challenges_id", $idchallance)->where("agences_id",$idagence)->get()->first();
-         $Challenges_agence = new Challenges_agence();
+        $Challenges_agence2 = Challenges_agence::where("challenges_id", $idchallance)->where("agences_id", $idagence)->get()->first();
+        $Challenges_agence = new Challenges_agence();
         $Challenges_agence =  Challenges_agence::find($Challenges_agence2->id);
         if (is_null($Challenges_agence)) {
             return response()->json(['message' => 'challange_agence non disponible'], 400);
         }
         $Challenges_agence->update($request->all());
-         return response($Challenges_agence, 202);
+        return response($Challenges_agence, 202);
     }
-
 }

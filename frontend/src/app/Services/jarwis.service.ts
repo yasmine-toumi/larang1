@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Agence } from '../agences/agence';
+import { Eventss } from '../amicale/eventss';
 import { TokenService } from './token.service';
 
 @Injectable({
@@ -118,4 +119,12 @@ addChallengesAgences(id) {
 //   getchallengeaffected(affected) {
 //     return this.http.get(`${this.baseUrl}/getchallenge`, affected)
 //   }
+  getevent(): Observable<Eventss[]>{
+    return this.http.get<Eventss[]>(`${this.baseUrl}/getevent`)
+  }
+
+  deletevent(id) {
+    return this.http.delete(`${this.baseUrl}/deleteEvent/` + id)
+  }
+
 }

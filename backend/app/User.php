@@ -62,4 +62,14 @@ class User extends Authenticatable implements JWTSubject
     {
         $this->attributes['password'] = bcrypt($value);
     }
+    public function eventabonne()
+    {
+
+        return $this->belongsToMany(
+            Trop::class,
+            'abonners',
+            'users_id',
+            'events_id'
+        )->withPivot('rang');
+    }
 }

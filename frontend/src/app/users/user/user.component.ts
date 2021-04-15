@@ -17,23 +17,17 @@ export class UserComponent implements OnInit {
   public role:string;
   public totalPages: number;
   constructor(private Jarwis: JarwisService, private token: TokenService) { }
-
   public takedToken = this.token.get();
-
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
       'Authorization': 'Bearer ' + this.takedToken
     })
   };
-
-  ngOnInit(): void {
+ ngOnInit(): void {
     this.getUserData();
     this.role=this.token.getRole();
-
   }
-
-
   getdetails() {
     console.log(this.token.getRole());
   }
