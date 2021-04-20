@@ -11,10 +11,10 @@ import 'sweetalert2/src/sweetalert2.scss';
   styleUrls: ['./editagences.component.css']
 })
 export class EditagencesComponent implements OnInit {
-agence=new Agence();
+  agence = new Agence();
   id: any;
   data: any;
-  constructor(private activatedrouter: ActivatedRoute, private Jarwis: JarwisService ,private router: Router) { }
+  constructor(private activatedrouter: ActivatedRoute, private Jarwis: JarwisService, private router: Router) { }
 
   ngOnInit(): void {
     this.id = this.activatedrouter.snapshot.params.id;
@@ -22,19 +22,19 @@ agence=new Agence();
   }
   getData() {
     this.Jarwis.getagenceById(this.id).subscribe(res => {
-    // console.log(res);
-       this.data = res;
-       this.agence = this.data;
+      // console.log(res);
+      this.data = res;
+      this.agence = this.data;
     })
   }
- updateAgence() {
-   this.Jarwis.updatetagence(this.id, this.agence).subscribe(res=>{
+  updateAgence() {
+    this.Jarwis.updatetagence(this.id, this.agence).subscribe(res => {
 
-     Swal.fire(
-       'Good job!',
-       'Mise a jour efecuter avec succe',
-       'success'
-     )
+      Swal.fire(
+        'Good job!',
+        'Mise a jour efecuter avec succe',
+        'success'
+      )
     })
 
 

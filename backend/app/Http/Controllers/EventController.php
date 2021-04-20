@@ -15,8 +15,6 @@ class EventController extends Controller
         $event->date_overture_inscrit = $request->date_overture_inscrit;
         $event->date_cloture_inscrit = $request->date_cloture_inscrit;
         $event->image = $request->image;
-                       // 'pieces' => $request->json()->get('pieces'),
-
         $event->nb_place = $request->nb_place;
         $event->titre = $request->titre;
         $event->description = $request->description;
@@ -50,5 +48,14 @@ class EventController extends Controller
         $event->delete($request->all());
         return response()->json(['message' => 'evenement supprime'], 204);
     }
+    public function getEventById($id)
+    {
+        $agences = Event::find($id);
+        if (is_null($agences)) {
+            return response()->json(['message' => 'Event non disponible'], 404);
+        }
+        return response()->json(Event::find($id), 200);
+    }
+
 
 }

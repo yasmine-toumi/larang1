@@ -69,5 +69,7 @@ Route::group([
     Route::post('uploadevent', 'EventController@upload');
     Route::delete('deleteEvent/{id}', 'EventController@deleteEvent');
     Route::get('getevent','EventController@getevent');
+    Route::get('evenement/{id}', 'EventController@getEventById');
+
 
 });

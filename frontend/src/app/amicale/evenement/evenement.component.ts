@@ -7,19 +7,11 @@ import { CalendarEvent, CalendarEventAction, CalendarEventTimesChangedEvent, Cal
 import Swal from 'sweetalert2';
 import 'sweetalert2/src/sweetalert2.scss';
 import { Eventss ,EventsExtendCalendEvent} from '../eventss';
+import { EventService } from 'src/app/Services/event.service';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { TokenService } from 'src/app/Services/token.service';
 const colors: any = {
-  //  red: {
-  //   primary: '#ad2121',
-  //    secondary: '#FAE3E3',
-  //  },
-  //  blue: {
-  //    primary: '#1e90ff',
-  //    secondary: '#D1E8FF',
-  //  },
-  //  yellow: {
-  //    primary: '#e3bc08',
-  //   secondary: '#FDF1BA',
-  //  },
+
 };
 
 @Component({
@@ -32,7 +24,9 @@ export class EvenementComponent implements OnInit, AfterViewChecked, AfterViewIn
   @ViewChild('modalContent', { static: true }) modalContent: TemplateRef<any>;
 
   view: CalendarView = CalendarView.Month;
-
+  event =new Eventss();
+  id: any;
+  data: any;
   CalendarView = CalendarView;
   viewDate: Date = new Date();
   eventsse: Eventss[];
@@ -70,11 +64,20 @@ export class EvenementComponent implements OnInit, AfterViewChecked, AfterViewIn
 
   activeDayIsOpen: boolean = true;
   showcalender: boolean;
+  imageurl: Object;
 
-  constructor(private modal: NgbModal, private Jarwis: JarwisService) { }
+  constructor(private token: TokenService,private http :HttpClient,private modal: NgbModal, private Jarwis: JarwisService, private eventSer: EventService) { }
   refreshView(){
     this.refresh.next();
   }
+
+  public takedToken = this.token.get();
+  httpOptions = {
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer ' + this.takedToken
+    })
+  };
   ngAfterViewInit():void{
 
   }
@@ -198,26 +201,6 @@ export class EvenementComponent implements OnInit, AfterViewChecked, AfterViewIn
     this.modal.open(this.modalContent, { size: 'lg' });
   }
 
-  //   // addEvent(): void {
-  // this.events = [
-  //   ...this.events,
-  //   {
-  //     title: 'New event',
-  //     start: startOfDay(new Date()),
-  //     end: endOfDay(new Date()),
-  //     color: colors.red,
-  //     draggable: true,
-  //     resizable: {
-  //       beforeStart: true,
-  //       afterEnd: true,
-  //     },
-  //   },
-  // ];
-  //   // }
-
-  // deleteEvent(eventToDelete: CalendarEvent) {
-  //   this.eventss = this.eventss.filter((event) => event !== eventToDelete);
-  // }
 
   setView(view: CalendarView) {
     this.view = view;
@@ -231,10 +214,37 @@ export class EvenementComponent implements OnInit, AfterViewChecked, AfterViewIn
 
   }
 
+onChange(event){
+  const formData2 = new FormData();
 
+  var file:File;
+  file = event.target.files[0];
+  formData2.append('file', event.target.files[0]);
+  this.Jarwis.uploadevent(formData2,this.takedToken).subscribe(res=>{
+    this.imageurl= res;
+    console.log(res);
+
+  });
+  //this.http.post("http://localhost:8000/api/uploadevent", formData).subscribe();
+}
   insertData() {
-    // this.Jarwis.addagences(this.agence).subscribe(res => {
-    //   this.getagence();
-    // });
+    this.event.image="assets/img/albaraka.png";
+    console.log(this.event);
+
+    this.Jarwis.addEvent(this.event).subscribe(res => {
+      this.refresh.next();
+      console.log(res);
+
+  });
+
+
+  }
+
+  getId() {
+    this.Jarwis.getevenementById(this.id).subscribe(res => {
+      // console.log(res);
+      this.data = res;
+      this.event = this.data;
+    })
   }
 }

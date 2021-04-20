@@ -22,6 +22,7 @@
             "assets": [
               "src/favicon.ico",
               "src/assets",
+              "src/event",
               {
                 "glob": "**/*",
                 "input": "../../backend/storage/app/conditionBank/",

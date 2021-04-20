@@ -1,5 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Form } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { Agence } from '../agences/agence';
 import { Eventss } from '../amicale/eventss';
@@ -11,9 +12,7 @@ import { TokenService } from './token.service';
 export class JarwisService {
   private baseUrl = 'http://localhost:8000/api';
 
-  constructor(private http: HttpClient,private token: TokenService) { }
-
-
+  constructor(private http: HttpClient, private token: TokenService) { }
 
 
   signup(data) {
@@ -25,69 +24,61 @@ export class JarwisService {
   sendPasswordResetLink(data) {
     return this.http.post(`${this.baseUrl}/sendPasswordResetLink`, data)
   }
-
   changePassword(data) {
     return this.http.post(`${this.baseUrl}/resetPassword`, data)
   }
 
-  insertData(data){
-    return this.http.post(`${this.baseUrl}/adduser`,data)
+  // service user
+  insertData(data) {
+    return this.http.post(`${this.baseUrl}/adduser`, data)
   }
-
-
-
-
-  deleteData(id,token){
+  deleteData(id, token) {
     return this.http.delete(`${this.baseUrl}/deleteUser/` + id, token)
   }
-  getUserById(id){
-    return this.http.get(`${this.baseUrl}/utilisateur/`+id)
+  getUserById(id) {
+    return this.http.get(`${this.baseUrl}/utilisateur/` + id)
   }
-  updatetData(id,data) {
-    return this.http.put(`${this.baseUrl}/updateUser/`+id, data)
+  updatetData(id, data) {
+    return this.http.put(`${this.baseUrl}/updateUser/` + id, data)
   }
-
-
-  searchuser(motCle:string,page:number){
-    return this.http.get(`${this.baseUrl}/searchuser?user=`+motCle+'&page='+page)
+  searchuser(motCle: string, page: number) {
+    return this.http.get(`${this.baseUrl}/searchuser?user=` + motCle + '&page=' + page)
   }
 
- getagence(){
-   return this.http.get(`${this.baseUrl}/agence`)
- }
-  getagence2():Observable<Agence> {
+ // service  agence
+  getagence() {
+    return this.http.get(`${this.baseUrl}/agence`)
+  }
+  getagence2(): Observable<Agence> {
     return this.http.get<Agence>(`${this.baseUrl}/agence`)
   }
-  addagences(data){
-    return this.http.post(`${this.baseUrl}/addagences`,data)
-
- }
-  deleteagences(id){
+  addagences(data) {
+    return this.http.post(`${this.baseUrl}/addagences`, data)
+  }
+  deleteagences(id) {
     return this.http.delete(`${this.baseUrl}/deleteagences/` + id)
   }
-
-updatetagence(id, data) {
-  return this.http.put(`${this.baseUrl}/updagences/` + id, data)
-}
-  getagenceById(id){
+  updatetagence(id, data) {
+    return this.http.put(`${this.baseUrl}/updagences/` + id, data)
+  }
+  getagenceById(id) {
     return this.http.get(`${this.baseUrl}/agence/` + id)
   }
-
+ // service fichier
   addfiles(data) {
     return this.http.post(`${this.baseUrl}/addfiles`, data)
-
   }
   getfiles() {
     return this.http.get(`${this.baseUrl}/filesf`)
   }
-  upload(formData){
+  upload(formData) {
     return this.http.post(`${this.baseUrl}/uploadf`, formData)
-}
+  }
 
-
-deletedoc(id){
-  return this.http.delete(`${this.baseUrl}/deletedoc/` + id)
-}
+ // service documentation
+  deletedoc(id) {
+    return this.http.delete(`${this.baseUrl}/deletedoc/` + id)
+  }
   getfilesd() {
     return this.http.get(`${this.baseUrl}/filesd`)
   }
@@ -95,36 +86,40 @@ deletedoc(id){
     return this.http.post(`${this.baseUrl}/uploadd`, formData)
   }
 
-
-  getchallenge(){
+ // service challenge
+  getchallenge() {
     return this.http.get(`${this.baseUrl}/getchallenge`)
   }
   addChallenges(data) {
     return this.http.post(`${this.baseUrl}/addChallenges`, data)
-}
-
-addChallengesAgences(id) {
-
-  return this.http.post(`${this.baseUrl}/addChallengesAgences/` + id,null);
- }
-
- updateRanKForOneAgence(rang,idagence,idchallange){
-   return this.http.put(`${this.baseUrl}/updatechallangeagence/` + idagence +"/"+idchallange,rang);
- }
-
-
-//  addChallengesaffected(affected){
-//     return this.http.post(`${this.baseUrl}/addChallenges`, affected)
-//   }
-//   getchallengeaffected(affected) {
-//     return this.http.get(`${this.baseUrl}/getchallenge`, affected)
-//   }
-  getevent(): Observable<Eventss[]>{
-    return this.http.get<Eventss[]>(`${this.baseUrl}/getevent`)
+  }
+  addChallengesAgences(id) {
+    return this.http.post(`${this.baseUrl}/addChallengesAgences/` + id, null);
+  }
+  updateRanKForOneAgence(rang, idagence, idchallange) {
+    return this.http.put(`${this.baseUrl}/updatechallangeagence/` + idagence + "/" + idchallange, rang);
   }
 
+
+ // service evenement
+  getevent(): Observable<Eventss[]> {
+    return this.http.get<Eventss[]>(`${this.baseUrl}/getevent`)
+  }
   deletevent(id) {
     return this.http.delete(`${this.baseUrl}/deleteEvent/` + id)
   }
-
+  getevenementById(id) {
+    return this.http.get(`${this.baseUrl}/evenement/` + id)
+  }
+  uploadevent(formData:FormData,token) {
+    return this.http.post(`${this.baseUrl}/uploadevent`, formData, {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + token
+      })
+    })
+  }
+  addEvent(data) {
+    return this.http.post(`${this.baseUrl}/addevent`, data)
+  }
 }
