@@ -15,16 +15,18 @@ import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 import { FlatpickrModule } from 'angularx-flatpickr';
 
 import "./../../../node_modules/flatpickr/dist/flatpickr.min.css";
+import { ConventionComponent } from './convention/convention.component';
 
 const routes: Routes = [
   { path: 'evenement', component: EvenementComponent },
+  {path:'convention',component:ConventionComponent},
 
 ];
 
 
 
 @NgModule({
-  declarations: [EvenementComponent],
+  declarations: [EvenementComponent, ConventionComponent],
   imports: [FormsModule, ReactiveFormsModule,
     CommonModule, RouterModule.forChild(routes), ButtonModule, MbscModule, FileUploadModule,
     NgbModalModule, HttpClientModule,

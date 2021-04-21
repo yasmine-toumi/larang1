@@ -7,6 +7,8 @@ import { RequestResetComponent } from './components/password/request-reset/reque
 import { ResponseResetComponent } from './components/password/response-reset/response-reset.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { SignupComponent } from './components/signup/signup.component';
+import { DashboardModule } from './dashboard/dashboard.module';
+import { RhModule } from './rh/rh.module';
 import { AfterLoginService } from './Services/after-login.service';
 import { BeforeLoginService } from './Services/before-login.service';
 import { SidenavComponent } from './sidenav/sidenav.component';
@@ -39,9 +41,24 @@ const routes: Routes = [
     component: ResponseResetComponent,
     canActivate: [BeforeLoginService]
   },
-  { path: 'users', loadChildren: () => import('./users/users.module').then(m => UsersModule) },
-  { path: 'agence', loadChildren: () => import('./agences/agences.module').then(m => AgencesModule) },
-  { path: 'amicale', loadChildren: () => import('./amicale/amicale.module').then(m => AmicaleModule) }
+  {
+    path: 'users', loadChildren: () => import('./users/users.module').then(m => UsersModule),
+    canActivate: [AfterLoginService]},
+  {
+    path: 'agence', loadChildren: () => import('./agences/agences.module').then(m => AgencesModule),
+    canActivate: [AfterLoginService]},
+  {
+    path: 'amicale', loadChildren: () => import('./amicale/amicale.module').then(m => AmicaleModule),
+    canActivate: [AfterLoginService]},
+  {
+    path: 'rh', loadChildren: () => import('./rh/rh.module').then(m => RhModule),
+    canActivate: [AfterLoginService]
+  },
+  {
+    path: 'dashboard', loadChildren: () => import('./dashboard/dashboard.module').then(m => DashboardModule),
+    canActivate: [AfterLoginService]
+  }
+
 
 ];
 

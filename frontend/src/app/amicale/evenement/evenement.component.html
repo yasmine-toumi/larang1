@@ -157,17 +157,13 @@
 </div>
 
 <div class="row layout-top-spacing" *ngIf="eventsClicked">
-  <div id="card_2"
-    *ngFor="let eventt of eventsClicked">
+  <div id="card_2" *ngFor="let eventt of eventsClicked">
     <div class="statbox widget box box-shadow">
-
       <div class="widget-content widget-content-area">
-
         <div class="card component-card_2">
           <img src={{eventt.image}} class="card-img-top" alt="widget-card-2">
           <div class="card-body">
             <h5 class="card-title">{{eventt.titre}}</h5>
-
             <textarea class="form-control" name="description" rows="4" readonly>{{eventt.description}}</textarea>
             <p class="card-text">{{eventt.date_devent}}</p>
             <button type="button" class="btn btn-primary float-right" data-toggle="modal" data-target="#exampleModal2">
@@ -201,7 +197,7 @@
         <h5>Date de l'inscrit:{{eventt.date_overture_inscrit}}</h5>
         <h5>Date de Cloture:{{eventt.date_cloture_inscrit}}</h5>
         <!-- <p>{{eventt.image}}</p> -->
-      <h5>Nombre de place:{{eventt.nb_place}}</h5>
+        <h5>Nombre de place:{{eventt.nb_place}}</h5>
         <!-- <p>{{eventt.statut}}</p> -->
 
       </div>
@@ -211,8 +207,3 @@
     </div>
   </div>
 </div>
-
-
-
-
-

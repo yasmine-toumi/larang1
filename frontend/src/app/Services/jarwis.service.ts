@@ -122,4 +122,16 @@ export class JarwisService {
   addEvent(data) {
     return this.http.post(`${this.baseUrl}/addevent`, data)
   }
+
+
+  //convention
+  deleteconvention(id) {
+    return this.http.delete(`${this.baseUrl}/deleteconvention/` + id)
+  }
+  getconvention() {
+    return this.http.get(`${this.baseUrl}/convention`)
+  }
+  uploadConv(formData) {
+    return this.http.post(`${this.baseUrl}/uploadConv`, formData)
+  }
 }

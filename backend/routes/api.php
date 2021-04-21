@@ -71,5 +71,8 @@ Route::group([
     Route::get('getevent','EventController@getevent');
     Route::get('evenement/{id}', 'EventController@getEventById');
 
+    Route::get('convention', 'ConventionController@getConv');
+    Route::post('uploadConv', 'ConventionController@uploadConv');
+    Route::delete('deleteconvention/{id}', 'ConventionController@deleteconvention');
 
 });
