@@ -153,47 +153,52 @@
     <div class="table-responsive">
       <div class="table-wrapper">
 
-        <div class="table-title">
+        <!-- <div class="table-title">
           <div class="row">
 
             <div class="col-sm-6">
               <h2><b>Liste des Personnels</b></h2>
             </div>
 
-              <div class="col-sm-6">
-                <form #f="ngForm" (ngSubmit)="chercher(f.value)">
+            <div class="col-sm-6">
+              <form #f="ngForm" (ngSubmit)="chercher(f.value)">
                 <div class="search-box">
                   <div class="input-group">
-                    <input type="text"  id="search" class="form-control" [(ngModel)]="motCle" name="motCle"
+                    <input type="text" id="search" class="form-control" [(ngModel)]="motCle" name="motCle"
                       placeholder="Search by Name">
                   </div>
                 </div>
-                </form>
-              </div>
+              </form>
+            </div>
 
           </div>
-        </div>
+        </div> -->
 
-        <table class="table table-striped">
+        <table class="table table-striped" *ngIf="usersoftheevent">
           <thead>
             <tr>
-<th>id</th>
-              <th style="width: 22%;">Nom et prenom</th>
-              <th>Email</th>
-              <th>Date de naissance</th>
-              <th>Telephone</th>
+              <th>id</th>
+              <th>name</th>
+              <th>email</th>
+              <th>affected</th>
 
             </tr>
           </thead>
           <tbody>
 
-            <tr *ngFor="let user of users;let i = index">
-              <th scope="row">{{i+1}}</th>
-              <td>{{user.name}}</td>
-              <td>{{user.email}}</td>
-              <td>{{user.birthday}}</td>
-              <td>{{user.tel}}</td>
-            </tr>
+
+
+
+<tr *ngFor="let user of usersoftheevent;let i = index">
+  <th scope="row">{{i+1}}</th>
+  <td>{{user.name}}</td>
+  <td>{{user.email}}</td>
+  <td>
+    <span *ngIf="user.pivot.affecter===1; else elseBlock" class="btn btn-success">Inscrit</span>
+    <ng-template #elseBlock><span class="status text-danger">&bull;</span> En attente </ng-template>
+  </td>
+</tr>
+
           </tbody>
         </table>
       </div>

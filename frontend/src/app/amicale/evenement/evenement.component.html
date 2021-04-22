@@ -166,7 +166,7 @@
             <h5 class="card-title">{{eventt.titre}}</h5>
             <textarea class="form-control" name="description" rows="4" readonly>{{eventt.description}}</textarea>
             <p class="card-text">{{eventt.date_devent}}</p>
-            <button (click)="getlistofUser(eventt.id)" type="button" class="btn btn-primary float-right">
+            <button (click)="goTodetail(eventt.id)" type="button" class="btn btn-primary float-right">
               detail
             </button>
                         <button (click)="inscrit(eventt)" type="button" class="btn btn-primary float-right"
@@ -215,7 +215,7 @@
   </div>
 </div>
 
-<table class="table" *ngIf="usersoftheevent">
+<!-- <table class="table" *ngIf="usersoftheevent">
   <tr>
     <th>name</th>
     <th>email</th>
@@ -229,4 +229,5 @@
       <ng-template  #elseBlock><span class="btn btn-danger">makech affecter</span> </ng-template>
     </td>
   </tr>
-</table>
+  (click)="getlistofUser(eventt.id)"
+</table> -->

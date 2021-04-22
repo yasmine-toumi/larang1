@@ -289,16 +289,20 @@ onChange(event){
 
     })
   }
-  getlistofUser(idevent){
+  // getlistofUser(idevent) {
 
-    this.Jarwis.getuserByevent(idevent).subscribe(u=>{
-      this.usersoftheevent=u;
-      console.log(this.usersoftheevent);
+  //   this.Jarwis.getuserByevent(idevent).subscribe(u => {
+  //     this.usersoftheevent = u;
+  //     console.log(this.usersoftheevent);
 
-    },err=>{
-      console.log(err);
+  //   }, err => {
+  //     console.log(err);
 
-    })
+  //   })
 
+  // }
+  goTodetail(id){
+    this.route.navigateByUrl("/amicale/listdetail/"+id);
   }
+
 }
