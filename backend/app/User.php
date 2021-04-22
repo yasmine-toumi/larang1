@@ -2,6 +2,8 @@
 
 namespace App;
 
+use App\event;
+
 use Tymon\JWTAuth\Contracts\JWTSubject;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -66,10 +68,10 @@ class User extends Authenticatable implements JWTSubject
     {
 
         return $this->belongsToMany(
-            Trop::class,
+            event::class,
             'abonners',
             'users_id',
             'events_id'
-        )->withPivot('rang');
+        )->withPivot('rang','affecter');
     }
 }

@@ -75,4 +75,8 @@ Route::group([
     Route::post('uploadConv', 'ConventionController@uploadConv');
     Route::delete('deleteconvention/{id}', 'ConventionController@deleteconvention');
 
+
+    Route::post('affecterusertoevent/{iduser}/{idevent}', 'AbonnerController@addUserToEvent');
+    Route::delete('annulation/{iduser}/{idevent}', 'AbonnerController@annulationAbonnement');
+    Route::get('getallabonner/{idevent}', 'AbonnerController@getAllabonne');
 });

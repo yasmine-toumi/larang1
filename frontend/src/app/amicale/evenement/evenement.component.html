@@ -166,9 +166,16 @@
             <h5 class="card-title">{{eventt.titre}}</h5>
             <textarea class="form-control" name="description" rows="4" readonly>{{eventt.description}}</textarea>
             <p class="card-text">{{eventt.date_devent}}</p>
-            <button type="button" class="btn btn-primary float-right" data-toggle="modal" data-target="#exampleModal2">
-              ouvrir
+            <button (click)="getlistofUser(eventt.id)" type="button" class="btn btn-primary float-right">
+              detail
             </button>
+                        <button (click)="inscrit(eventt)" type="button" class="btn btn-primary float-right"
+                          >
+                          inscrit
+                        </button>
+                        <button (click)="annuler(eventt)" type="button" class="btn btn-primary float-right">
+                          annulation
+                        </button>
           </div>
         </div>
       </div>
@@ -190,14 +197,14 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <div class="modal-body" *ngFor="let eventt of eventsClicked">
+      <div class="modal-body">
 
-        <h5>Description: {{eventt.description}}</h5>
-        <h5>Date de levenement{{eventt.date_devent}}</h5>
-        <h5>Date de l'inscrit:{{eventt.date_overture_inscrit}}</h5>
-        <h5>Date de Cloture:{{eventt.date_cloture_inscrit}}</h5>
+        <h5>Description: {{eventSelected.description}}</h5>
+        <h5>Date de levenement{{eventSelected.date_devent}}</h5>
+        <h5>Date de l'inscrit:{{eventSelected.date_overture_inscrit}}</h5>
+        <h5>Date de Cloture:{{eventSelected.date_cloture_inscrit}}</h5>
         <!-- <p>{{eventt.image}}</p> -->
-        <h5>Nombre de place:{{eventt.nb_place}}</h5>
+        <h5>Nombre de place:{{eventSelected.nb_place}}</h5>
         <!-- <p>{{eventt.statut}}</p> -->
 
       </div>
@@ -207,3 +214,19 @@
     </div>
   </div>
 </div>
+
+<table class="table" *ngIf="usersoftheevent">
+  <tr>
+    <th>name</th>
+    <th>email</th>
+    <th>affected</th>
+  </tr>
+  <tr *ngFor="let user of usersoftheevent">
+    <td>{{user.name}}</td>
+    <td>{{user.email}}</td>
+    <td>
+      <span *ngIf="user.pivot.affecter===1; else elseBlock" class="btn btn-primary" >affecter</span>
+      <ng-template  #elseBlock><span class="btn btn-danger">makech affecter</span> </ng-template>
+    </td>
+  </tr>
+</table>

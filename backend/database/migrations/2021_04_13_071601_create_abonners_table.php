@@ -16,6 +16,7 @@ class CreateAbonnersTable extends Migration
         Schema::create('abonners', function (Blueprint $table) {
             $table->id();
             $table->integer('rang');
+            $table->boolean('affecter');
             $table->unsignedBigInteger('events_id');
             $table->foreign('events_id')
             ->references('id')

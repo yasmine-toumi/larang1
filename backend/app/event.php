@@ -13,10 +13,10 @@ class event extends Model
     public function userabonne()
     {
         return $this->belongsToMany(
-            Trop::class,
+            User::class,
             'abonners',
             'events_id',
             'users_id'
-        )->withPivot('rang');
+        )->withPivot('rang','affecter');
     }
 }

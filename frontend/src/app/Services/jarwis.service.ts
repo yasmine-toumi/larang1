@@ -134,4 +134,14 @@ export class JarwisService {
   uploadConv(formData) {
     return this.http.post(`${this.baseUrl}/uploadConv`, formData)
   }
+  addUserToEvent(iduser,idevent) {
+    return this.http.post(`${this.baseUrl}/affecterusertoevent/`+ iduser+`/`+idevent, {})
+  }
+  annulation(iduser,idevent) {
+    return this.http.delete(`${this.baseUrl}/annulation/`+ iduser+"/"+idevent)
+  }
+  getuserByevent(idevent) {
+    return this.http.get(`${this.baseUrl}/getallabonner/` + idevent )
+  }
+
 }

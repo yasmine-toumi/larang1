@@ -10,6 +10,7 @@ import { Eventss ,EventsExtendCalendEvent} from '../eventss';
 import { EventService } from 'src/app/Services/event.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { TokenService } from 'src/app/Services/token.service';
+import { Router } from '@angular/router';
 const colors: any = {
 
 };
@@ -34,12 +35,15 @@ export class EvenementComponent implements OnInit, AfterViewChecked, AfterViewIn
   eventsClicked: EventsExtendCalendEvent[] = [];
   //ev: CalendarEvent;
   ev: EventsExtendCalendEvent;
+  eventSelected: any;
   eventss: any;
   modalData: {
     action: string;
     event: CalendarEvent;
   };
-
+  iduser:string;
+  typemessage:any;
+  usersoftheevent:any;
   actions: CalendarEventAction[] = [
     {
       label: '<i class="fas fa-fw fa-pencil-alt"></i>',
@@ -66,7 +70,7 @@ export class EvenementComponent implements OnInit, AfterViewChecked, AfterViewIn
   showcalender: boolean;
   imageurl: Object;
 
-  constructor(private token: TokenService,private http :HttpClient,private modal: NgbModal, private Jarwis: JarwisService, private eventSer: EventService) { }
+  constructor(private route:Router,private token: TokenService,private http :HttpClient,private modal: NgbModal, private Jarwis: JarwisService, private eventSer: EventService) { }
   refreshView(){
     this.refresh.next();
   }
@@ -87,6 +91,7 @@ export class EvenementComponent implements OnInit, AfterViewChecked, AfterViewIn
   ngOnInit(){
     this.getEventdata();
     console.log("oninit first");
+    this.eventSelected="";
 
   }
   getEventdata() {
@@ -233,8 +238,8 @@ onChange(event){
 
     this.Jarwis.addEvent(this.event).subscribe(res => {
       this.refresh.next();
+      this.getEventdata();
       console.log(res);
-
   });
 
 
@@ -246,5 +251,54 @@ onChange(event){
       this.data = res;
       this.event = this.data;
     })
+  }
+  detailforevent(event){
+    this.eventSelected=event;
+  }
+  inscrit(v){
+    this.iduser = this.token.getId();
+    this.Jarwis.addUserToEvent(this.iduser, v.id).subscribe(res => {
+     console.log(res);
+      switch (res["message"]) {
+        case "deja inscri rakk héyy ":
+          this.typemessage = 'warning'
+         break;
+        case "c bn jawek behi":
+          this.typemessage = 'success'
+          break;
+       default:
+         break;
+     }
+      Swal.fire(
+        'Upload successful',
+        res['message'],
+        this.typemessage
+      )
+    },err=>{
+      console.log(err);
+
+    })
+
+  }
+  annuler(v){
+    this.iduser = this.token.getId();
+    this.Jarwis.annulation(this.iduser, v.id).subscribe(res => {
+      console.log(res['message']);
+    }, err => {
+      console.log(err);
+
+    })
+  }
+  getlistofUser(idevent){
+
+    this.Jarwis.getuserByevent(idevent).subscribe(u=>{
+      this.usersoftheevent=u;
+      console.log(this.usersoftheevent);
+
+    },err=>{
+      console.log(err);
+
+    })
+
   }
 }

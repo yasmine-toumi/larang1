@@ -10,15 +10,17 @@ export class TokenService {
     signup: 'http://localhost:8000/api/signup'
   };
   constructor() { }
-  handle(token,role,user) {
-    this.set(token,role,user);
+  handle(token,role,user,id) {
+    this.set(token,role,user,id);
 
 
   }
-  set(token,role,user) {
+  set(token,role,user,id) {
     localStorage.setItem('token', token);
     localStorage.setItem('role', role);
     localStorage.setItem('user', user);
+    localStorage.setItem('id',id);
+    //aya zid tawa chbik sakret apel
   }
   get() {
     return localStorage.getItem('token');
@@ -29,10 +31,14 @@ export class TokenService {
   getUser() {
     return localStorage.getItem('user');
   }
+  getId() {
+    return localStorage.getItem('id');
+  }
   remove() {
     localStorage.removeItem('token');
     localStorage.removeItem('role');
     localStorage.removeItem('user');
+    localStorage.removeItem('id');
   }
   isValid() {
     const token = this.get();

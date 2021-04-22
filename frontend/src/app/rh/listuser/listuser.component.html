@@ -177,7 +177,7 @@
         <table class="table table-striped">
           <thead>
             <tr>
-
+<th>id</th>
               <th style="width: 22%;">Nom et prenom</th>
               <th>Email</th>
               <th>Date de naissance</th>
@@ -187,7 +187,8 @@
           </thead>
           <tbody>
 
-            <tr *ngFor="let user of users">
+            <tr *ngFor="let user of users;let i = index">
+              <th scope="row">{{i}}</th>
               <td>{{user.name}}</td>
               <td>{{user.email}}</td>
               <td>{{user.birthday}}</td>
