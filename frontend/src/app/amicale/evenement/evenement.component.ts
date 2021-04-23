@@ -6,7 +6,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { CalendarEvent, CalendarEventAction, CalendarEventTimesChangedEvent, CalendarView } from 'angular-calendar';
 import Swal from 'sweetalert2';
 import 'sweetalert2/src/sweetalert2.scss';
-import { Eventss ,EventsExtendCalendEvent} from '../eventss';
+import { Eventss, EventsExtendCalendEvent } from '../eventss';
 import { EventService } from 'src/app/Services/event.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { TokenService } from 'src/app/Services/token.service';
@@ -21,11 +21,11 @@ const colors: any = {
   styleUrls: ['evenement.component.css'],
   templateUrl: 'evenement.component.html',
 })
-export class EvenementComponent implements OnInit, AfterViewChecked, AfterViewInit{
+export class EvenementComponent implements OnInit, AfterViewChecked, AfterViewInit {
   @ViewChild('modalContent', { static: true }) modalContent: TemplateRef<any>;
 
   view: CalendarView = CalendarView.Month;
-  event =new Eventss();
+  event = new Eventss();
   id: any;
   data: any;
   CalendarView = CalendarView;
@@ -41,9 +41,9 @@ export class EvenementComponent implements OnInit, AfterViewChecked, AfterViewIn
     action: string;
     event: CalendarEvent;
   };
-  iduser:string;
-  typemessage:any;
-  usersoftheevent:any;
+  iduser: string;
+  typemessage: any;
+  usersoftheevent: any;
   actions: CalendarEventAction[] = [
     {
       label: '<i class="fas fa-fw fa-pencil-alt"></i>',
@@ -70,8 +70,8 @@ export class EvenementComponent implements OnInit, AfterViewChecked, AfterViewIn
   showcalender: boolean;
   imageurl: Object;
 
-  constructor(private route:Router,private token: TokenService,private http :HttpClient,private modal: NgbModal, private Jarwis: JarwisService, private eventSer: EventService) { }
-  refreshView(){
+  constructor(private route: Router, private token: TokenService, private http: HttpClient, private modal: NgbModal, private Jarwis: JarwisService, private eventSer: EventService) { }
+  refreshView() {
     this.refresh.next();
   }
 
@@ -82,16 +82,16 @@ export class EvenementComponent implements OnInit, AfterViewChecked, AfterViewIn
       'Authorization': 'Bearer ' + this.takedToken
     })
   };
-  ngAfterViewInit():void{
+  ngAfterViewInit(): void {
 
   }
-  ngAfterViewChecked():void{
+  ngAfterViewChecked(): void {
     this.refresh.next();
   }
-  ngOnInit(){
+  ngOnInit() {
     this.getEventdata();
     console.log("oninit first");
-    this.eventSelected="";
+    this.eventSelected = "";
 
   }
   getEventdata() {
@@ -115,7 +115,7 @@ export class EvenementComponent implements OnInit, AfterViewChecked, AfterViewIn
 
         }
         this.events.push(this.ev);
-        this.eventsClicked=this.events;
+        this.eventsClicked = this.events;
         console.log(this.eventsClicked);
         this.showcalender = true;
       });
@@ -178,7 +178,7 @@ export class EvenementComponent implements OnInit, AfterViewChecked, AfterViewIn
       }
       this.viewDate = date;
       console.log(events);
-      this.eventsClicked=events;
+      this.eventsClicked = events;
       console.log(this.eventsClicked);
     }
   }
@@ -219,28 +219,28 @@ export class EvenementComponent implements OnInit, AfterViewChecked, AfterViewIn
 
   }
 
-onChange(event){
-  const formData2 = new FormData();
+  onChange(event) {
+    const formData2 = new FormData();
 
-  var file:File;
-  file = event.target.files[0];
-  formData2.append('file', event.target.files[0]);
-  this.Jarwis.uploadevent(formData2,this.takedToken).subscribe(res=>{
-    this.imageurl= res;
-    console.log(res);
+    var file: File;
+    file = event.target.files[0];
+    formData2.append('file', event.target.files[0]);
+    this.Jarwis.uploadevent(formData2, this.takedToken).subscribe(res => {
+      this.imageurl = res;
+      console.log(res);
 
-  });
-  //this.http.post("http://localhost:8000/api/uploadevent", formData).subscribe();
-}
+    });
+    //this.http.post("http://localhost:8000/api/uploadevent", formData).subscribe();
+  }
   insertData() {
-    this.event.image="assets/img/albaraka.png";
+    this.event.image = "assets/img/albaraka.png";
     console.log(this.event);
 
     this.Jarwis.addEvent(this.event).subscribe(res => {
       this.refresh.next();
       this.getEventdata();
       console.log(res);
-  });
+    });
 
 
   }
@@ -252,38 +252,53 @@ onChange(event){
       this.event = this.data;
     })
   }
-  detailforevent(event){
-    this.eventSelected=event;
+  detailforevent(event) {
+    this.eventSelected = event;
   }
-  inscrit(v){
+  inscrit(v) {
     this.iduser = this.token.getId();
     this.Jarwis.addUserToEvent(this.iduser, v.id).subscribe(res => {
-     console.log(res);
+      console.log(res);
       switch (res["message"]) {
         case "deja inscri rakk héyy ":
           this.typemessage = 'warning'
-         break;
+          break;
         case "c bn jawek behi":
           this.typemessage = 'success'
           break;
-       default:
-         break;
-     }
+        default:
+          break;
+      }
       Swal.fire(
-        'Upload successful',
+        'Inscription',
         res['message'],
         this.typemessage
       )
-    },err=>{
+    }, err => {
       console.log(err);
 
     })
 
   }
-  annuler(v){
+  annuler(v) {
     this.iduser = this.token.getId();
     this.Jarwis.annulation(this.iduser, v.id).subscribe(res => {
-      console.log(res['message']);
+      console.log(res);
+      switch (res['message']) {
+        case "deja makech inscrit":
+          this.typemessage = 'warning'
+          break;
+        case "annulation c bn":
+          this.typemessage = 'success'
+          break;
+        default:
+          break;
+      }
+      Swal.fire(
+        'Annulation',
+        res['message'],
+        this.typemessage
+      )
     }, err => {
       console.log(err);
 
@@ -301,8 +316,8 @@ onChange(event){
   //   })
 
   // }
-  goTodetail(id){
-    this.route.navigateByUrl("/amicale/listdetail/"+id);
+  goTodetail(id) {
+    this.route.navigateByUrl("/amicale/listdetail/" + id);
   }
 
 }

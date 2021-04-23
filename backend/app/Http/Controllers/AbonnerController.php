@@ -72,10 +72,10 @@ class AbonnerController extends Controller
         if (is_null($abonner::where('affecter', false)->where('events_id', $iddevent)->first())) {
             return response()->json(['message' => 'fama had fi list dattente'], 200);
         }
-        $listAttend = $abonner::where('affecter', false)->where('events_id', $iddevent)->first()->get();
+        $listAttend = $abonner::where('affecter', false)->where('events_id', $iddevent)->first();
         $listAttend->affecter= true;
         $listAttend->update($listAttend -> toArray());
-        return response()->json(['message' => ' c bn jawek behi'], 200);
+        return response()->json(['message' => ' annulation effectuer'], 200);
     }
     public function getAllabonne($idevent){
         $event = new event();
