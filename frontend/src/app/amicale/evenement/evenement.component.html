@@ -243,6 +243,7 @@ text-decoration:none;
 
                   <th style="color: black;"><span>Event</span></th>
                   <th  style="color: black;"><span>Titre</span></th>
+                    <th style="color: black;"><span>Description</span></th>
                   <th class="text-center"  style="color: black;"><span>Nb place</span></th>
                   <th  style="color: black;"><span>Date Event</span></th>
                   <th  style="color: black;"> <span>Date de l'inscrit</span></th>
@@ -256,6 +257,8 @@ text-decoration:none;
                     <img src={{eventt.image}}  alt="">
                   </td>
                   <td>{{eventt.titre}}</td>
+
+                  <td>{{eventt.description}}</td>
                   <td class="text-center">
                   {{eventt.nb_place}}
                   </td>
@@ -325,12 +328,6 @@ text-decoration:none;
       <div class="modal-body">
 
         <h5>Description: {{eventSelected.description}}</h5>
-        <h5>Date de levenement{{eventSelected.date_devent}}</h5>
-        <h5>Date de l'inscrit:{{eventSelected.date_overture_inscrit}}</h5>
-        <h5>Date de Cloture:{{eventSelected.date_cloture_inscrit}}</h5>
-        <!-- <p>{{eventt.image}}</p> -->
-        <h5>Nombre de place:{{eventSelected.nb_place}}</h5>
-        <!-- <p>{{eventt.statut}}</p> -->
 
       </div>
       <div class="modal-footer">

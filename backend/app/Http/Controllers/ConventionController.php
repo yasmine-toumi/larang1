@@ -2,40 +2,38 @@
 
 namespace App\Http\Controllers;
 
+use App\Categorie;
+use App\cible;
 use Illuminate\Support\Facades\Storage;
 use App\convention;
 use Illuminate\Http\Request;
 
 class ConventionController extends Controller
 {
-    public function getConv()
+    public function getconvention()
     {
         return response()->json(convention::all(), 200);
     }
-
-
-    public function uploadConv(Request $request)
+    public function addconvention(Request $request, $id_cat,$id_cib)
     {
-        // Get file name from FormData (postman)
-        $filename = $request->file('file')->getClientOriginalName();
-        //path bech yesna3 fel ficher fi dossier angular (sna3et document) put tesna3 dossier esmou laravelimg i7ot fi westou des fichiers
-        $path = Storage::disk('document')->put('document', $request->file('file'));
-        //bech nsajel fel base de donnee
-        $file = new convention();
-        $file->name = $filename;
-
-        $file->path = 'assets/document/' . $path;
-        if ($file->save()) {
-            return response($file, 201);
+        $convention = new convention();
+        $convention->titre = $request->titre;
+        $convention->description = $request->description;
+        $convention->adresse = $request->adresse;
+        $convention->tel = $request->tel;
+        $convention->image = $request->image;
+        $convention->logo = $request->logo;
+        $convention->document = $request->document;
+        $convention->date_debut = $request->date_debut;
+        $convention->date_fin = $request->date_fin;
+        $categories= Categorie::find($id_cat);
+        // $convention->category()->attach($request->categories_id);
+        $convention->category()->associate($categories, [$convention->category_id]);
+        $cible = cible::find($id_cib);
+        $convention->cible()->associate($cible,[$convention->cible_id]);
+        if ($convention->save()) {
+            return response($convention, 201);
         }
     }
-    public function deleteconvention(Request $request, $id)
-    {
-        $doc = convention::find($id);
-        if (is_null($doc)) {
-            return response()->json(['message' => 'doc non disponible'], 404);
-        }
-        $doc->delete($request->all());
-        return response()->json(['message' => 'doc supprime'], 204);
-    }
+
 }

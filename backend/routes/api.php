@@ -71,12 +71,30 @@ Route::group([
     Route::get('getevent','EventController@getevent');
     Route::get('evenement/{id}', 'EventController@getEventById');
 
-    Route::get('convention', 'ConventionController@getConv');
-    Route::post('uploadConv', 'ConventionController@uploadConv');
-    Route::delete('deleteconvention/{id}', 'ConventionController@deleteconvention');
-
 
     Route::post('affecterusertoevent/{iduser}/{idevent}', 'AbonnerController@addUserToEvent');
     Route::delete('annulation/{iduser}/{idevent}', 'AbonnerController@annulationAbonnement');
     Route::get('getallabonner/{idevent}', 'AbonnerController@getAllabonne');
+
+
+    Route::get('convention', 'ConventionController@getConv');
+    Route::post('uploadConv', 'ConventionController@uploadConv');
+    Route::delete('deleteconvention/{id}', 'ConventionController@deleteconvention');
+
+    Route::get('getCategorieById/{id}', 'CategoryController@getCategorieById');
+    Route::post('addCategorie', 'CategoryController@addCategorie');
+    Route::put('updateCategorie/{id}','CategoryController@updateCategorie');
+    Route::get('getcategory', 'CategoryController@getcategory');
+    Route::delete('deleteCategorie/{id}', 'CategoryController@deleteCategorie');
+
+    Route::get('getCibleById/{id}', 'CibleController@getCibleById');
+    Route::post('addcible', 'CibleController@addcible');
+    Route::put('updatecible/{id}', 'CibleController@updatecible');
+    Route::get('getcible', 'CibleController@getcible');
+    Route::delete('deletecible/{id}', 'CibleController@deletecible');
+
+
+    Route::get('getconvention', 'ConventionController@getconvention');
+    Route::post('addconvention/{id_cat}/{id_cib}', 'ConventionController@addconvention');
+
 });
