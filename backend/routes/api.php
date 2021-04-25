@@ -97,4 +97,6 @@ Route::group([
     Route::get('getconvention', 'ConventionController@getconvention');
     Route::post('addconvention/{id_cat}/{id_cib}', 'ConventionController@addconvention');
 
+
+    Route::get('getconvByCate/{id_cat}', 'ConventionController@getconvByCate');
 });

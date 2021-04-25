@@ -36,4 +36,12 @@ class ConventionController extends Controller
         }
     }
 
+    public function getconvByCate($id_cat)
+    {
+        $categories = Categorie::find($id_cat);
+return response()->json(convention::where('category_id', $categories->id)->get(), 200);
+
+    }
+
+
 }

@@ -124,16 +124,10 @@ export class JarwisService {
   }
 
 
-  //convention
-  deleteconvention(id) {
-    return this.http.delete(`${this.baseUrl}/deleteconvention/` + id)
-  }
-  getconvention() {
-    return this.http.get(`${this.baseUrl}/convention`)
-  }
-  uploadConv(formData) {
-    return this.http.post(`${this.baseUrl}/uploadConv`, formData)
-  }
+
+
+
+
   addUserToEvent(iduser,idevent) {
     return this.http.post(`${this.baseUrl}/affecterusertoevent/`+ iduser+`/`+idevent, {})
   }
@@ -144,4 +138,44 @@ export class JarwisService {
     return this.http.get(`${this.baseUrl}/getallabonner/` + idevent )
   }
 
+
+
+
+  getCategorieById(id) {
+    return this.http.get(`${this.baseUrl}/getCategorieById/` + id)
+  }
+  getcategory() {
+    return this.http.get(`${this.baseUrl}/getcategory`)
+  }
+
+  getCibleById(id) {
+    return this.http.get(`${this.baseUrl}/getCibleById/` + id)
+  }
+  getcible() {
+    return this.http.get(`${this.baseUrl}/getcible`)
+  }
+
+  getconvention() {
+    return this.http.get(`${this.baseUrl}/getconvention`)
+  }
+  addconvention(idcat:any, idcib:any,data) {
+    return this.http.post(`${this.baseUrl}/addconvention/` + idcat + `/` + idcib, data)
+  }
+
+
+
+
+
+
+
+  // //convention
+  // deleteconvention(id) {
+  //   return this.http.delete(`${this.baseUrl}/deleteconvention/` + id)
+  // }
+  // getconvention() {
+  //   return this.http.get(`${this.baseUrl}/convention`)
+  // }
+  // uploadConv(formData) {
+  //   return this.http.post(`${this.baseUrl}/uploadConv`, formData)
+  // }
 }
