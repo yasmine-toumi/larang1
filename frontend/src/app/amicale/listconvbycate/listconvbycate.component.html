@@ -1,16 +1,14 @@
 <style>
-
- .section-title {
+  .section-title {
     padding-bottom: 45px;
-}
-.section-title svg {
+  }
+
+  .section-title svg {
 
     border-left: 5px solid #fc5356;
 
-}
+  }
 </style>
-
-
 
 
 <div class="container">
@@ -33,38 +31,36 @@
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
 
 
-  <div class="container">
-    <div class="row d-flex ">
-        <div class="col-12 col-md-4 mb-4 mt-2"  *ngFor="let c of convention">
-            <div class="card  h-100 border-light  bg-light shadow">
-                <div class="card-body d-flex-row">
-                    <blockquote class="blockquote mb-4 pb-2">
-                        <p class="mb-0 font-weight-bold">{{c.description}}</p>
-                        <footer class="blockquote-footer">{{c.titre}}</footer>
-                    </blockquote>
-              <img src="../../../assets/img/placeholder.png"width=22px>Adresse: {{c.adresse}}<br>
-              <img src="../../../assets/img/phone-call.png" width=22px alt="author avatar" >Tel: {{c.tel}}<br>
-
-              <img src="../../../assets/img/schedule.png" width=22px>Debut: {{c.date_debut}}<br>
-          <img src="../../../assets/img/schedule.png" width=22px>Fin: {{c.date_fin}}<br>
-              <img  src="../../../assets/img/link.png"width=22px alt="author avatar"title_view="vvv">{{c.document}}<br>
-                    <div class="w-100 pb-1"></div>
-                    <div class="d-flex align-items-center align-self-end">
-                        <div class="meta-author">
-                            <img class="d-block img-fluid rounded-circle" src="https://via.placeholder.com/40x40/5fa9f8/ffffff " alt="author avatar">
-                        </div>
-                        <div class="m-2">
-                            <a href="#">{{c.titre}}</a>
-                        </div>
-                        <div class="meta-item ml-auto">
-                            <a href="#">
-                                <i class="fa fa-link m-1"></i>Read more</a>
-                        </div>
-                    </div>
-                </div>
+<div class="container">
+  <div class="row d-flex ">
+    <div class="col-12 col-md-4 mb-4 mt-2" *ngFor="let c of convention">
+      <div class="card  h-100 border-light  bg-light shadow">
+        <div class="card-body d-flex-row">
+          <div class="d-flex align-items-center align-self-end">
+            <div class="meta-author">
+              <img class="figure-img img-fluid rounded" width=400px src="{{fullpath}}{{c.image}}">
             </div>
+          </div>
+          <div class="m-2">
+            <b>{{c.titre}}</b>
+          </div>
+          <img src="../../../assets/img/placeholder.png" width=22px>Adresse: {{c.adresse}}<br>
+          <img src="../../../assets/img/phone-call.png" width=22px alt="author avatar">Tel: {{c.tel}}<br>
+
+          <img src="../../../assets/img/schedule.png" width=22px>Debut: {{c.date_debut}}<br>
+          <img src="../../../assets/img/schedule.png" width=22px>Fin: {{c.date_fin}}<br>
+          <img src="../../../assets/img/link.png" width=22px alt="author avatar" title_view="vvv"><a
+            href="{{fullpath}}{{c.document}}">{{c.document}}</a>
+          <br>
+          <div class="w-100 pb-1"></div>
+          <blockquote class="blockquote mb-4 pb-2">
+
+            <p class="mb-0 font-weight-bold">{{c.description}}</p>
+            <footer class="blockquote-footer">{{c.titre}}</footer>
+          </blockquote>
         </div>
-
+      </div>
     </div>
-</div>
 
+  </div>
+</div>

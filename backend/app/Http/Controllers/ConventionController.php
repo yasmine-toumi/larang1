@@ -24,6 +24,7 @@ class ConventionController extends Controller
         $convention->image = $request->image;
         $convention->logo = $request->logo;
         $convention->document = $request->document;
+        $convention->name_path = $request->name_path;
         $convention->date_debut = $request->date_debut;
         $convention->date_fin = $request->date_fin;
         $categories= Categorie::find($id_cat);

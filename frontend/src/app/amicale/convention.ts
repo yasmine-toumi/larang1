@@ -7,5 +7,7 @@ export class Convention {
   image: any;
   document: any;
   tel: any;
+  logo:any;
+  name_path:any;
 
 }

@@ -74,4 +74,8 @@ class User extends Authenticatable implements JWTSubject
             'events_id'
         )->withPivot('rang','affecter');
     }
+    public function suggestion()
+    {
+        return $this->hasMany(suggestion::class);
+    }
 }

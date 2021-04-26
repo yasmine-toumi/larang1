@@ -246,7 +246,7 @@
   }
 </style>
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
-<div class="container"  >
+<div class="container">
   <div class="row">
     <div class="col-lg-3 col-sm-6" *ngFor="let c of category">
       <div class="card-box bg-blue">
@@ -260,7 +260,7 @@
 
         </div>
         <!-- routerLink="../listconventionbycat" -->
-        <a  (click)="detail(c.id)" class="card-box-footer">View More <i class="fa fa-arrow-circle-right"></i></a>
+        <a (click)="detail(c.id)" class="card-box-footer">View More <i class="fa fa-arrow-circle-right"></i></a>
       </div>
     </div>
 
@@ -349,14 +349,14 @@
               <div class="col-md-6">
                 <div class="form-group">
                   <span>Choisir une image</span>
-                  <input id="Telephone" type="file" placeholder="IMAGE" name="image" [(ngModel)]="convention.image"
+                  <input id="Telephone" type="file" placeholder="IMAGE" name="image" (change)="onFileSelectimage($event)" [(ngModel)]="convention.image"
                     class="form-control">
                 </div>
               </div>
               <div class="col-md-6">
                 <div class="form-group">
                   <span>choisir un fichier</span>
-                  <input id="Telephone" type="file" placeholder="file" name="document" [(ngModel)]="convention.document"
+                  <input id="Telephone" type="file" placeholder="file" name="document" (change)="onFileSelectidoc($event)" [(ngModel)]="convention.document"
                     class="form-control">
                 </div>
               </div>
@@ -369,34 +369,33 @@
               </div>
               <div class="col-md-6">
                 <div class="form-group">
-                  <span >Date de fin</span>
+                  <span>Date de fin</span>
                   <input id="Titre" type="date" placeholder="Date de fin*" name="date_fin"
                     [(ngModel)]="convention.date_fin" class="form-control">
                 </div>
               </div>
 
-              <div class=" col-md-6">
-                <h6>Liste Categories</h6>
-                <div>
 
-                  <select class="form-control" (change)="getidcat($event.target.value)" class="form-group">
-                    <option selected="selected">Liste des categories</option>
-                    <option *ngFor="let c of category" [value]="c.id">{{c.category}}</option>
-                  </select>
-                </div>
 
-              </div>
+<div class=" col-md-6">
+<div class="form-group">
+  <label class="sr-only">Liste Categories</label>
+  <select id="reg_userquestion" (change)="getidcat($event.target.value)" class="form-control" name="user_question">
+    <option selected> Select Category </option>
+    <option *ngFor="let c of category" [value]="c.id">{{c.category}}</option>
+  </select>
+</div>
+</div>
+<div class=" col-md-6">
+  <div class="form-group">
+    <label class="sr-only">Liste Categories</label>
+    <select id="reg_userquestion" (change)="getidcib($event.target.value)"class="form-control" name="user_question">
+      <option selected> Select Cible </option>
+      <option *ngFor="let cib of cible" [value]="cib.id">{{cib.cible}}</option>
+    </select>
+  </div>
+</div>
 
-              <div class="col-md-6">
-                <h6>Cible</h6>
-
-                <div>
-                  <select (change)="getidcib($event.target.value)">
-                    <option selected="selected">Choisissez votre cible</option>
-                    <option *ngFor="let cib of cible" [value]="cib.id">{{cib.cible}}</option>
-                  </select>
-                </div>
-              </div>
 
               <div class="col-md-12">
                 <div class="form-group">
@@ -404,6 +403,7 @@
                     [(ngModel)]="convention.description" rows="3"></textarea>
                 </div>
               </div>
+
               <div class="col-md-12">
                 <div class="send">
                   <button type="submit" class="btn btn-primary">
@@ -415,6 +415,22 @@
         </div>
       </div>
 
+
+
+
+
+
+      <div class="col-md-5 col-lg-4 m-15px-tb">
+        <div class="contact-name">
+
+          <img src="../../../assets/img/CC.png" width=360px>
+        </div>
+
+
+      </div>
+
     </div>
+
+
   </div>
 </section>

@@ -22,6 +22,7 @@ class CreateConventionsTable extends Migration
             $table->string('image')->nullable();
             $table->string('logo')->nullable();
             $table->string('document')->nullable();
+            $table->text('name_path');
             $table->date('date_debut');
             $table->date('date_fin');
             $table->unsignedBigInteger('category_id')->unsigned();

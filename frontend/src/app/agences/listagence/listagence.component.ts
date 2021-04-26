@@ -30,6 +30,13 @@ public takedToken = this.token.get();
   insertData() {
     this.Jarwis.addagences(this.agence).subscribe(res=>{
 this.getagence();
+      Swal.fire(
+        'Good job!',
+        'votre insertion a été effectué',
+        'success'
+      )
+
+      window.location.reload();
     });
 
   }

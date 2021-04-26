@@ -67,6 +67,7 @@ Route::group([
 
     Route::post('addevent', 'EventController@addevent');
     Route::post('uploadevent', 'EventController@upload');
+    Route::get('showimg', 'EventController@showimg');
     Route::delete('deleteEvent/{id}', 'EventController@deleteEvent');
     Route::get('getevent','EventController@getevent');
     Route::get('evenement/{id}', 'EventController@getEventById');
@@ -96,7 +97,10 @@ Route::group([
 
     Route::get('getconvention', 'ConventionController@getconvention');
     Route::post('addconvention/{id_cat}/{id_cib}', 'ConventionController@addconvention');
-
-
     Route::get('getconvByCate/{id_cat}', 'ConventionController@getconvByCate');
+
+
+
+    Route::get('getsuggestion', 'SuggestionController@getsuggestion');
+    Route::post('addconvention/{id_user}', 'ConventionController@addconvention');
 });

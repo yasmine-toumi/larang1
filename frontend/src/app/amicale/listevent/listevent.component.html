@@ -91,7 +91,7 @@
   }
 
   table.table th i {
-    font-size: 13px;
+    font-size: 20px;
     margin: 0 5px;
     cursor: pointer;
   }
@@ -127,7 +127,7 @@
   }
 
   table.table td i {
-    font-size: 19px;
+    font-size: 30px;
   }
 
 
@@ -359,8 +359,8 @@ h2 {
               <td>{{user.email}}</td>
               <td class="text-center">
 
-                <span *ngIf="user.pivot.affecter===1; else elseBlock"  class="btn btn-success">Inscrit</span>
-                <ng-template #elseBlock><span  class="btn btn-warning">En attente </span></ng-template>
+                <span *ngIf="user.pivot.affecter===1; else elseBlock" class="badge badge-success">Inscrit</span>
+                <ng-template #elseBlock><span class="badge badge-warning">En attente </span></ng-template>
               </td>
             </tr>
 

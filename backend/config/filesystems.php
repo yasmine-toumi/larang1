@@ -52,7 +52,7 @@ return [
         ],
         'event' => [
             'driver' => 'local',
-            'root'   => 'C:\Users\Yasmine\Desktop\pfe 2021\projet\frontend\src'
+            'root'   => 'C:\Users\Yasmine\Desktop\pfe 2021\projet\frontend'
         ],
 
         'local' => [
