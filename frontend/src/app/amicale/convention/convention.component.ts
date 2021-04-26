@@ -5,6 +5,7 @@ import Swal from 'sweetalert2';
 import { FormControl, FormGroup } from '@angular/forms';
 import 'sweetalert2/src/sweetalert2.scss';
 import { Convention } from '../convention';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-convention',
@@ -21,7 +22,7 @@ export class ConventionComponent implements OnInit {
   cibleid: string;
 
  cible:any;
-  constructor(private Jarwis: JarwisService, private token: TokenService) { }
+  constructor(private Jarwis: JarwisService, private token: TokenService , public router:Router) { }
 
   ngOnInit(): void {
     this.getconvention();
@@ -67,5 +68,11 @@ export class ConventionComponent implements OnInit {
     });
   }
 
+
+
+detail(id: number){
+  this.router.navigate(['amicale/listconventionbycat', id]);
+
 }
 
+}

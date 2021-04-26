@@ -164,6 +164,9 @@ export class JarwisService {
 
 
 
+  getconvByCate(idcat) {
+    return this.http.get(`${this.baseUrl}/getconvByCate/` + idcat)
+  }
 
 
 

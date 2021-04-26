@@ -17,18 +17,22 @@ import { FlatpickrModule } from 'angularx-flatpickr';
 import "./../../../node_modules/flatpickr/dist/flatpickr.min.css";
 import { ConventionComponent } from './convention/convention.component';
 import { ListeventComponent } from './listevent/listevent.component';
+import { ListconvbycateComponent } from './listconvbycate/listconvbycate.component';
+import { SuggestionComponent } from './suggestion/suggestion.component';
 
 const routes: Routes = [
   { path: 'evenement', component: EvenementComponent },
   {path:'convention',component:ConventionComponent},
-  {path:'listdetail/:id',component:ListeventComponent}
+  {path:'listdetail/:id',component:ListeventComponent},
+  {path:'listconventionbycat/:id',component:ListconvbycateComponent},
+  {path:'suggestion',component:SuggestionComponent}
 
 ];
 
 
 
 @NgModule({
-  declarations: [EvenementComponent, ConventionComponent, ListeventComponent],
+  declarations: [EvenementComponent, ConventionComponent, ListeventComponent, ListconvbycateComponent, SuggestionComponent],
   imports: [FormsModule, ReactiveFormsModule,
     CommonModule, RouterModule.forChild(routes), ButtonModule, MbscModule, FileUploadModule,
     NgbModalModule, HttpClientModule,
