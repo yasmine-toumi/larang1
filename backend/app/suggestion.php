@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class suggestion extends Model
 {
     protected $fillable = [
-        'titre', 'message', 'status', 'document', 'date', 'name_path'
+        'titre', 'message', 'status', 'document', 'date'
     ];
     public function users()
     {

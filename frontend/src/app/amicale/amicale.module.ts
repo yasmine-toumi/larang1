@@ -19,6 +19,7 @@ import { ConventionComponent } from './convention/convention.component';
 import { ListeventComponent } from './listevent/listevent.component';
 import { ListconvbycateComponent } from './listconvbycate/listconvbycate.component';
 import { SuggestionComponent } from './suggestion/suggestion.component';
+import { BoitesuggestionComponent } from './boitesuggestion/boitesuggestion.component';
 
 const routes: Routes = [
   { path: 'evenement', component: EvenementComponent },
@@ -32,7 +33,7 @@ const routes: Routes = [
 
 
 @NgModule({
-  declarations: [EvenementComponent, ConventionComponent, ListeventComponent, ListconvbycateComponent, SuggestionComponent],
+  declarations: [EvenementComponent, ConventionComponent, ListeventComponent, ListconvbycateComponent, SuggestionComponent, BoitesuggestionComponent],
   imports: [FormsModule, ReactiveFormsModule,
     CommonModule, RouterModule.forChild(routes), ButtonModule, MbscModule, FileUploadModule,
     NgbModalModule, HttpClientModule,

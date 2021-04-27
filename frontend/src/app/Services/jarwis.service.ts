@@ -45,6 +45,10 @@ export class JarwisService {
     return this.http.get(`${this.baseUrl}/searchuser?user=` + motCle + '&page=' + page)
   }
 
+  getUser() {
+    return this.http.get(`${this.baseUrl}/getUser`)
+  }
+
  // service  agence
   getagence() {
     return this.http.get(`${this.baseUrl}/agence`)
@@ -161,24 +165,18 @@ export class JarwisService {
   addconvention(idcat:any, idcib:any,data) {
     return this.http.post(`${this.baseUrl}/addconvention/` + idcat + `/` + idcib, data)
   }
-
-
-
   getconvByCate(idcat) {
     return this.http.get(`${this.baseUrl}/getconvByCate/` + idcat)
   }
 
 
 
+  getsuggestion() {
+    return this.http.get(`${this.baseUrl}/getsuggestion`)
+  }
+  addsuggestion( iduser: any, data) {
+    return this.http.post(`${this.baseUrl}/addsuggestion/` + iduser , data)
+  }
 
-  // //convention
-  // deleteconvention(id) {
-  //   return this.http.delete(`${this.baseUrl}/deleteconvention/` + id)
-  // }
-  // getconvention() {
-  //   return this.http.get(`${this.baseUrl}/convention`)
-  // }
-  // uploadConv(formData) {
-  //   return this.http.post(`${this.baseUrl}/uploadConv`, formData)
-  // }
+
 }

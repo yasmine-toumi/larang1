@@ -45,6 +45,8 @@ Route::group([
     Route::get('search/{name}', 'UserController@search');
     Route::get('searchuser', 'UserController@searchuser');
 
+    Route::get('getUser', 'UserController@getUser');
+
 
     Route::get('agence', 'AgencesController@getagence');
     Route::get('agence/{id}', 'AgencesController@getagenceById');
@@ -102,5 +104,5 @@ Route::group([
 
 
     Route::get('getsuggestion', 'SuggestionController@getsuggestion');
-    Route::post('addconvention/{id_user}', 'ConventionController@addconvention');
+    Route::post('addsuggestion/{id_user}', 'SuggestionController@addsuggestion');
 });

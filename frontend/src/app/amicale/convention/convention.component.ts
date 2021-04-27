@@ -111,8 +111,6 @@ detail(id: number){
         this.convention.name_path = data["name"];
         console.log(this.convention.name_path);
         console.log(this.convention.document);
-
-
       }, err => {
         console.log(err.error.text);
         this.convention.document = err.error.text;

@@ -17,12 +17,12 @@ class SuggestionController extends Controller
     {
         $suggestions = new suggestion();
         $suggestions->titre = $request->titre;
-        $suggestions->message = $request->description;
+        $suggestions->message = $request->message;
         $suggestions->document = $request->document;
         $suggestions->date = $request->date;
-
+        $suggestions->status = $request->status;
         $users = User::find($id_user);
-        $suggestions->category()->associate($users, [$suggestions->users_id]);
+        $suggestions->users()->associate($users, [$suggestions->users_id]);
 
         if ($suggestions->save()) {
             return response($suggestions, 201);

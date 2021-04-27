@@ -19,7 +19,6 @@ class CreateSuggestionsTable extends Migration
             $table->text('message');
             $table->text('status');
             $table->string('document')->nullable();
-            $table->string('name_path')->nullable();
             $table->date('date');
             $table->timestamps();
             $table->unsignedBigInteger('users_id')->unsigned();

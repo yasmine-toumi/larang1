@@ -69,7 +69,7 @@
 
 
 
-
+  <form (ngSubmit)="insertData()" class="contactform contact_form" id="contact_form">
 <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12">
   <div class="card h-100">
     <div class="card-body">
@@ -80,26 +80,43 @@
         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
           <div class="form-group">
             <label for="fullName">Titre</label>
-            <input type="text" class="form-control" name="titre"id="fullName" >
+            <input type="text" class="form-control" id="fullName" name="titre" [(ngModel)]="suggestion.titre">
           </div>
         </div>
         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
           <div class="form-group">
             <label for="eMail">Date de demande</label>
-            <input type="date" class="form-control" id="eMail" >
+            <input type="date" class="form-control" id="eMail"  name="date" [(ngModel)]="suggestion.date">
           </div>
         </div>
 
-        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-          <div class="form-group">
-            <label for="website">Emetteur</label>
-            <input type="text" class="form-control" id="website" >
-          </div>
-        </div>
+
+<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+  <div class="form-group">
+    <label for="eMail">status</label>
+    <select id="reg_userquestion" [(ngModel)]="suggestion.status"  class="form-control" name="user_question">
+
+      <option>En attent</option>
+    </select>
+  </div>
+</div>
+
+<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+  <div class="form-group">
+    <label for="website">Emetteur</label>
+    <select id="reg_userquestion" (change)="getiduser($event.target.value)" class="form-control" name="user_question">
+      <option selected> Select User Name </option>
+      <option *ngFor="let u of user" [value]="u.id">{{u.name}}</option>
+    </select>
+  </div>
+</div>
+
+
+
         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
           <div class="form-group">
             <label for="website">Document</label>
-            <input type="file" class="form-control" id="website">
+            <input type="file" class="form-control" id="website"name="document" (change)="onFileSelectidoc($event)" [(ngModel)]="suggestion.document">
           </div>
         </div>
       </div>
@@ -109,7 +126,7 @@
         </div>
       <div class="col-md-12">
         <div class="form-group">
-          <textarea id="message" placeholder="Description*" class="form-control" name="description"
+          <textarea id="message" placeholder="Description*" class="form-control" name="message" [(ngModel)]="suggestion.message"
            rows="3"></textarea>
         </div>
       </div>
@@ -118,10 +135,11 @@
       <div class="row gutters">
         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
           <div class="text-right">
-            <button type="button" id="submit" name="submit" class="btn btn-secondary">Cancel</button>
-            <button type="button" id="submit" name="submit" class="btn btn-primary">Update</button>
+            <button type="submit" id="submit" name="submit" class="btn btn-primary">Update</button>
           </div>
         </div>
       </div>
     </div>
-    </div></div>
+    </div>
+  </div>
+  </form>
