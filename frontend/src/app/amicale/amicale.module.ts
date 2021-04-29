@@ -20,20 +20,22 @@ import { ListeventComponent } from './listevent/listevent.component';
 import { ListconvbycateComponent } from './listconvbycate/listconvbycate.component';
 import { SuggestionComponent } from './suggestion/suggestion.component';
 import { BoitesuggestionComponent } from './boitesuggestion/boitesuggestion.component';
+import { ReponsemessageComponent } from './reponsemessage/reponsemessage.component';
 
 const routes: Routes = [
   { path: 'evenement', component: EvenementComponent },
   {path:'convention',component:ConventionComponent},
   {path:'listdetail/:id',component:ListeventComponent},
   {path:'listconventionbycat/:id',component:ListconvbycateComponent},
-  {path:'suggestion',component:SuggestionComponent}
-
+  {path:'suggestion',component:SuggestionComponent},
+  { path: 'boitedesuggestion', component:BoitesuggestionComponent},
+  { path: 'reponse/:id', component:ReponsemessageComponent },
 ];
 
 
 
 @NgModule({
-  declarations: [EvenementComponent, ConventionComponent, ListeventComponent, ListconvbycateComponent, SuggestionComponent, BoitesuggestionComponent],
+  declarations: [EvenementComponent, ConventionComponent, ListeventComponent, ListconvbycateComponent, SuggestionComponent, BoitesuggestionComponent, ReponsemessageComponent],
   imports: [FormsModule, ReactiveFormsModule,
     CommonModule, RouterModule.forChild(routes), ButtonModule, MbscModule, FileUploadModule,
     NgbModalModule, HttpClientModule,

@@ -27,6 +27,8 @@ class CreateSuggestionsTable extends Migration
         });
     }
 
+
+
     /**
      * Reverse the migrations.
      *

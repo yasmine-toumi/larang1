@@ -105,4 +105,7 @@ Route::group([
 
     Route::get('getsuggestion', 'SuggestionController@getsuggestion');
     Route::post('addsuggestion/{id_user}', 'SuggestionController@addsuggestion');
+    Route::get('getsuggestionById/{id}', 'SuggestionController@getsuggestionById');
+    Route::put('updasuggestion/{id}', 'SuggestionController@updasuggestion');
+
 });

@@ -177,6 +177,12 @@ export class JarwisService {
   addsuggestion( iduser: any, data) {
     return this.http.post(`${this.baseUrl}/addsuggestion/` + iduser , data)
   }
+  getsuggestionById(id) {
+    return this.http.get(`${this.baseUrl}/getsuggestionById/` + id)
+  }
 
+  updasuggestion(id, data) {
+    return this.http.put(`${this.baseUrl}/updasuggestion/` + id, data)
+  }
 
 }
