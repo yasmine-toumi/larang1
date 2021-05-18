@@ -20,7 +20,7 @@ export class TokenService {
     localStorage.setItem('role', role);
     localStorage.setItem('user', user);
     localStorage.setItem('id',id);
-    //aya zid tawa chbik sakret apel
+
   }
   get() {
     return localStorage.getItem('token');

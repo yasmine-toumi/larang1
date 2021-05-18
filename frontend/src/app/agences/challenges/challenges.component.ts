@@ -16,12 +16,13 @@ challenges:any;
 challenge =new Challenge;
 data:any;
 id:any;
-
+  public role: string;
   constructor(private Jarwis: JarwisService, private token: TokenService) {
-
   }
+  public takedToken = this.token.get();
   ngOnInit(): void {
     this.getchallenge();
+    this.role = this.token.getRole();
   }
   getchallenge() {
     this.Jarwis.getchallenge().subscribe(res => {

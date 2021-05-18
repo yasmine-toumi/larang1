@@ -13,11 +13,11 @@ import 'sweetalert2/src/sweetalert2.scss';
   styleUrls: ['./listagence.component.css']
 })
 export class ListagenceComponent implements OnInit {
-agences:any;
-agence= new Agence();
-public role: string;
-constructor(private Jarwis: JarwisService, private token: TokenService) { }
-public takedToken = this.token.get();
+  agences: any;
+  agence = new Agence();
+  public role: string;
+  constructor(private Jarwis: JarwisService, private token: TokenService) { }
+  public takedToken = this.token.get();
 
   ngOnInit(): void {
     this.getagence();
@@ -26,10 +26,11 @@ public takedToken = this.token.get();
   getagence() {
     this.Jarwis.getagence().subscribe(res => {
       this.agences = res;
-    });}
+    });
+  }
   insertData() {
-    this.Jarwis.addagences(this.agence).subscribe(res=>{
-this.getagence();
+    this.Jarwis.addagences(this.agence).subscribe(res => {
+      this.getagence();
       Swal.fire(
         'Good job!',
         'votre insertion a été effectué',
@@ -40,7 +41,7 @@ this.getagence();
     });
 
   }
-  deleteData(id){
+  deleteData(id) {
     const swalWithBootstrapButtons = Swal.mixin({
       customClass: {
         confirmButton: 'btn btn-success',
@@ -53,12 +54,12 @@ this.getagence();
       title: 'Are you sure?',
       text: "You won't be able to revert this!",
       icon: 'warning',
-    showCancelButton: true,
+      showCancelButton: true,
       confirmButtonText: 'Yes, delete it!',
       cancelButtonText: 'No, cancel!',
-     reverseButtons: true
+      reverseButtons: true
     }).then((result) => {
-      if (result.isConfirmed)  {
+      if (result.isConfirmed) {
         this.Jarwis.deleteagences(id).subscribe(res => {
           this.getagence();
         });

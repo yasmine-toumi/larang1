@@ -222,7 +222,7 @@
       <a href="page-inbox-compose.html" class="btn btn-danger btn-block">New Email</a>
       <ul class="nav">
         <li class="nav-item">
-          <a class="nav-link" href="#"><i class="fa fa-inbox"></i> Inbox <span class="badge badge-danger">4</span></a>
+          <a class="nav-link" routerLink="../../boitedesuggestion"><i class="fa fa-inbox"></i> Inbox <span class="badge badge-danger">4</span></a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#"><i class="fa fa-star"></i> Stared</a>
@@ -275,10 +275,9 @@
             <span class="caret"></span>
           </button>
           <div class="dropdown-menu">
-            <a class="dropdown-item" href="#">add label <span class="badge badge-danger"> Home</span></a>
-            <a class="dropdown-item" href="#">add label <span class="badge badge-info"> Job</span></a>
-            <a class="dropdown-item" href="#">add label <span class="badge badge-success"> Clients</span></a>
-            <a class="dropdown-item" href="#">add label <span class="badge badge-warning"> News</span></a>
+            <a class="dropdown-item" >en cours <span class="badge badge-danger"> Home</span></a>
+            <a class="dropdown-item">accepter <span class="badge badge-success"> Clients</span></a>
+            <a class="dropdown-item" >reffuser<span class="badge badge-warning"> News</span></a>
           </div>
         </div>
         <div class="btn-group float-right">
@@ -291,64 +290,56 @@
         </div>
       </div>
       <form (ngSubmit)="updasuggestion()">
-<ul class="messages">
-  <li class="message unread">
 
-      <div class="actions">
-        <span class="action"><i class="fa fa-square-o"></i></span>
-        <span class="action"><i class="fa fa-star-o"></i></span>
-      </div>
-      <div class="header" >
-        <span class="from">{{data.users.name}}</span>
-        <span class="date">
-          <span class="fa fa-paper-clip" >{{data.date}}</span>
-         </span>
-      </div>
-      <div class="title">
-        {{data.titre}}
-      </div>
-      <div class="description">
-        {{data.message}}
-      </div>
 
-<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-  <div class="form-group">
-    <label for="website">status</label>
-    <select id="reg_userquestion"  [(ngModel)]="data.status" class="form-control" name="status">
-      <option selected> Select User Name </option>
-      <option value="en cours">en cours </option>
-        <option value="accepter">accepter </option>
-          <option value="reffuser">reffuser</option>
-    </select>
+<div class="email-head-sender d-flex align-items-center justify-content-between flex-wrap">
+  <div class="d-flex align-items-center">
+
+    <div class="sender d-flex align-items-center">
+      <b>{{data.users.name}}</b>
+
+    </div>
+  </div>
+  <div class="date">{{data.date}}</div>
+</div>
+<hr>
+
+<div class="email-body">
+  <p>{{data.titre}}</p>
+  <br>
+  <p>{{data.message}}</p>
+  <br>
+
+
+</div>
+<div class="email-attachments">
+  <div class="title">Les fichiers <span></span></div>
+  <ul>
+    <li><a href="{{fullpath}}{{data.document}}"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+          class="feather feather-file">
+          <path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path>
+          <polyline points="13 2 13 9 20 9"></polyline>
+        </svg> {{data.document}} <span class="text-muted tx-11"></span></a></li>
+
+  </ul>
+</div>
+<hr>
+
+
+
+<div class="input-group">
+  <select class="custom-select" [(ngModel)]="data.status" name="status"id="inputGroupSelect04">
+    <option selected>Choose...</option>
+    <option value="En attend">En attend</option>
+    <option value="Accepter">Accepter</option>
+    <option  value="Reffuser">Reffuser</option>
+  </select>
+  <div class="input-group-append">
+    <button class="btn btn-outline-dark" type="submit">Envoyer</button>
   </div>
 </div>
-<button type="submit" class="btn btn-primary">Ajouter</button>
-  </li>
-  <!-- <li class="message">
-          <a href="#">
-            <div class="actions">
-              <span class="action"><i class="fa fa-square-o"></i></span>
-              <span class="action"><i class="fa fa-star-o"></i></span>
-            </div>
-            <div class="header">
-              <span class="from">Lukasz Holeczek</span>
-              <span class="date">
-                <span class="fa fa-paper-clip"></span> Today, 3:47 PM</span>
-            </div>
-            <div class="title">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-              dolore magna aliqua.
-            </div>
-            <div class="description">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-              dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
-              ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-              fugiat nulla pariatur.
-            </div>
-          </a>
-        </li> -->
 
-</ul>
 </form>
     </main>
   </div>

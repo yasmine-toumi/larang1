@@ -358,7 +358,6 @@ h2 {
               <td>{{user.name}}</td>
               <td>{{user.email}}</td>
               <td class="text-center">
-
                 <span *ngIf="user.pivot.affecter===1; else elseBlock" class="badge badge-success">Inscrit</span>
                 <ng-template #elseBlock><span class="badge badge-warning">En attente </span></ng-template>
               </td>

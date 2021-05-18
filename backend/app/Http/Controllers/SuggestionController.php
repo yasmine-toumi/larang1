@@ -52,7 +52,7 @@ if ($suggestions->save()) {
     {
         $suggestions= suggestion::find($id);
         if (is_null($suggestions)) {
-            return response()->json(['message' => 'agence non disponible'], 400);
+            return response()->json(['message' => 'suggestion non disponible'], 400);
         }
         $suggestions->update($request->all());
         return response($suggestions, 202);
