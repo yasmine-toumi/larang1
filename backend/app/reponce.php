@@ -17,4 +17,8 @@ class reponce extends Model
     {
         return $this->belongsTo(sondage::class, 'sondage_id');
     }
+
+
+
+
 }
