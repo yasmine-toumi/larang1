@@ -17,7 +17,10 @@ export class SondageComponent implements OnInit {
   sondage = new Sondage();
   sondages: any;
   id: string;
+  typemessage: any;
+  public role: string;
   constructor(private _fb: FormBuilder, private Jarwis: JarwisService, private token: TokenService) { }
+  public takedToken = this.token.get();
   public addmore: FormGroup;
   choixForm = new FormGroup({
     reponce: new FormControl(''),
@@ -25,6 +28,7 @@ export class SondageComponent implements OnInit {
   ngOnInit() {
     this.getsondages();
     this.id = this.token.getId();
+    this.role = this.token.getRole();
     this.addmore = this._fb.group({
 
       message: [''],
@@ -37,8 +41,10 @@ public occurence(sondage:Sondage,choix):number{
     if (x.reponce===choix) {
       occ++;
     }
+
   });
   return occ;
+
 }
 
   initItemRows() {
@@ -92,6 +98,48 @@ public occurence(sondage:Sondage,choix):number{
   }
   get formArr() {
     return this.addmore.get('itemRows') as FormArray;
+  }
+  deleteData(id) {
+    const swalWithBootstrapButtons = Swal.mixin({
+      customClass: {
+        confirmButton: 'btn btn-success',
+        cancelButton: 'btn btn-danger'
+      },
+      buttonsStyling: false
+    })
+
+    swalWithBootstrapButtons.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Yes, delete it!',
+      cancelButtonText: 'No, cancel!',
+      reverseButtons: true
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.Jarwis.deletesondage(id).subscribe(res => {
+          this.getsondages();
+        });
+        swalWithBootstrapButtons.fire(
+          'Deleted!',
+          'Your file has been deleted.',
+          'success'
+
+        )
+      } else if (
+        /* Read more about handling dismissals below */
+        result.dismiss === Swal.DismissReason.cancel
+      ) {
+        swalWithBootstrapButtons.fire(
+          'Cancelled',
+          'Your imaginary file is safe :)',
+          'error'
+        )
+      }
+    })
+
+
   }
 }
 

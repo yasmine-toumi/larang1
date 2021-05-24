@@ -193,9 +193,10 @@ export class JarwisService {
   addsondages(iduser:any, data) {
     return this.http.post(`${this.baseUrl}/addsondages/` + iduser, data)
   }
-
   addreponse(iduser:any,sondageid:any,data){
     return this.http.post(`${this.baseUrl}/addreponce/` + iduser+'/'+sondageid, data)
   }
-
+  deletesondage(id) {
+    return this.http.delete(`${this.baseUrl}/deletesondage/` + id)
+  }
 }

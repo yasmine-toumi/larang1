@@ -1,6 +1,6 @@
 <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
 
-<div class="container-fluid">
+<div class="container-fluid" *ngIf="role==='administrateur'||role==='chef amicale'">
   <form [formGroup]="addmore" (ngSubmit)="insertData()">
     <div class="card">
       <div class="card-header text-center">
@@ -66,7 +66,28 @@
   body {
     background: #dcdcdc;
   }
+h3{
+color: #636363;
+	margin: 0 0 15px;
+	position: relative;
+	text-align: center;
+}
+h3:before, h3:after {
+	content: "";
+	height: 2px;
+	width: 20%;
+	background: #d4d4d4;
+	position: absolute;
+	top: 50%;
+	z-index: 2;
+}
+h3:before {
+	left: 0;
+}
 
+ h3:after {
+	right: 0;
+}
   .bg {
     background: #837e7e;
   }
@@ -346,29 +367,48 @@
   <div class="row">
     <div class="col-md-12">
       <div id="accordion" class="checkout">
-
+<h3>Vous trouverez la liste de sondage</h3>
         <div *ngFor="let sond of sondages;let i =index" class="panel checkout-step">
           <div role="tab" id="headingThree"> <span class="checkout-step-number">{{i+1}}</span>
             <h4 class="checkout-step-title"> <a class="collapsed" role="button" data-toggle="collapse"
                 data-parent="#accordion" href="#message{{sond.id}}"> {{sond.message}}</a> </h4>
+                      <a class="table-link danger float-right" title="supprimer" (click)="deleteData(sond.id)"*ngIf="role==='administrateur'||role==='chef amicale'">
+                        <span class="fa-stack  fa-lg p-2">
+                          <i class="fa fa-trash-o " aria-hidden="true"></i>
+                        </span>
+                      </a>
           </div>
+
           <div id="message{{sond.id}}" class="panel-collapse collapse">
             <div class="checkout-step-body">
               <form [formGroup]="choixForm" (ngSubmit)="onSubmit(sond.id)">
                 <div class="row">
                   <div class="form-group">
-                    <label class="col-md-12 control-label" for="time">Choix</label>
+
                     <div class="col-md-12">
-                      <div *ngFor="let c of sond.choix" class="radio">
+                      <div  class="radio">
                         <label for="time-0">
-                          <input type="radio" formControlName="reponce" name="reponce" [value]="c.choix"> {{c.choix}} {{occurence(sond,c.choix)}}
+                            <thead  >
+<tr>
+  <th style="white-space: nowrap;padding-right: 4em;float:center">choix</th>
+  <th style="white-space: nowrap;padding-right: 4em;float:center">nombre de resultat</th>
+</tr></thead>
+                          <table  class="table b11"*ngFor="let c of sond.choix">
+                         <tbody><tr class="b3">
+                          <td ><input type="radio" formControlName="reponce" name="reponce" [value]="c.choix">{{c.choix}}</td>
+                          <td>{{occurence(sond,c.choix)}}</td>
+                          </tr>
+                          </tbody>
+                        </table>
                         </label>
                       </div>
-
                     </div>
                   </div>
                 </div>
-                <button class="collapsed btn btn-default" type="submit">Save</button>
+
+               <div class="d-flex justify-content-center"> <button type="submit"class=" btn btn-rounded bg-blue "><i class="fa fa-check-circle"
+                    aria-hidden="true"></i></button></div>
+
               </form>
             </div>
           </div>
