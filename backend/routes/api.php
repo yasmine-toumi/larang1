@@ -108,4 +108,17 @@ Route::group([
     Route::get('getsuggestionById/{id}', 'SuggestionController@getsuggestionById');
     Route::put('updasuggestion/{id}', 'SuggestionController@updasuggestion');
 
+
+
+    Route::post('addreponce/{id_user}/{sondage_id}', 'ReponseController@addreponce');
+    Route::get('getresult', 'ReponseController@getresult');
+    Route::get('getreponcesById/{id}', 'ReponseController@getreponcesById');
+    Route::delete('deletereponce/{id}', 'ReponseController@deletereponce');
+
+
+    Route::post('addsondages/{id_user}', 'SondageController@addsondages');
+    Route::get('getsondages', 'SondageController@getsondages');
+    Route::put('updasondages/{id}', 'SondageController@updasondages');
+    Route::delete('deletesondage/{id}', 'SondageController@deletesondage');
+
 });

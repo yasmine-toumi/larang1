@@ -17,4 +17,7 @@ class sondage extends Model
     {
         return $this->hasMany(reponce::class);
     }
+    protected $casts =[
+        'choix'=>'array'
+    ];
 }

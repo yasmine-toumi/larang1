@@ -4,6 +4,7 @@ import { TokenService } from 'src/app/Services/token.service';
 import { Agence } from '../agence';
 import Swal from 'sweetalert2';
 import 'sweetalert2/src/sweetalert2.scss';
+import { FormGroup, FormControl} from '@angular/forms';
 
 
 
@@ -18,6 +19,7 @@ export class ListagenceComponent implements OnInit {
   public role: string;
   constructor(private Jarwis: JarwisService, private token: TokenService) { }
   public takedToken = this.token.get();
+
 
   ngOnInit(): void {
     this.getagence();
@@ -82,5 +84,6 @@ export class ListagenceComponent implements OnInit {
     })
 
   }
+
 
 }

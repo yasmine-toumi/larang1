@@ -21,6 +21,10 @@ import { ListconvbycateComponent } from './listconvbycate/listconvbycate.compone
 import { SuggestionComponent } from './suggestion/suggestion.component';
 import { BoitesuggestionComponent } from './boitesuggestion/boitesuggestion.component';
 import { ReponsemessageComponent } from './reponsemessage/reponsemessage.component';
+import { SondageComponent } from './sondage/sondage.component';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
 
 const routes: Routes = [
   { path: 'evenement', component: EvenementComponent },
@@ -30,16 +34,18 @@ const routes: Routes = [
   {path:'suggestion',component:SuggestionComponent},
   { path: 'boitedesuggestion', component:BoitesuggestionComponent},
   { path: 'reponse/:id', component:ReponsemessageComponent },
+  { path: 'sondage', component:SondageComponent },
 ];
 
 
 
 @NgModule({
-  declarations: [EvenementComponent, ConventionComponent, ListeventComponent, ListconvbycateComponent, SuggestionComponent, BoitesuggestionComponent, ReponsemessageComponent],
+  declarations: [EvenementComponent, ConventionComponent, ListeventComponent, ListconvbycateComponent, SuggestionComponent, BoitesuggestionComponent, ReponsemessageComponent, SondageComponent],
   imports: [FormsModule, ReactiveFormsModule,
     CommonModule, RouterModule.forChild(routes), ButtonModule, MbscModule, FileUploadModule,
     NgbModalModule, HttpClientModule,
-    CalendarModule,
+    CalendarModule, MatFormFieldModule,
+    MatInputModule, MatSelectModule,
     FlatpickrModule.forRoot(),
     CalendarModule.forRoot({
       provide: DateAdapter,

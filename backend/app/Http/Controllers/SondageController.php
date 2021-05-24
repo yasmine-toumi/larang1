@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\reponce;
 use App\sondage;
 use App\User;
 use Illuminate\Http\Request;
@@ -13,7 +14,7 @@ class SondageController extends Controller
         $sondages= new sondage();
         $sondages->message = $request->message;
         $sondages->choix = $request->choix ;
-        $sondages->status = $request->status;
+        $sondages->status = "en cours";
         $users = User::find($id_user);
         $sondages->users()->associate($users, [$sondages->users_id]);
         if ($sondages->save()) {
@@ -24,6 +25,7 @@ class SondageController extends Controller
     {
 
         $sondages = sondage::with('users')->get();
+        $sondages = sondage::with('reponce')->get();
         return response()->json($sondages, 200);
     }
     public function updasondages(Request $request, $id)

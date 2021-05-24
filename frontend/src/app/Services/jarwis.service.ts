@@ -185,4 +185,17 @@ export class JarwisService {
     return this.http.put(`${this.baseUrl}/updasuggestion/` + id, data)
   }
 
+
+
+  getsondages() {
+    return this.http.get(`${this.baseUrl}/getsondages`)
+  }
+  addsondages(iduser:any, data) {
+    return this.http.post(`${this.baseUrl}/addsondages/` + iduser, data)
+  }
+
+  addreponse(iduser:any,sondageid:any,data){
+    return this.http.post(`${this.baseUrl}/addreponce/` + iduser+'/'+sondageid, data)
+  }
+
 }

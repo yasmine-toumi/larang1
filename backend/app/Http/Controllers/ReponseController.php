@@ -9,21 +9,18 @@ use Illuminate\Http\Request;
 
 class ReponseController extends Controller
 {
-    public function addsondages(Request $request, $id_user,$sondage_id)
+    public function addreponce(Request $request, $id_user,$sondage_id)
     {
         $reponces= new reponce();
-        $reponces->message = $request->message;
-
+        $reponces->reponce = $request->reponce;
         $users = User::find($id_user);
         $reponces->users()->associate($users, [$reponces->users_id]);
-        if ($reponces->save()) {
-            return response($reponces, 201);
-        }
         $sondages = sondage::find($sondage_id);
-        $reponces->sondages()->associate($sondages, [$reponces->sondage_id]);
+        $reponces->sondage()->associate($sondages, [$reponces->sondage_id]);
         if ($reponces->save()) {
-            return response($reponces, 201);
+            return response($sondages, 201);
         }
+
     }
 
 
@@ -53,5 +50,4 @@ class ReponseController extends Controller
         $reponces->delete($request->all());
         return response()->json(['message' => 'reponces supprime'], 204);
     }
-
 }
