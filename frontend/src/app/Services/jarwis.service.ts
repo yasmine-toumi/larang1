@@ -199,4 +199,24 @@ export class JarwisService {
   deletesondage(id) {
     return this.http.delete(`${this.baseUrl}/deletesondage/` + id)
   }
+
+
+  getpost() {
+    return this.http.get(`${this.baseUrl}/getpost`)
+  }
+  addpost(iduser: any, data) {
+    return this.http.post(`${this.baseUrl}/addpost/` + iduser, data)
+  }
+  addcommentaire(iduser: any,post_id:any, data) {
+    return this.http.post(`${this.baseUrl}/addcommentaire/` + iduser + '/' + post_id, data)
+  }
+  getcommentaireById(id) {
+    return this.http.get(`${this.baseUrl}/getcommentaireByIdt/` + id)
+  }
+  deletecomm(idd) {
+    return this.http.delete(`${this.baseUrl}/deletecommentaire/` + idd)
+  }
+  deletepost(idp) {
+    return this.http.delete(`${this.baseUrl}/deletepost/` + idp)
+  }
 }

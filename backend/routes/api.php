@@ -119,6 +119,19 @@ Route::group([
     Route::post('addsondages/{id_user}', 'SondageController@addsondages');
     Route::get('getsondages', 'SondageController@getsondages');
     Route::put('updasondages/{id}', 'SondageController@updasondages');
-    Route::delete('deletesondage/{id}', 'SondageController@deletesondage');
+
+    Route::post('addpost/{id_user}', 'PostController@addpost');
+    Route::get('getpost', 'PostController@getpost');
+    Route::put('updapost/{id}', 'PostController@updapost');
+    Route::delete('deletepost/{id}', 'PostController@deletepost');
+
+    Route::post('addcommentaire/{id_user}/{post_id}','CommentaireController@addcommentaire');
+    Route::get('getcommentaireById/{id}', 'CommentaireController@getcommentaireById');
+    Route::get('getcommentaire', 'CommentaireController@getcommentaire');
+    Route::put('updacommentaire/{id}', 'CommentaireController@updacommentaire');
+    Route::delete('deletecommentaire/{id}', 'CommentaireController@deletecommentaire');
+
+
+
 
 });

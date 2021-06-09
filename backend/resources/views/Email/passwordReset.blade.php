@@ -4,7 +4,7 @@
 The body of your message.
 
 @component('mail::button', ['url' => 'http://localhost:4200/password-responsr-reset?token='.$token])
-Button Text
+Reinitialiser mot de passe
 @endcomponent
 
 Thanks,<br>

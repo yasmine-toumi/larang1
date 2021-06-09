@@ -18,10 +18,10 @@ class ReponseController extends Controller
         $sondages = sondage::find($sondage_id);
         $reponces->sondage()->associate($sondages, [$reponces->sondage_id]);
         if ($reponces::where('users_id', $id_user)->where('sondage_id', $sondage_id)->exists()) {
-            return response()->json(['message' => 'deja envoyer'], 200);
+            return response()->json(['message' => 'vous avez deja voté merci !'], 200);
         }
         if ($reponces->save()) {
-            return response($sondages, 201);
+            return response(['message' => 'merci pour votre choix :) '], 201);
         }
 
     }

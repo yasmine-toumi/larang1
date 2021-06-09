@@ -74,6 +74,12 @@ public occurence(sondage:Sondage,choix):number{
     this.Jarwis.addreponse(this.id, idsandage, this.choixForm.value).subscribe(x => {
       console.log(x);
       this.getsondages();
+    Swal.fire(
+        'Sondage',
+        x["message"]
+
+      )
+
     }, err => {
       console.log(err);
     });

@@ -1,170 +1,449 @@
 <style>
   body {
-    background: #ebebeb;
+    background: #eee;
+    margin-top: 20px;
   }
 
-  h2 {
-    color: #696969;
-    font-size: 26px;
-    font-weight: 300;
-    text-align: center;
+  .page-inner.no-page-title {
+    padding-top: 30px;
+  }
+
+  .page-inner {
     position: relative;
-    margin: 40px 70px;
-    text-transform: uppercase;
-    font-family: 'Open Sans', sans-serif;
+    min-height: calc(100% - 56px);
+    padding: 20px 30px 40px 30px;
+    background: #f3f4f7;
   }
 
-  h2::after {
-    content: "";
+  .card.card-white {
+    background-color: #fff;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    box-shadow: 0 0.05rem 0.01rem rgba(75, 75, 90, 0.075);
+    padding: 25px;
+  }
+
+  .grid-margin {
+    margin-bottom: 2rem;
+  }
+
+  .profile-timeline ul li .timeline-item-header {
     width: 100%;
-    position: absolute;
-    margin: 0 auto;
-    height: 1px;
-    border-radius: 1px;
-    background: #d4d4d4;
-    left: 0;
-    right: 0;
-    bottom: 14px;
-  }
-
-  h2 span {
-    display: inline-block;
-    padding: 0 25px;
-    background: #ebebeb;
-    position: relative;
-    z-index: 2;
-  }
-
-  .carousel {
-    margin: 0 auto;
-    padding: 0 68px;
-  }
-
-  .carousel .carousel-item {
-    text-align: center;
     overflow: hidden;
-    height: 160px;
   }
 
-  .carousel .carousel-item .img-box {
-    background: #fff;
-    padding: 9px;
-    box-shadow: 0 6px 20px -6px rgba(0, 0, 0, 0.4);
-  }
-
-  .carousel .carousel-item img {
-    margin: 0 auto;
-  }
-
-  .carousel-control-prev,
-  .carousel-control-next {
-    width: 68px;
-    background: none;
-  }
-
-  .carousel-control-prev i,
-  .carousel-control-next i {
-    font-size: 28px;
-    position: absolute;
-    top: 50%;
-    display: inline-block;
-    margin-top: -15px;
-    z-index: 5;
-    left: 0;
-    right: 0;
-    color: rgba(0, 0, 0, 0.8);
-    text-shadow: 0 3px 3px #e6e6e6, 0 0 0 #000;
-  }
-
-  .carousel-indicators {
-    bottom: -40px;
-  }
-
-  .carousel-indicators li,
-  .carousel-indicators li.active {
-    width: 10px;
-    height: 10px;
-    border: none;
+  .profile-timeline ul li .timeline-item-header img {
+    width: 40px;
+    height: 40px;
+    float: left;
+    margin-right: 10px;
     border-radius: 50%;
-    margin: 1px 4px;
-    box-shadow: inset 0 2px 1px rgba(0, 0, 0, 0.2);
   }
 
-  .carousel-indicators li {
-    background: #999;
-    border-color: transparent;
+  .profile-timeline ul li .timeline-item-header p {
+    margin: 0;
+    color: #000;
+    font-weight: 500;
   }
 
-  .carousel-indicators li.active {
-    background: #555;
+  .profile-timeline ul li .timeline-item-header p span {
+    margin: 0;
+    color: #8e8e8e;
+    font-weight: normal;
+  }
+
+  .profile-timeline ul li .timeline-item-header small {
+    margin: 0;
+    color: #8e8e8e;
+  }
+
+  .profile-timeline ul li .timeline-item-post {
+    padding: 20px 0 0 0;
+    position: relative;
+  }
+
+  .profile-timeline ul li .timeline-item-post>img {
+    width: 100%;
+  }
+
+  .timeline-options {
+    overflow: hidden;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #f1f1f1;
+    padding: 10px 0 10px 0;
+  }
+
+  .timeline-options a {
+    display: block;
+    margin-right: 20px;
+    float: left;
+    color: #2b2b2b;
+    text-decoration: none;
+  }
+
+  .timeline-options a i {
+    margin-right: 3px;
+  }
+
+  .timeline-options a:hover {
+    color: #5369f8;
+  }
+
+  .timeline-comment {
+    overflow: hidden;
+    margin-bottom: 10px;
+    width: 100%;
+    border-bottom: 1px solid #f1f1f1;
+    padding-bottom: 5px;
+  }
+
+  .timeline-comment .timeline-comment-header {
+    overflow: hidden;
+  }
+
+  .timeline-comment .timeline-comment-header img {
+    width: 30px;
+    border-radius: 50%;
+    float: left;
+    margin-right: 10px;
+  }
+
+  .timeline-comment .timeline-comment-header p {
+    color: #000;
+    float: left;
+    margin: 0;
+    font-weight: 500;
+  }
+
+  .timeline-comment .timeline-comment-header small {
+    font-weight: normal;
+    color: #8e8e8e;
+  }
+
+  .timeline-comment p.timeline-comment-text {
+    display: block;
+    color: #2b2b2b;
+    font-size: 14px;
+    padding-left: 40px;
+  }
+
+  .post-options {
+    overflow: hidden;
+    margin-top: 15px;
+    margin-left: 15px;
+  }
+
+  .post-options a {
+    display: block;
+    margin-top: 5px;
+    margin-right: 20px;
+    float: left;
+    color: #2b2b2b;
+    text-decoration: none;
+    font-size: 16px !important;
+  }
+
+  .post-options a:hover {
+    color: #5369f8;
+  }
+
+  .online {
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    display: block;
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: #ccc;
+  }
+
+  .online.on {
+    background: #2ec5d3;
+  }
+
+  .online.off {
+    background: #ec5e69;
+  }
+
+  #cd-timeline::before {
+    border: 0;
+    background: #f1f1f1;
+  }
+
+  .cd-timeline-content p,
+  .cd-timeline-content .cd-read-more,
+  .cd-timeline-content .cd-date {
+    font-size: 14px;
+  }
+
+  .cd-timeline-img.cd-success {
+    background: #2ec5d3;
+  }
+
+  .cd-timeline-img.cd-danger {
+    background: #ec5e69;
+  }
+
+  .cd-timeline-img.cd-info {
+    background: #5893df;
+  }
+
+  .cd-timeline-img.cd-warning {
+    background: #f1c205;
+  }
+
+  .cd-timeline-img.cd-primary {
+    background: #9f7ce1;
+  }
+
+  .page-inner.full-page {
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+  }
+
+  .user-profile-card {
+    text-align: center;
+  }
+
+  .user-profile-image {
+    width: 100px;
+    height: 100px;
+    margin-bottom: 10px;
+  }
+
+  .team .team-member {
+    display: block;
+    overflow: hidden;
+    margin-bottom: 10px;
+    float: left;
+    position: relative;
+  }
+
+  .team .team-member .online {
+    top: 5px;
+    right: 5px;
+  }
+
+  .team .team-member img {
+    width: 40px;
+    float: left;
+    border-radius: 50%;
+    margin: 0 5px 0 5px;
+  }
+
+  .label.label-success {
+    background: #43d39e;
+  }
+
+  .label {
+    font-weight: 400;
+    padding: 4px 8px;
+    font-size: 11px;
+    display: inline-block;
+    line-height: 1;
+    color: #fff;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: 0.25em;
+  }
+.bb{
+  margin-left: 200px;
+}
+
+  #fileInput {
+    display: none;
+  }
+  #envo {
+    display: none;
+  }
+  #icon {
+    width: 25px;
+    cursor: pointer;
   }
 </style>
 
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+<div class="container">
+  <div class="page-inner no-page-title">
+    <!-- start page main wrapper -->
+    <div id="main-wrapper">
+      <div class="row">
+        <div class="col-lg-5 col-xl-3">
+          <div class="card card-white grid-margin">
+            <div class="card-heading clearfix">
+              <h4 class="card-title">User Profile</h4>
+            </div>
+            <div class="card-body user-profile-card mb-3">
+              <img src="https://bootdey.com/img/Content/avatar/avatar7.png" class="user-profile-image rounded-circle"
+                alt="" />
+              <h4 class="text-center h6 mt-2">Lois Anderson</h4>
+              <p class="text-center small">UI/UX Designer</p>
+              <button class="btn btn-theme btn-sm">Follow</button>
+              <button class="btn btn-theme btn-sm">Message</button>
+            </div>
+            <hr />
+            <div class="card-heading clearfix mt-3">
+              <h4 class="card-title">User Profile</h4>
+            </div>
+            <div class="card-body mb-3">
+              <a href="#" class="label label-success mb-2">HTML</a>
+              <a href="#" class="label label-success mb-2">CSS</a>
+              <a href="#" class="label label-success mb-2">Sass</a>
+              <a href="#" class="label label-success mb-2">Bootstrap</a>
+              <a href="#" class="label label-success mb-2">Javascript</a>
+              <a href="#" class="label label-success mb-2">Photoshop</a>
+              <a href="#" class="label label-success">UI</a>
+              <a href="#" class="label label-success">UX</a>
+            </div>
+            <hr />
+            <div class="card-heading clearfix mt-3">
+              <h4 class="card-title">About</h4>
+            </div>
+            <div class="card-body mb-3">
+              <p class="mb-0">Lorem ipsum dolor sitelt amet, consectetur adipis icing elit, sed do eiusmod tempor
+                incididunt utitily labore et dolore magna aliqua metavta.</p>
+            </div>
+            <hr />
+            <div class="card-heading clearfix mt-3">
+              <h4 class="card-title">Contact Information</h4>
+            </div>
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="table table-borderless mb-0 text-muted">
+                  <tbody>
+                    <tr>
+                      <th scope="row">Email:</th>
+                      <td>addyour@emailhere</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">Phone:</th>
+                      <td>(+44) 123 456 789</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">Address:</th>
+                      <td>74 Guild Street 542B, Great North Town MT.</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
 
-<body>
-  <div class="container-xl">
-    <div class="row">
-      <div class="col-md-9  mx-auto">
-        <h2><span>Thumbnail <b>Carousel</b></span></h2>
-        <div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="0">
-          <!-- Carousel indicators -->
-          <ol class="carousel-indicators">
-            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-            <li data-target="#myCarousel" data-slide-to="1"></li>
-            <li data-target="#myCarousel" data-slide-to="2"></li>
-          </ol>
-          <!-- Wrapper for carousel items -->
-          <div class="carousel-inner">
-            <div class="carousel-item active">
-              <div class="row">
-                <div class="col-sm-4">
-                  <div class="img-box"><img src="../../../assets/img/albaraka.png" class="img-fluid" alt=""></div>
-                </div>
-                <div class="col-sm-4">
-                  <div class="img-box"><img src="../../../assets/img/albaraka.png" class="img-fluid" alt=""></div>
-                </div>
-                <div class="col-sm-4">
-                  <div class="img-box"><img src="../../../assets/img/albaraka.png" class="img-fluid" alt=""></div>
+        <div class="col-lg-7 col-xl-6">
+          <form (ngSubmit)="insertData()">
+            <div class="card card-white grid-margin">
+              <div class="card-body">
+                <div class="post">
+                  <textarea class="form-control" placeholder="Post" name="content" [(ngModel)]="accueil.content"
+                    rows="4"></textarea>
+                  <div class="post-options">
+                    <label for="fileInput">
+                      <img id="icon" src="../../../assets/img/bg2.png">
+                    </label>
+                    <input id="fileInput" type="file" type="file" name="filepath" (change)="onFileSelectidoc($event)"
+                      [(ngModel)]="accueil.filepath">
+                    <button type="submit" class="btn btn-outline-primary float-right">Post</button>
+                  </div>
                 </div>
               </div>
             </div>
-            <div class="carousel-item">
-              <div class="row">
-                <div class="col-sm-4">
-                  <div class="img-box"><img src="../../../assets/img/img.png" class="img-fluid" alt=""></div>
+          </form>
+
+          <div class="profile-timeline"*ngFor="let a of accueils">
+            <ul class="list-unstyled">
+
+              <li class="timeline-item" >
+                <div class="card card-white grid-margin">
+                  <div class="card-body" >
+                    <div class="timeline-item-header">
+                      <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="" />
+                   <tr class="d-flex bd-highlight">  <td  class="p-2 flex-grow-1 bd-highlight"><p>{{a.users.name}} </p></td>
+                     <td class="p-2 bd-highlight"><i class="fa fa-times " aria-hidden="true" *ngIf="user===a.users.name" (click)="deletepost(a.id)"></i></td>
+                    </tr> <small>7 hours ago</small>
+                    </div>
+                    <div class="timeline-item-post">
+                      <p>{{a.content}}</p>
+
+                      <div class="timeline-options">
+                        <a href="#"><i class="fa fa-thumbs-up"></i> Like (22)</a>
+                        <a href="#"><i class="fa fa-comment"></i> Comment ({{a.commentaire.length}})</a>
+
+                      </div>
+                      <div class="timeline-comment" *ngFor="let c of  a.commentaire">
+                        <div class="timeline-comment-header">
+                          <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="" />
+                         <tr  class="d-flex bd-highlight"> <td class="p-2 flex-grow-1 bd-highlight"><p>{{c.users.name}}</p><small>1 hour ago</small></td>
+                        <td class="p-2 bd-highlight">   <i class="fa fa-times" title="supprimer"aria-hidden="true" *ngIf="user===c.users.name"(click)="deleteData(c.id)"></i>
+            </td> </tr> </div>
+                        <p class="timeline-comment-text">{{c.content}}</p>
+
+                        <p class="timeline-comment-text">{{c.filepath}}</p>
+                      </div>
+                      <form (ngSubmit)="insertcomm(a.id)">
+                     <tr class="d-flex bd-highlight">
+                      <td class="p-2 flex-grow-1 bd-highlight"> <textarea class="form-control" placeholder="Replay" name="content" [(ngModel)]="commentaires.content"></textarea></td>
+          <td class="p-2 bd-highlight">   <div class="post-options">
+                <label for="envo">
+                  <img src="../../../assets/img/env.png" width=22px>
+                </label>
+                      <button type="submit"  id="envo">  </button>
+                    </div>
+</td>
+                    </tr>
+                    </form>
+                    </div>
+                  </div>
                 </div>
-                <div class="col-sm-4">
-                  <div class="img-box"><img src="/examples/images/thumbs/5.jpg" class="img-fluid" alt=""></div>
-                </div>
-                <div class="col-sm-4">
-                  <div class="img-box"><img src="/examples/images/thumbs/6.jpg" class="img-fluid" alt=""></div>
-                </div>
-              </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="col-lg-12 col-xl-3">
+          <div class="card card-white grid-margin">
+            <div class="card-heading clearfix">
+              <h4 class="card-title">Suggestions</h4>
             </div>
-            <div class="carousel-item">
-              <div class="row">
-                <div class="col-sm-4">
-                  <div class="img-box"><img src="/examples/images/thumbs/7.jpg" class="img-fluid" alt=""></div>
+            <div class="card-body">
+              <div class="team">
+                <div class="team-member">
+                  <div class="online on"></div>
+                  <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="" />
                 </div>
-                <div class="col-sm-4">
-                  <div class="img-box"><img src="/examples/images/thumbs/8.jpg" class="img-fluid" alt=""></div>
+                <div class="team-member">
+                  <div class="online on"></div>
+                  <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="" />
                 </div>
-                <div class="col-sm-4">
-                  <div class="img-box"><img src="/examples/images/thumbs/9.jpg" class="img-fluid" alt=""></div>
+                <div class="team-member">
+                  <div class="online off"></div>
+                  <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="" />
                 </div>
               </div>
             </div>
           </div>
-          <!-- Carousel controls -->
-          <a class="carousel-control-prev" href="#myCarousel" data-slide="prev">
-            <i class="fa fa-chevron-left"></i>
-          </a>
-          <a class="carousel-control-next" href="#myCarousel" data-slide="next">
-            <i class="fa fa-chevron-right"></i>
-          </a>
+          <div class="card card-white grid-margin">
+            <div class="card-heading clearfix">
+              <h4 class="card-title">Some Info</h4>
+            </div>
+            <div class="card-body">
+              <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam
+                rem aperiam, eaque ipsa quae ab illo inventore veritatis architecto.</p>
+            </div>
+          </div>
         </div>
       </div>
+      <!-- Row -->
+    </div>
+    <!-- end page main wrapper -->
+    <div class="page-footer">
+      <p>Copyright © 2020 Evince All rights reserved.</p>
     </div>
   </div>
-</body>
-
+</div>

@@ -3,10 +3,12 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { SnotifyService } from 'ng-snotify';
 import { JarwisService } from 'src/app/Services/jarwis.service';
 
+
 @Component({
   selector: 'app-response-reset',
   templateUrl: './response-reset.component.html',
-  styleUrls: ['./response-reset.component.css']
+  styleUrls: ['./response-reset.component.css'],
+
 })
 export class ResponseResetComponent implements OnInit {
   public error: any = [];
@@ -19,7 +21,8 @@ export class ResponseResetComponent implements OnInit {
   constructor(private route: ActivatedRoute,
     private Jarwis: JarwisService,
     private router: Router,
-    private Notify: SnotifyService) {
+    private Notify: SnotifyService,
+) {
       route.queryParams.subscribe(params => {
         this.form.resetToken = params['token']
       });}
