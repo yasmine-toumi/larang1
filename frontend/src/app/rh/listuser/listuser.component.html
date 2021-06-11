@@ -181,7 +181,7 @@
               <th style="width: 22%;">Nom et prenom</th>
               <th>Email</th>
               <th>Date de naissance</th>
-              <th>Telephone</th>
+              <th>Num Poste</th>
 
             </tr>
           </thead>
@@ -189,10 +189,10 @@
 
             <tr *ngFor="let user of users;let i = index">
               <th scope="row">{{i+1}}</th>
-              <td>{{user.name}}</td>
+              <td>{{user.name}} {{user.last_name}}</td>
               <td>{{user.email}}</td>
               <td>{{user.birthday}}</td>
-              <td>{{user.tel}}</td>
+              <td>{{user.num_poste}}</td>
             </tr>
           </tbody>
         </table>

@@ -29,7 +29,7 @@
                     <th>Name</th>
                     <th>Email</th>
                     <th>Birthday</th>
-                    <th>Telephone</th>
+                    <th>Num Poste</th>
                     <th>Role</th>
                     <th>Status</th>
                     <th class="no-content">Action</th>
@@ -38,10 +38,10 @@
                 <tbody>
                   <tr *ngFor="let user of users;let i = index">
                     <th scope="row">{{i+1}}</th>
-                    <td>{{user.name}}</td>
+                    <td>{{user.name}} {{user.last_name}}</td>
                     <td>{{user.email}}</td>
                     <td>{{user.birthday}}</td>
-                    <td>{{user.tel}}</td>
+                    <td>{{user.num_poste}}</td>
                     <td>{{user.role}}</td>
                     <td>actif</td>
                     <td>

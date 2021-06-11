@@ -4,6 +4,7 @@ import { Form } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { Agence } from '../agences/agence';
 import { Eventss } from '../amicale/eventss';
+import { User } from '../users/user';
 import { TokenService } from './token.service';
 
 @Injectable({
@@ -36,7 +37,7 @@ export class JarwisService {
     return this.http.delete(`${this.baseUrl}/deleteUser/` + id, token)
   }
   getUserById(id) {
-    return this.http.get(`${this.baseUrl}/utilisateur/` + id)
+    return this.http.get<User>(`${this.baseUrl}/utilisateur/` + id)
   }
   updatetData(id, data) {
     return this.http.put(`${this.baseUrl}/updateUser/` + id, data)
@@ -219,4 +220,7 @@ export class JarwisService {
   deletepost(idp) {
     return this.http.delete(`${this.baseUrl}/deletepost/` + idp)
   }
+  getcommentaire(){
+  return this.http.get(`${this.baseUrl}/getcommentaire` )
+}
 }

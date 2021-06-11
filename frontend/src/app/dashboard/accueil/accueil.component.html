@@ -252,16 +252,19 @@
     vertical-align: baseline;
     border-radius: 0.25em;
   }
-.bb{
-  margin-left: 200px;
-}
+
+  .bb {
+    margin-left: 200px;
+  }
 
   #fileInput {
     display: none;
   }
+
   #envo {
     display: none;
   }
+
   #icon {
     width: 25px;
     cursor: pointer;
@@ -277,62 +280,18 @@
         <div class="col-lg-5 col-xl-3">
           <div class="card card-white grid-margin">
             <div class="card-heading clearfix">
-              <h4 class="card-title">User Profile</h4>
+              <h4 class="card-title text-center"></h4>
             </div>
             <div class="card-body user-profile-card mb-3">
-              <img src="https://bootdey.com/img/Content/avatar/avatar7.png" class="user-profile-image rounded-circle"
+              <img src="{{fullpath}}{{data.image}}" class="user-profile-image rounded-circle"
                 alt="" />
-              <h4 class="text-center h6 mt-2">Lois Anderson</h4>
+              <h4 class="text-center h6 mt-2">{{data.name}} {{data.last_name}}</h4>
               <p class="text-center small">UI/UX Designer</p>
               <button class="btn btn-theme btn-sm">Follow</button>
               <button class="btn btn-theme btn-sm">Message</button>
             </div>
-            <hr />
-            <div class="card-heading clearfix mt-3">
-              <h4 class="card-title">User Profile</h4>
-            </div>
-            <div class="card-body mb-3">
-              <a href="#" class="label label-success mb-2">HTML</a>
-              <a href="#" class="label label-success mb-2">CSS</a>
-              <a href="#" class="label label-success mb-2">Sass</a>
-              <a href="#" class="label label-success mb-2">Bootstrap</a>
-              <a href="#" class="label label-success mb-2">Javascript</a>
-              <a href="#" class="label label-success mb-2">Photoshop</a>
-              <a href="#" class="label label-success">UI</a>
-              <a href="#" class="label label-success">UX</a>
-            </div>
-            <hr />
-            <div class="card-heading clearfix mt-3">
-              <h4 class="card-title">About</h4>
-            </div>
-            <div class="card-body mb-3">
-              <p class="mb-0">Lorem ipsum dolor sitelt amet, consectetur adipis icing elit, sed do eiusmod tempor
-                incididunt utitily labore et dolore magna aliqua metavta.</p>
-            </div>
-            <hr />
-            <div class="card-heading clearfix mt-3">
-              <h4 class="card-title">Contact Information</h4>
-            </div>
-            <div class="card-body">
-              <div class="table-responsive">
-                <table class="table table-borderless mb-0 text-muted">
-                  <tbody>
-                    <tr>
-                      <th scope="row">Email:</th>
-                      <td>addyour@emailhere</td>
-                    </tr>
-                    <tr>
-                      <th scope="row">Phone:</th>
-                      <td>(+44) 123 456 789</td>
-                    </tr>
-                    <tr>
-                      <th scope="row">Address:</th>
-                      <td>74 Guild Street 542B, Great North Town MT.</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
+
+
           </div>
         </div>
 
@@ -341,8 +300,8 @@
             <div class="card card-white grid-margin">
               <div class="card-body">
                 <div class="post">
-                  <textarea class="form-control" placeholder="Post" name="content" [(ngModel)]="accueil.content"
-                    rows="4"></textarea>
+                  <textarea class="form-control" placeholder="Quoi de neuf, {{user}} ?" name="content"
+                    [(ngModel)]="accueil.content" rows="4"></textarea>
                   <div class="post-options">
                     <label for="fileInput">
                       <img id="icon" src="../../../assets/img/bg2.png">
@@ -356,21 +315,29 @@
             </div>
           </form>
 
-          <div class="profile-timeline"*ngFor="let a of accueils">
+          <div class="profile-timeline" *ngFor="let a of accueils">
             <ul class="list-unstyled">
 
-              <li class="timeline-item" >
+              <li class="timeline-item">
                 <div class="card card-white grid-margin">
-                  <div class="card-body" >
+                  <div class="card-body">
                     <div class="timeline-item-header">
-                      <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="" />
-                   <tr class="d-flex bd-highlight">  <td  class="p-2 flex-grow-1 bd-highlight"><p>{{a.users.name}} </p></td>
-                     <td class="p-2 bd-highlight"><i class="fa fa-times " aria-hidden="true" *ngIf="user===a.users.name" (click)="deletepost(a.id)"></i></td>
-                    </tr> <small>7 hours ago</small>
+                      <img src="{{fullpath}}{{a.users.image}}" alt="" />
+                      <tr class="d-flex bd-highlight">
+                        <td class="p-2 flex-grow-1 bd-highlight">
+                          <p>{{a.users.name}} {{a.users.last_name}} </p>
+                          <p><small> {{a.displayTime}}</small></p>
+                        </td>
+                        <td class="p-2 bd-highlight"><i class="fa fa-times " aria-hidden="true"
+                            *ngIf="user===a.users.name" (click)="deletepost(a.id)"></i> </td>
+                      </tr>
                     </div>
                     <div class="timeline-item-post">
                       <p>{{a.content}}</p>
-
+                      <div class="meta-author">
+                        <!-- <a href="{{fullpath}}{{a.filepath}}">{{a.filepath}}</a> -->
+                       <img *ngIf="a.filepath != null" class="figure-img img-fluid rounded" width=650px src="{{fullpath}}{{a.filepath}}">
+                      </div>
                       <div class="timeline-options">
                         <a href="#"><i class="fa fa-thumbs-up"></i> Like (22)</a>
                         <a href="#"><i class="fa fa-comment"></i> Comment ({{a.commentaire.length}})</a>
@@ -378,26 +345,36 @@
                       </div>
                       <div class="timeline-comment" *ngFor="let c of  a.commentaire">
                         <div class="timeline-comment-header">
-                          <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="" />
-                         <tr  class="d-flex bd-highlight"> <td class="p-2 flex-grow-1 bd-highlight"><p>{{c.users.name}}</p><small>1 hour ago</small></td>
-                        <td class="p-2 bd-highlight">   <i class="fa fa-times" title="supprimer"aria-hidden="true" *ngIf="user===c.users.name"(click)="deleteData(c.id)"></i>
-            </td> </tr> </div>
+                          <img src="{{fullpath}}{{c.users.image}}" alt="" />
+                          <tr class="d-flex bd-highlight">
+                            <td class="p-2 flex-grow-1 bd-highlight">
+                              <p>{{c.users.name}} {{c.users.last_name}}  </p>
+                              <p><small>{{c.displayTime}}</small></p>
+                            </td>
+                            <td class="p-2 bd-highlight"> <i class="fa fa-times" title="supprimer" aria-hidden="true"
+                                *ngIf="user===c.users.name" (click)="deleteData(c.id)"></i>
+                            </td>
+                          </tr>
+                        </div>
                         <p class="timeline-comment-text">{{c.content}}</p>
 
                         <p class="timeline-comment-text">{{c.filepath}}</p>
                       </div>
-                      <form (ngSubmit)="insertcomm(a.id)">
-                     <tr class="d-flex bd-highlight">
-                      <td class="p-2 flex-grow-1 bd-highlight"> <textarea class="form-control" placeholder="Replay" name="content" [(ngModel)]="commentaires.content"></textarea></td>
-          <td class="p-2 bd-highlight">   <div class="post-options">
-                <label for="envo">
-                  <img src="../../../assets/img/env.png" width=22px>
-                </label>
-                      <button type="submit"  id="envo">  </button>
-                    </div>
-</td>
-                    </tr>
-                    </form>
+                      <form (ngSubmit)="insertcomm(a.id);commentaires.content=''">
+                        <tr class="d-flex bd-highlight">
+                          <td class="p-2 flex-grow-1 bd-highlight"> <textarea class="form-control"
+                              placeholder="Ecrivez votre commentaire..." name="content"
+                              [(ngModel)]="commentaires.content"></textarea></td>
+                          <td class="p-2 bd-highlight">
+                            <div class="post-options">
+                              <label for="envo">
+                                <img src="../../../assets/img/env.png" width=22px title="envoyer">
+                              </label>
+                              <button type="submit" id="envo"> </button>
+                            </div>
+                          </td>
+                        </tr>
+                      </form>
                     </div>
                   </div>
                 </div>
@@ -441,9 +418,6 @@
       </div>
       <!-- Row -->
     </div>
-    <!-- end page main wrapper -->
-    <div class="page-footer">
-      <p>Copyright © 2020 Evince All rights reserved.</p>
-    </div>
+
   </div>
 </div>

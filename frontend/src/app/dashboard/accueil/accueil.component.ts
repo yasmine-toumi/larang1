@@ -7,17 +7,20 @@ import { TokenService } from 'src/app/Services/token.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { EventService } from 'src/app/Services/event.service';
 import { Commentaire } from '../commentaire';
+import { User } from 'src/app/users/user';
+import { formatDistance } from 'date-fns';
 @Component({
   selector: 'app-accueil',
   templateUrl: './accueil.component.html',
   styleUrls: ['./accueil.component.css']
 })
 export class AccueilComponent implements OnInit {
-  accueil:Accueil = new Accueil();
+  accueil= new Accueil();
+  data: User;
   commentaires:Commentaire= new Commentaire();
   comentaires:any;
   accueils: any;
-  posts:Accueil[]=[];
+ // posts:Accueil[]=[];
   id: any;
   idpost:any;
   uploadForm: FormGroup;
@@ -25,20 +28,26 @@ export class AccueilComponent implements OnInit {
   public user: string;
   constructor(private eventService: EventService, private Jarwis: JarwisService, private token: TokenService, private formBuilder: FormBuilder) { }
   public takedToken = this.token.get();
+  public fullpath: string = "http://localhost:8000/storage/"
   ngOnInit(): void {
     this.getpost()
     this.id = this.token.getId();
     this.user = this.token.getUser();
-
     this.role = this.token.getRole();
     this.uploadForm = this.formBuilder.group({
       profile: ['']
     });
+    this.getUserById();
   }
   getpost() {
     this.Jarwis.getpost().subscribe(res => {
       this.accueils = res;
-      //this.accueils.for
+      this.accueils.forEach(post => {
+          post.displayTime = formatDistance(new Date(), new Date(post.created_at));
+          post.commentaire.forEach(comm => {
+          comm.displayTime = formatDistance(new Date(), new Date(comm.created_at));
+        });
+      });
     });
   }
 
@@ -73,7 +82,7 @@ export class AccueilComponent implements OnInit {
       this.uploadForm.get('profile').setValue(file);
       formData.append('file', this.uploadForm.get('profile').value);
       this.eventService.uploadevent(formData).subscribe(data => {
-        this.accueil.filepath = data["name"];
+        this.accueil.filepath = data['name'];
         console.log(this.accueil.filepath);
       }, err => {
         console.log(err.error.text);
@@ -82,53 +91,52 @@ export class AccueilComponent implements OnInit {
     }
 
   }
-  getcommentaireByIdt(){
+  getcommentaire(){
+
+    this.Jarwis.getcommentaire().subscribe(res => {
+      this.comentaires = res;
+
+      });
 
   }
   insertcomm(idpost){
     this.Jarwis.addcommentaire(this.id, idpost, this.commentaires).subscribe(res => {
-      //this.getcommentaireByIdt();
+     // this.getcommentaire();
+      this.getpost();
+
     });
   }
   deleteData(idd) {
-    const swalWithBootstrapButtons = Swal.mixin({
-      customClass: {
-        confirmButton: 'btn btn-success',
-        cancelButton: 'btn btn-danger'
-      },
-      buttonsStyling: false
-    })
-
-    swalWithBootstrapButtons.fire({
+ Swal.fire({
       title: 'Are you sure?',
       text: "You won't be able to revert this!",
       icon: 'warning',
       showCancelButton: true,
-      confirmButtonText: 'Yes, delete it!',
-      cancelButtonText: 'No, cancel!',
-      reverseButtons: true
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!'
     }).then((result) => {
       if (result.isConfirmed) {
         this.Jarwis.deletecomm(idd).subscribe(res => {
           this.getpost();
-        });
-        swalWithBootstrapButtons.fire(
-          'Deleted!',
-          'Your file has been deleted.',
-          'success'
+          Swal.fire(
+            'Deleted!',
+            'Your file has been deleted.',
+            'success'
+          )
 
-        )
-      } else if (
-        /* Read more about handling dismissals below */
-        result.dismiss === Swal.DismissReason.cancel
-      ) {
-        swalWithBootstrapButtons.fire(
-          'Cancelled',
-          'Your imaginary file is safe :)',
-          'error'
-        )
+        });
+
       }
+
+
     })
+
+
+
+
+
+
 
   }
 deletepost(idp){
@@ -137,4 +145,11 @@ deletepost(idp){
 
   });
 }
+  getUserById() {
+    this.Jarwis.getUserById(this.id).subscribe(data => {
+      this.data = data;
+      console.log(this.data);
+
+    });
+  }
 }
