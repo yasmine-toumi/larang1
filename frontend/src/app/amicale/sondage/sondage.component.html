@@ -391,18 +391,18 @@ h3:before {
                 <div class="row">
                   <div class="form-group">
 
-                    <div class="col-md-12">
+                    <div class="w-100">
                       <div  class="radio">
                         <label for="time-0">
                             <thead  >
-<tr>
-  <th style="white-space: nowrap;padding-right: 4em;float:center">choix</th>
-  <th style="white-space: nowrap;padding-right: 4em;float:center">nombre de resultat</th>
+<tr class="d-flex">
+  <th class="mr-auto p-2" >Choix</th>
+  <th class="p-2"> Nombre de resultat</th>
 </tr></thead>
                           <table  class="table b11"*ngFor="let c of sond.choix">
-                         <tbody><tr class="b3">
-                          <td ><input type="radio" formControlName="reponce" name="reponce" [value]="c.choix">{{c.choix}}</td>
-                          <td>{{occurence(sond,c.choix)}}</td>
+                         <tbody><tr class="d-flex">
+                          <td class="mr-auto p-2" > <input type="radio" formControlName="reponce" name="reponce" [value]="c.choix">{{c.choix}}</td>
+                          <td class="p-2">{{occurence(sond,c.choix)}}</td>
                           </tr>
                           </tbody>
                         </table>

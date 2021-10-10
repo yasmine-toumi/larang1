@@ -27,6 +27,7 @@ export class ProfileComponent implements OnInit {
   getUserById(){
     this.JarwisService.getUserById(this.currentUser).subscribe(data => {
       this.data=data;
+      this.usr = this.data
       console.log(this.data);
 
     });

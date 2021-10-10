@@ -33,4 +33,5 @@ class ChallengeAgenceController extends Controller
         $Challenges_agence->update($request->all());
         return response($Challenges_agence, 202);
     }
+
 }

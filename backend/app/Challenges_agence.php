@@ -9,4 +9,5 @@ class Challenges_agence extends Model
     protected $fillable = [
         'rang'
     ];
+
 }

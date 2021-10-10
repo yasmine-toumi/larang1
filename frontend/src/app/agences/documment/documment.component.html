@@ -4,8 +4,12 @@ color: #566787;
 background: #f7f5f2;
 font-family: 'Roboto', sans-serif;
 }
+h2{
+  text-align: center;
+}
 </style>
 <body>
+
 <div class="row" *ngIf="role==='administrateur'">
   <div id="flStackForm" class="col-lg-12 layout-spacing layout-top-spacing">
     <div class="statbox widget box box-shadow">
@@ -22,6 +26,9 @@ font-family: 'Roboto', sans-serif;
 </div>
 <div>
 </div>
+<hr>
+<h2> Les documents disponibles</h2>
+<hr>
 <div class="card">
   <table class="table">
       <thead>

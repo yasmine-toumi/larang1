@@ -54,6 +54,8 @@ Route::group([
     Route::put('updagences/{id}', 'AgencesController@updagences');
     Route::delete('deleteagences/{id}', 'AgencesController@deleteagences');
 
+
+
     Route::get('filesf', 'conditionController@getfiles');
     Route::post('uploadf', 'conditionController@upload');
 
@@ -66,6 +68,8 @@ Route::group([
 
     Route::post('addChallengesAgences/{id}', 'ChallengeAgenceController@addChallengesToAllAgences');
     Route::put('updatechallangeagence/{idagence}/{idchallance}', 'ChallengeAgenceController@changeRankForOneAgence');
+    Route::get('getchalrang/{idchallance}', 'AgencesController@getchalrang');
+
 
     Route::post('addevent', 'EventController@addevent');
     Route::post('uploadevent', 'EventController@upload');
@@ -120,6 +124,7 @@ Route::group([
     Route::get('getsondages', 'SondageController@getsondages');
     Route::put('updasondages/{id}', 'SondageController@updasondages');
 
+    Route::delete('deletesondage/{id}', 'SondageController@deletesondage');
     Route::post('addpost/{id_user}', 'PostController@addpost');
     Route::get('getpost', 'PostController@getpost');
     Route::put('updapost/{id}', 'PostController@updapost');

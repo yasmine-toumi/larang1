@@ -104,6 +104,9 @@ export class JarwisService {
   updateRanKForOneAgence(rang, idagence, idchallange) {
     return this.http.put(`${this.baseUrl}/updatechallangeagence/` + idagence + "/" + idchallange, rang);
   }
+  getresult(idchallange) {
+    return this.http.get(`${this.baseUrl}/getchalrang/` + idchallange)
+  }
 
 
  // service evenement

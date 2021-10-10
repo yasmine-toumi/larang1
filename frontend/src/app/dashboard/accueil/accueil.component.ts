@@ -42,12 +42,15 @@ export class AccueilComponent implements OnInit {
   getpost() {
     this.Jarwis.getpost().subscribe(res => {
       this.accueils = res;
+      console.log(this.accueils);
+
       this.accueils.forEach(post => {
           post.displayTime = formatDistance(new Date(), new Date(post.created_at));
           post.commentaire.forEach(comm => {
           comm.displayTime = formatDistance(new Date(), new Date(comm.created_at));
         });
       });
+      console.log(this.accueils);
     });
   }
 
@@ -100,8 +103,8 @@ export class AccueilComponent implements OnInit {
 
   }
   insertcomm(idpost){
-    this.Jarwis.addcommentaire(this.id, idpost, this.commentaires).subscribe(res => {
-     // this.getcommentaire();
+    this.Jarwis.addcommentaire(this.id, this.accueils[idpost].id, this.commentaires).subscribe(res => {
+    // this.getcommentaire();
       this.getpost();
 
     });
@@ -124,20 +127,9 @@ export class AccueilComponent implements OnInit {
             'Your file has been deleted.',
             'success'
           )
-
         });
-
       }
-
-
     })
-
-
-
-
-
-
-
   }
 deletepost(idp){
   this.Jarwis.deletepost(idp).subscribe(res => {

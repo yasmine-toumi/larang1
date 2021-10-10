@@ -25,6 +25,13 @@ export class ConditionsbankComponent implements OnInit {
 
   }
 
+  getfiles(){
+    this.Jarwis.getfiles().subscribe(data => {
+      console.log(data);
+      this.files = data;
+
+    });
+  }
   onUpload(event) {
     const formData = new FormData();
     formData.append('file', event.files[0]);
@@ -32,6 +39,7 @@ export class ConditionsbankComponent implements OnInit {
     this.Jarwis.upload(formData).subscribe(res => {
       console.log(res);
       alert('Uploaded Successfully.');
+      this.getfiles();
     });
   }
 

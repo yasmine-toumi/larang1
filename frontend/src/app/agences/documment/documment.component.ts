@@ -39,6 +39,7 @@ export class DocummentComponent implements OnInit {
         'You clicked the button!',
         'success'
       )
+      this.getfiles();
     });
   }
   deleteData(id) {
@@ -69,6 +70,7 @@ export class DocummentComponent implements OnInit {
           'success'
 
         )
+        this.getfiles();
       } else if (
         /* Read more about handling dismissals below */
         result.dismiss === Swal.DismissReason.cancel
@@ -79,6 +81,7 @@ export class DocummentComponent implements OnInit {
           'error'
         )
       }
+
     })
 
 

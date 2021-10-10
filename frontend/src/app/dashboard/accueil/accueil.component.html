@@ -315,35 +315,35 @@
             </div>
           </form>
 
-          <div class="profile-timeline" *ngFor="let a of accueils">
+          <div class="profile-timeline" *ngFor="let post of accueils;let i = index">
             <ul class="list-unstyled">
 
               <li class="timeline-item">
                 <div class="card card-white grid-margin">
                   <div class="card-body">
                     <div class="timeline-item-header">
-                      <img src="{{fullpath}}{{a.users.image}}" alt="" />
+                      <img src="{{fullpath}}{{post.users.image}}" alt="" />
                       <tr class="d-flex bd-highlight">
                         <td class="p-2 flex-grow-1 bd-highlight">
-                          <p>{{a.users.name}} {{a.users.last_name}} </p>
-                          <p><small> {{a.displayTime}}</small></p>
+                          <p>{{post.users.name}} {{post.users.last_name}} </p>
+                          <p><small> {{post.displayTime}}</small></p>
                         </td>
                         <td class="p-2 bd-highlight"><i class="fa fa-times " aria-hidden="true"
-                            *ngIf="user===a.users.name" (click)="deletepost(a.id)"></i> </td>
+                            *ngIf="user===post.users.name" (click)="deletepost(post.id)"></i> </td>
                       </tr>
                     </div>
                     <div class="timeline-item-post">
-                      <p>{{a.content}}</p>
+                      <p>{{post.content}}</p>
                       <div class="meta-author">
                         <!-- <a href="{{fullpath}}{{a.filepath}}">{{a.filepath}}</a> -->
-                       <img *ngIf="a.filepath != null" class="figure-img img-fluid rounded" width=650px src="{{fullpath}}{{a.filepath}}">
+                       <img *ngIf="post.filepath != null" class="figure-img img-fluid rounded" width=650px src="{{fullpath}}{{post.filepath}}">
                       </div>
                       <div class="timeline-options">
-                        <a href="#"><i class="fa fa-thumbs-up"></i> Like (22)</a>
-                        <a href="#"><i class="fa fa-comment"></i> Comment ({{a.commentaire.length}})</a>
+                        <a href="#"><i class="fa fa-thumbs-up"></i> Like (0)</a>
+                        <a href="#"><i class="fa fa-comment"></i> Comment ({{post.commentaire.length}})</a>
 
                       </div>
-                      <div class="timeline-comment" *ngFor="let c of  a.commentaire">
+                      <div class="timeline-comment" *ngFor="let c of  post.commentaire">
                         <div class="timeline-comment-header">
                           <img src="{{fullpath}}{{c.users.image}}" alt="" />
                           <tr class="d-flex bd-highlight">
@@ -359,8 +359,8 @@
                         <p class="timeline-comment-text">{{c.content}}</p>
 
                         <p class="timeline-comment-text">{{c.filepath}}</p>
+
                       </div>
-                      <form (ngSubmit)="insertcomm(a.id);commentaires.content=''">
                         <tr class="d-flex bd-highlight">
                           <td class="p-2 flex-grow-1 bd-highlight"> <textarea class="form-control"
                               placeholder="Ecrivez votre commentaire..." name="content"
@@ -368,13 +368,13 @@
                           <td class="p-2 bd-highlight">
                             <div class="post-options">
                               <label for="envo">
-                                <img src="../../../assets/img/env.png" width=22px title="envoyer">
+                                <img (click)="idpost=post.id;insertcomm(i);commentaires.content=''" src="../../../assets/img/env.png" width=22px title="envoyer">
                               </label>
-                              <button type="submit" id="envo"> </button>
+
+
                             </div>
                           </td>
                         </tr>
-                      </form>
                     </div>
                   </div>
                 </div>

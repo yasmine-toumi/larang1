@@ -16,7 +16,9 @@ challenges:any;
 challenge =new Challenge;
 data:any;
 id:any;
+  idchallange:any;
   public role: string;
+  result: Object;
   constructor(private Jarwis: JarwisService, private token: TokenService) {
   }
   public takedToken = this.token.get();
@@ -42,4 +44,11 @@ affecter(id){
      });
   this.ngOnInit();
 }
+
+  getresult(idchallange) {
+    this.Jarwis.getresult(idchallange).subscribe(res => {
+      this.result = res;
+      console.log(res);
+    });
+  }
 }

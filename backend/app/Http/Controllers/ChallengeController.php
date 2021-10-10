@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 
 use App\Challenges;
+
 use Illuminate\Http\Request;
 
 class ChallengeController extends Controller

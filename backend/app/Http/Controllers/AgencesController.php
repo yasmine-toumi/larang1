@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Agences;
 use App\Challenges;
 use Illuminate\Http\Request;
-
+use App\Challenges_agence;
 class AgencesController extends Controller
 {
     public function getagence()
@@ -69,6 +69,21 @@ class AgencesController extends Controller
         }
         $agences->delete($request->all());
         return response()->json(['message' => 'Agence supprime'], 204);
+    }
+
+    public function getchalrang($idchallance)
+    {
+        //$chall = Agences::with('agences')->get();
+        //with('agences')->
+        $chall = Challenges_agence::where("challenges_id", $idchallance)->where('rang', '>', 0)->orderBy('rang', 'asc')->take(3)->get()->toArray();
+        $agences = array();
+
+        foreach ($chall as &$value) {
+
+            $agence = Agences::find($value['agences_id']);
+            array_push($agences,$agence);
+        }
+        return response()->json($agences, 200);
     }
 
 }

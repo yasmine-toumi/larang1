@@ -1,0 +1,13 @@
+                    <ng-template pTemplate="output">
+                        <ng-container *ngIf="task.priority==='MEDIUM'; else elseif1">
+                            <p-tag styleClass="p-mr-2" severity="warning" value="{{task.priority}}"></p-tag>
+                        </ng-container>
+                        <ng-template #elseif1>
+                            <ng-container *ngIf="task.priority==='HIGH'; else elseif4">
+                                <p-tag styleClass="p-mr-2" severity="danger" value="{{task.priority}}"></p-tag>
+                            </ng-container>
+                        </ng-template>
+                        <ng-container *ngIf="task.priority==='LOW'" #elseif4>
+                            <p-tag styleClass="p-mr-2" severity="success" value="{{task.priority}}"></p-tag>
+                        </ng-container>
+                    </ng-template>

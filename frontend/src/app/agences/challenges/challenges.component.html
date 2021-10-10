@@ -2,18 +2,78 @@
   .edit {
     margin-left: 820px;
   }
+  body{
+background:#ddd;
+}
+.testimonials blockquote {
+  position: relative;
+  background: white;
+  min-height: 150px;
+  margin-top: 20px;
+  margin-bottom: 100px;
+  border: 1px solid #ecedf1;
+}
+.testimonials blockquote:before {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  margin-left: -10px;
+  border-top: 10px solid #ecedf1;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+}
+.testimonials blockquote:after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 50%;
+  margin-left: -9px;
+  border-top: 9px solid white;
+  border-left: 9px solid transparent;
+  border-right: 9px solid transparent;
+}
+
+.testimonials blockquote img {
+  height: 50px;
+  width: 50px;
+  position: absolute;
+  border: 1px solid #ecedf1;
+  background: white;
+  bottom: -65px;
+  left: 50%;
+  margin-left: -25px;
+}
+
+blockquote p.clients-words {
+    font-size: 14px;
+}
+span.clients-name {
+  font-size: 14px;
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+}
+h1 {
+  font-family: arial;
+  text-align: center;
+  }
+  h3{
+    font-family: arial;
+  text-align: center;
+  }
 </style>
-<div class="row layout-top-spacing" *ngIf="role==='administrateur'||role==='chef d agence'">
+<div class="row layout-top-spacing" *ngIf="role==='administrateur'">
   <div id="btnGroupHorizontal" class="col-lg-12 layout-spacing">
     <div class="statbox widget box box-shadow">
       <form (ngSubmit)="insertData()">
         <div class="widget-header">
           <div class="row">
             <div class="col-xl-12 col-md-12 col-sm-12 col-12">
-              <td>
+<hr>
                 <h3>Nos Challenges</h3>
-              </td>
 
+<hr>
             </div>
           </div>
         </div>
@@ -60,7 +120,10 @@
     </div>
   </div>
 </div>
-
+<hr>
+<h1>LES CHALLENGES</h1>
+<hr>
+<br>
 <div class="col-lg-12 layout-spacing" *ngFor="let chal of challenges">
   <form>
     <div class="statbox widget box box-shadow">
@@ -74,7 +137,7 @@
               </td>
               <td> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                   stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                  class="feather feather-edit-2 float-right edit" routerLink="../editchaleng/{{chal.id}}">
+                  class="feather feather-edit-2 float-right edit" routerLink="../editchaleng/{{chal.id}}" *ngIf="role==='administrateur'">
                   <path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path>
                 </svg></td>
             </tr>
@@ -107,8 +170,53 @@
           </div>
         </div><hr>
        <center> <button [disabled]="chal.affected" type="button" class="btn btn-success "
-          (click)="affecter(chal.id)">Affecter</button></center>
+          (click)="affecter(chal.id)" *ngIf="role==='administrateur'">Affecter</button></center>
 
+
+<button type="button" class="btn btn-outline-success btn-sm" (click)="getresult(chal.id)"data-toggle="modal" data-target="#exampleModalCenter">
+  Résultat
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+
+      <div class="modal-body">
+
+<div class="text-center container bootstrap snippets bootdey">
+  <div class="row">
+    <h2 class="text-center text-primary">Victoire pour les agences Gagnantes</h2>
+    <hr>
+    <div class="text-center ">
+      <div class="d-flex flex-row">
+        <div class="p-2" *ngFor="let r of result;let i = index">
+          <blockquote>
+            <h3 class="clients-words">{{r.name}}</h3>
+
+            <img class="img-circle img-thumbnail" src="../../../assets/img/trophee.jpg">
+            <h1>{{i+1}}</h1>
+          </blockquote>
+        </div>
+      </div>
+      <!--/.row-->
+    </div>
+    <!--/.col-->
+  </div>
+  <!--/.row-->
+</div>
+
+
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+      </div>
+    </div>
+  </div>
+</div>
 
 
       </div>
